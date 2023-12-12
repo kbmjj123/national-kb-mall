@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  /* custom app width in project */
+  .app-width{
+    @apply sm:w-screen md:w-screen lg:w-10/12 xl:w-9/12 2xl:w-8/12;
+  }
+}
