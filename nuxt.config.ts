@@ -18,7 +18,10 @@ export default defineNuxtConfig({
     '@pinia/nuxt', // needed
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-jsonld',
-    '@vite-pwa/nuxt'
+    '@vite-pwa/nuxt',
+    'nuxt-simple-sitemap',
+    'nuxt-og-image',
+    'nuxt-svgo'
   ],
   components: {
     global: true,
