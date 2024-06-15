@@ -14,6 +14,7 @@
     "@nuxtjs/tailwindcss": "^6.10.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/md5": "^2.3.4",
     "@vite-pwa/nuxt": "^0.3.5",
     "@vueuse/nuxt": "^10.4.1",
