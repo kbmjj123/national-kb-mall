@@ -10,18 +10,17 @@ export default defineNuxtConfig({
     transpile: ['pinia-plugin-persistedstate'],
   },
   modules: [
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
     '@nuxt/image',
-    'nuxt-icon',
     '@nuxt/content',
-    '@pinia/nuxt', // needed
+    '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-jsonld',
     '@vite-pwa/nuxt',
-    'nuxt-simple-sitemap',
     'nuxt-og-image',
-    'nuxt-svgo'
+    'nuxt-svgo',
+    "@nuxtjs/sitemap",
+    "@nuxt/ui"
   ],
   components: {
     global: true,
