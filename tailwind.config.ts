@@ -1,6 +1,7 @@
-module.exports = {
-  theme: {
-    extend: {},
-  },
-  plugins: []
-};
+import type { Config } from 'tailwindcss'
+
+export default <Partial<Config>> {
+	theme: {
+		extend: {}
+	}
+}
