@@ -2,13 +2,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   debug: true,
-  pinia: {
-    autoImports: ['defineStore', 'acceptHMRUpdate'],
-  },
-  build: {
-    // this issue appear at: https://github.com/prazdevs/pinia-plugin-persistedstate/issues/236
-    transpile: ['pinia-plugin-persistedstate'],
-  },
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/image',
