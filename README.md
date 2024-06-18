@@ -59,6 +59,13 @@ national-kb-mall
 ├─ tsconfig.json
 └─ utils
 ```
+## 项目所使用的库
+1. 官方ui库(@nuxt/ui)，便于快速开发并管理，官网：[https://ui.nuxt.com/](https://ui.nuxt.com/);
+2. seo(@nuxt/seo)，统一接管项目的seo的相关模块，包括有：；
+3. pinia(@pinia-plugin-persistedstate/nuxt)，使app像spa开发维护pinia一样简单，官网：[https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html)；
+4. pwa(@vite-pwa/nuxt)，0配置生成项目的pwa配置，官网：[https://vite-pwa-org.netlify.app/frameworks/nuxt](https://vite-pwa-org.netlify.app/frameworks/nuxt)；
+5. vueuse(@vueuse/nuxt)，vue社区提供的三方组合式工具API，官网：[https://vueuse.org/](https://vueuse.org/)
+6. 
 
 ## 项目过程文档记录
 > 本章节将记录在进行整体项目开发调试过程中所遇到的相关问题，并进行发散性思维，联想相关的知识，并记录下来

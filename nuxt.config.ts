@@ -15,12 +15,10 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    'nuxt-jsonld',
     '@vite-pwa/nuxt',
-    'nuxt-og-image',
     'nuxt-svgo',
-    "@nuxtjs/sitemap",
-    "@nuxt/ui"
+    "@nuxt/ui",
+    "@nuxtjs/seo"
   ],
   components: {
     global: true,
