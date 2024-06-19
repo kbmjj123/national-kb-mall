@@ -1,5 +1,5 @@
 import type { AsyncDataExecuteOptions, KeysOf } from "nuxt/dist/app/composables/asyncData"
-import { BasicResponseModel } from '~/api/types'
+import { ObjectResponseModel } from '~/api/types'
 
 type FetchParams = {
 	[index: string]: any
@@ -27,7 +27,7 @@ type FetchResult<DataT, ErrorT> = {
 export function useKbFetch<DataT, ErrorT>(url: string, params: FetchParams = {}, options: FetchOptions = {}): FetchResult<DataT, ErrorT> {
 	const { successResponseType = 'none', errorResponseType = 'toast', customHeaders, isReturnAllRes = false, method } = options
 	const requestCacheKey = `${url}-${JSON.stringify(params)}`
-	const { data, execute, pending, error, status } = useAsyncData<DataT, ErrorT>(requestCacheKey, () => {
+	const { data, execute, error, status } = useAsyncData<DataT, ErrorT>(requestCacheKey, () => {
 		return $fetch(url, {
 			baseURL: '',
 			responseType: 'json',
@@ -44,13 +44,21 @@ export function useKbFetch<DataT, ErrorT>(url: string, params: FetchParams = {},
 					}
 				}
 			},
-			onResponse: async context => {
-				const httpResult: BasicResponseModel = await context.response.json()
-				// if(isReturnAllRes){
-				// 	return httpResult
-				// }else{
-
-				// }
+			onResponse: async ({ response }) => {
+				const httpResult: ObjectResponseModel<DataT> = await response.json()
+				if (response.ok) {
+					if(SUCCESS === httpResult.status){
+						if(isReturnAllRes){
+							return httpResult
+						}else{
+							return httpResult.data
+						}
+					}else{
+						return ''
+					}
+				} else {
+					throw new Error(httpResult.message)
+				}
 			},
 			onResponseError(context) {
 
@@ -58,6 +66,6 @@ export function useKbFetch<DataT, ErrorT>(url: string, params: FetchParams = {},
 		})
 	})
 	return {
-		data, execute, pending, error, status
+		data, execute, error, status
 	}
 }
