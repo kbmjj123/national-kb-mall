@@ -3,9 +3,10 @@
 </template>
   
 <script setup lang='ts'>
-  
+  import { login } from '~/api/user'
+	const { result, execute } = login('13728009642', 'zgl123')
+	onMounted(() => {
+		execute && execute()
+	})
 </script>
   
-<style>
-  
-</style>
