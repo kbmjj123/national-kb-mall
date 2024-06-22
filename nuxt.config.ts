@@ -32,7 +32,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiHost: process.env.NUXT_PUBLIC_API
+      apiHost: process.env.NUXT_PUBLIC_API,
+			common: process.env.NUXT_PUBLIC_COMMON
     }
   }
 })
