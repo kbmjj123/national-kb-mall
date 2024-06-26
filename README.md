@@ -309,6 +309,66 @@ declare module 'nuxt/schema' {
 4. 使用以及效果
 ![自定义appConfig拥有了类型检测的加持.png](./assets/images/自定义appConfig拥有了类型检测的加持.png)
 
+#### nuxt.config.ts中的app节点配置
+> 在`nuxt.config.ts`存在那么的一个属性`app`，主要用于"静态化"地设置当前webapp应用的配置信息，改属性主要有以下那么一些成员属性
+| 属性 | 描述 | 默认值 |
+|---|---|---|
+| baseURL | 站点的根路径 | '/' |
+| buildAssetsDir | 已生成站点资源的文件夹名称 | '/_nuxt/' |
+| cdnURL | 用于提供公共文件夹的绝对URL（仅限生产） | '' |
+| head | 用于设置所有页面的head节点 | `见下方关于head的定义` |
+| keepalive | 页面之间keepalive配置的默认值，可由页面中的`definePageMeta`覆盖 | false |
+| layoutTransition | 布局间的动画，可由页面中的`definePageMeta`覆盖 | false |
+| pageTransition | 页面间的动画，可由页面中的`definePageMeta`覆盖 | false |
+| rootAttrs | 自定义根节点的属性 | `{"id": "__nuxt"}` |
+| rootId | 根节点id | "__nuxt" |
+| rootTag | 根节点名称 | `div` |
+| teleportAttrs |  |  |
+| teleportId |  |  |
+| teleportTag |  |  |
+| viewTransition |  |  |
+
+##### 关于head的定义
+```json
+{
+  "meta": [
+    {
+      "name": "viewport",
+      "content": "width=device-width, initial-scale=1"
+    },
+    {
+      "charset": "utf-8"
+    }
+  ],
+  "link": [],
+  "style": [],
+  "script": [],
+  "noscript": []
+}
+```
+
+##### 关于静态化head设置、动态化全局设置、具体页面单独设置的区别
+> :point_up_2: 我们发现可以在`nuxt.config.ts`中定义`app.head`节点来静态化设置所有页面的head标签，但是在实际的情况下，则会出现全局的动态化设置、或者是具体到某个页面来设置，因此，`Nuxt3`提供了`useHead()`以及`useSafeHead()`
+> 而这个`useHead()`函数参数成员的签名如下：
+```typescript
+useHead(meta: MaybeComputedRef<MetaObject>): void
+interface MetaObject {
+  title?: string
+  titleTemplate?: string | ((title?: string) => string)
+  base?: Base
+  link?: Link[]
+  meta?: Meta[]
+  style?: Style[]
+  script?: Script[]
+  noscript?: Noscript[]
+  htmlAttrs?: HtmlAttributes
+  bodyAttrs?: BodyAttributes
+}
+```
+关于各个字段属性如何传参，具体见[官网](https://github.com/unjs/unhead/blob/main/packages/schema/src/schema.ts)
+
+:point_right: `useHead`是一个组合式API，一般在`*.vue`文件中使用
+
 ### 踩坑之路
 > 记录在项目过程中所踩的坑
 #### 升级了版本之后发现sharp不兼容
