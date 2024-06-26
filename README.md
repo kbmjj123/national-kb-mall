@@ -189,14 +189,17 @@ module.exports = {
 
 :thinking: **思考这样子一个问题：我们在不同环境中的环境变量的配置也有可能部分属性是一样的，那么针对这种情况，应该怎样来维护比较好呢？**
 :point_right: 考虑将将脚本与环境变量配置结合起来，将公共的部分给抽取到一个类似名为`.env.common`的文件中，然后再分别新增`.env.development`以及`.env.production`，然后自定义一`node`脚本程序`loadEnv`，当运行脚本的程序的时候，根据运行的命令对应的环境，来将`.env.common`与对应环境的配置文件结合起来，合并结果值到统一的一个环境配置文件中(比如.env)
-1. 新增自定义加载环境变量的脚本`loadEnv.js`
+1. 新增自定义加载环境变量的脚本`loadEnv.mjs`
 ```javascript
-const fs = require('fs')
-const path = require('path')
-const dotenv = require('dotenv')
+import fs from 'fs'
+import path from 'path'
+import dotenv from 'dotenv'
+import { fileURLToPath } from 'url';
 
 // 读取并合并两个配置文件中的信息
 function loadEnv(env){
+	const __filename = fileURLToPath(import.meta.url)
+	const __dirname = path.dirname(__filename)
 	const basePath = path.resolve(__dirname)	// 获取当前路径
 	const commonEnvPath = path.join(basePath, '.env.common')
 	const envPath = path.join(basePath, `.env.${env}`)
@@ -216,20 +219,38 @@ for(const key in config){
 	process.env[key] = config[key]
 }
 
-module.exports = config
+export default config
 ```
-2. 修改运行的脚本命令
-```json
-// package.json
-{
-	"script": {
-		"build": "NODE_ENV=production node loadEnv.js && nuxt build",
-    "dev": "NODE_ENV=development node loadEnv.js && nuxt dev",
+2. 针对环境变量进行对应的读取动作
+```typescript
+// nuxt.config.ts
+import envConfig from './loadEnv.mjs'
+export defineNuxtConfig({
+	runtimeConfig: {
+    public: {
+      baseUrl: envConfig['NUXT_PUBLIC_BASE_URL'],
+			common: envConfig['NUXT_PUBLIC_COMMON']
+    }
+  }
+})
+```
+3. 针对客户端可能会不小心修改到环境变量的值情况，新增typescript类型检测机制，并新增自定义的保护组件式函数`useSafeRuntimeConfig`
+```typescript
+export const useSafeRuntimeConfig = () => {
+	const publicRuntimeConfig = useRuntimeConfig().public	// 获取原始的运行时配置
+	return {
+		publicConfig: Object.freeze(publicRuntimeConfig),
+		runTimeConfig: Object.freeze(useRuntimeConfig())
 	}
 }
 ```
-3. 针对客户端可能会不小心修改到环境变量的值情况，新增typescript类型检测机制
-
+4. 使用方式
+```vue
+<script setup>
+const { publicConfig } = useSafeRuntimeConfig()
+console.info(publicConfig)
+</script>
+```
 
 #### Nuxt中的appConfig配置
 > 一般来说，一个APP应用，拥有其一些特性(比如站点名称，主题颜色，使用语言等等)，我们可以将这些属性定义到`~/app.config.ts`文件中，但是，对于`Nuxt`而言，定义在`app.config.ts`文件中的属性，都是可以被编辑的，而有些场景下，像站点名称这些是不可以被编辑的，那么 :thinking: 应该怎么做才能够更好的来使用呢？

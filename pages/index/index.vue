@@ -8,6 +8,8 @@
 	onMounted(() => {
 		execute && execute()
 	})
+	const { publicConfig } = useSafeRuntimeConfig()
+	console.info(publicConfig)
 	
 </script>
   

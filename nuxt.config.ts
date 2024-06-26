@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import envConfig from './loadEnv.mjs'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   debug: true,
@@ -32,8 +33,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiHost: process.env.NUXT_PUBLIC_API,
-			common: process.env.NUXT_PUBLIC_COMMON
+      baseUrl: envConfig['NUXT_PUBLIC_BASE_URL'],
+			common: envConfig['NUXT_PUBLIC_COMMON']
     }
   }
 })

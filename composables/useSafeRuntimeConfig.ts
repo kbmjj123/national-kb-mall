@@ -1,5 +1,12 @@
+export interface PublicRunTimeConfig {
+	readonly baseUrl: string;
+	readonly common: string
+}
 
-const runtimeConfig = useRuntimeConfig()	// 获取原始的运行时配置
 export const useSafeRuntimeConfig = () => {
-	return Object.freeze(runtimeConfig)
+	const publicRuntimeConfig = useRuntimeConfig().public	// 获取原始的运行时配置
+	return {
+		publicConfig: Object.freeze(publicRuntimeConfig),
+		runTimeConfig: Object.freeze(useRuntimeConfig())
+	}
 }
