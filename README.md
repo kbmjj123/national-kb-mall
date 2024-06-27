@@ -277,9 +277,9 @@ export interface AppConfig{
 	primaryColor: string,
 	defaultLanguage: string
 }
-const appConfig = useAppConfig() as AppConfig
 // 对外暴露app的自定义属性，且不能直接修改，需要修改的话，则通过这个函数返回的changXXX方法来进行修改
 export const useSafeAppConfig = () => {
+	const appConfig = useAppConfig() as AppConfig
 	const frozenConfig = Object.freeze(appConfig)	// 不可直接修改的app配置对象
 	const changeTheme = (color: string) => {
 		appConfig.primaryColor = color
@@ -367,7 +367,77 @@ interface MetaObject {
 ```
 关于各个字段属性如何传参，具体见[官网](https://github.com/unjs/unhead/blob/main/packages/schema/src/schema.ts)
 
-:point_right: `useHead`是一个组合式API，一般在`*.vue`文件中使用
+:point_right: `useHead`是一个组合式API，一般在`*.vue`文件中使用，而在`Nuxt`中又提供了不同类型的*.vue(app.vue、`layouts/default.vue`、`pages/**.vue`)，那么我们可以得出这样子的一个结论：**`nuxt.config.ts`一般用于设置静态的页面公共配置，app.vue中用来设置动态的公共配置，`layouts/default.vue`则根据页面所使用的模版，来提供针对模版级别的动态公共配置，而`pages/**.vue`则是针对某个页面自行进行个性化的配置，颗粒度达到最细！**
+
+##### useSeoMeta与useHead
+> 在`Nuxt3`中，`useHead`与`useSeoMeta`都是用来设置页面的头部信息(meta信息)，但是他们的功能与使用场景各有不同，首先`useHead`是一个比较通用的方法，用于设置页面的任何头部信息(也就是说在`<head></head>`标签中的信息都可以被设置)，如下代码所示：
+```vue
+<script setup>
+import { useHead } from '#imports'
+
+useHead({
+  title: 'Page Title',
+  meta: [
+    { name: 'description', content: 'Page description' },
+    { property: 'og:title', content: 'Open Graph Title' }
+  ],
+  link: [
+    { rel: 'stylesheet', href: 'https://example.com/style.css' }
+  ],
+  script: [
+    { src: 'https://example.com/script.js', type: 'text/javascript' }
+  ]
+})
+</script>
+
+```
+> 而`useSeoMeta`则是一个专门用来设置与SEO相关meta标签的方法，它提供了一个更简化的API，专注于SEO方面的meta信息，比如TDK、Open Graph标签等，使用`useSeoMeta`可以更方便地管理和设置与SEO相关的内容，如下所示：
+```vue
+<script setup>
+import { useSeoMeta } from '#imports'
+
+useSeoMeta({
+  title: 'Page Title',
+  description: 'Page description',
+  keywords: 'keyword1, keyword2',
+  ogTitle: 'Open Graph Title',
+  ogDescription: 'Open Graph description',
+  ogImage: 'https://example.com/image.jpg'
+})
+</script>
+```
+
+##### app配置与seo配置
+> 结合上述知识的学习，可以得出以下的一个比较合适的项目实践：
+1. 将需要固化的数据存储到`app.config.ts`文件中；
+2. 不在`nuxt.config.ts`文件中设置这个与`head`有关的配置，采用在`app.vue`中通过`useHead`来设置动态化的公共配置，这样子可以通过`useAppConfig`方法来访问到；
+3. 在明确系统中有几套`layout`的时候，可以采用针对不同的layout采用不同的head；
+4. 具体到某些页面需要展示对应该页面的一些自定义属性时，则可采用在具体的`pages/**.vue`中使用`useHead`来设置对应的；
+5. 在上述4点中`useHead`仅用来设置与`seo`无关的设置，将与`seo`相关的设置，采用`useSeoMeta`来设置(TDK+OG)
+
+:thinking: 在实际的项目过程中，经常性地需要先设置站点的名称，然后在某些页面中采用拼接的方式来追加当前页面的名称，那么这种情况，应该如何处理呢？
+
+:point_right: 可采用`useHead`中的`titleTemplate`属性(该属性是一个可格式化的字符串或者是一个返回字符串的函数)，一般情况下，通过在`app.vue`中设置这个`titleTemplate`属性，来控制标题的格式，然后在具体的页面直接定义即可，比如有：
+```vue
+<script>
+// app.vue
+useHead({
+	titleTemplate: '%s - 站点名称',
+	// 也可以采用函数的方式更加灵活
+	titleTemplate: (title) => title ? `${title} - 站点名称` : '站点名称'
+})
+</script>
+```
+然后在具体的页面中直接使用页面名称
+```vue
+<script>
+// test.vue
+useHead({
+	title: '我是test页面'
+	// 将会渲染为`我是test页面 - 站点名称`
+})
+</script>
+```
 
 ### 踩坑之路
 > 记录在项目过程中所踩的坑
