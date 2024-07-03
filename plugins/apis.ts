@@ -5,7 +5,7 @@ export default defineNuxtPlugin(() => {
 		timeout: 30000,
 		method: 'post',
 		onRequest({ request, options }) {
-			console.info(options)
+			// console.info(options)
 			if(!options.headers){
 				options.headers = {}
 			}
@@ -19,10 +19,9 @@ export default defineNuxtPlugin(() => {
 					token: useRequestHeader('token') || '我是服务端拿到的token的值'
 				})
 			}
-			// console.info(options)
 		},
 		onResponse(context) {
-			console.info(context.response._data)
+			// console.info(context.response._data)
 		}
 	})
 

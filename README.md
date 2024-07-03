@@ -440,7 +440,182 @@ useHead({
 ```
 
 ##### Nuxt中的自动导入
-> 在`Nuxt`中将会自动导入像`components`、`composables`、`utils`这3个目录中的文件，使得可以直接在项目中(合适的上下文)来直接调用这几个目录的文件
+> 在`Nuxt`中将会自动导入像`components`、`composables`、`utils`这3个目录中的文件，使得可以直接在项目中(合适的上下文)来直接调用这几个目录的文件，一般在`nuxt.config.ts`文件中配置自动导入的目录，来告知`Nuxt`将支持哪些目录哪些文件的自动导入机制！
+> :thinking: 那么这种自动导入的机制是如何实现的呢？为什么配置了这个目录，就可以实现自动导入的目的了呢？
+> 这时因为这个`Nuxt`在启动的时候，有以下的几个流程步骤，来实现这个自动导入的目的：
+1. 扫描特定目录：`Nuxt`在启动的时候会扫描特定目录，如`components`、`composables`、`utils`等，找到所需要的目录并自动导入文件，这些目录也就是在`nuxt.config.ts`中配置的；
+2. 生成自动导入文件：扫码完目录后，`Nuxt`会生成一个或者多个自动导入文件，通常包括`auto-imports.d.ts`以及`components.d.ts`，这些文件被放置在`.nuxt`目录中
+```typescript
+// auto-imports.d.ts
+import { useExample } from '../composables/useExample'
+import { helperFunction } from '../utils/helper'
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    useExample: typeof useExample
+    helperFunction: typeof helperFunction
+  }
+}
+export {}
+```
+3. 注入全局上下文：生成的自动导入文件会在项目构建/运行时被加载，并将其内容注入到全局上下文中，使其在整个应用中可用
+```typescript
+// components.d.ts
+declare module 'vue' {
+  export interface GlobalComponents {
+    MyButton: typeof import('~/components/MyButton.vue').default
+    MySubComponent: typeof import('~/components/subdirectory/MySubComponent.vue').default
+  }
+}
+export {}
+```
+4. 内部插件机制：上述第3步仅仅是类型的声明，而实际使得程序上能够直接调用这个全局自动导入的属性，则是通过在`Nuxt`中生成一个内部插件(auto-imports.mjs)文件，当`Nuxt`启动时，加载这个插件，将所有收集到的工具函数和组件注入到全局上下文中，生成的自动导入插件内容如下：
+```typescript
+// 内部插件示例（示意性代码）
+import { defineNuxtPlugin } from '#app'
+import { useExample } from '~/composables/useExample'
+import { helperFunction } from '~/utils/helper'
+
+export default defineNuxtPlugin((nuxtApp) => {
+	nuxtApp.provide('useExample', useExample)
+	nuxtApp.provide('helperFunction', helperFunction)
+})
+```
+
+:trollface: 如果我想要自定义自动导入的话，只需要在`app.config.ts`中进行配置即可，如下配置所示
+```typescript
+export default defineNuxtConfig({
+	components: {
+		global: true,
+		dirs: ['~/components/global']
+	},
+	imports: {
+		dirs: ['composables', 'composables/*/index.{ts, js, mjs, mts}', 'composables/**']
+	}
+})
+```
+
+:thinking: 但是，有时候，我们并非是直接在`<template></template>`使用组件的，而是采用动态组件的方式来使用的，这个时候，我们就需要手动导入组件的方式：
+```vue
+<script lang="ts" setup>
+import { CustomComponent } from '#components'
+const MyButton = resolveComponent('MyButton')
+</script>
+<template>
+	<component :is="clickable ? MyButton : 'div'"></component>
+	<component :is="CustomComponent"></component>
+</template>
+```
+
+#### Nuxt中的插件
+> `Nuxt3`提供了像`vue`类似的插件机制，允许我们通过在`plugins`目录中创建自定义插件的方式，来往`nuxt`实例追加逻辑、属性、动作的方式，以及提供全局属性的机制，通过自定义的钩子来创建自定义钩子动作，使用既定的钩子来实现对应的目的，整理了一下可提供的功能有：
+1. 注册既定的钩子，也可注册自定义钩子；
+2. 通过`provide`来提供全局的属性以及方法；
+3. 凭借`nuxtApp.vueApp`属性，可实现往vue实例中添加全局动作(插件、组件、指令等)；
+
+##### Nuxt插件定义的两种不同方式
+1. 最基本的使用方式：函数参数
+```typescript
+export default defineNuxtPlugin(nuxtApp => {
+	// 对nuxtApp对象进行相关的操作
+})
+```
+2. 较全的使用方式：对象参数
+```typescript
+export default defineNuxtPlugin({
+	name: 'my-plugin',
+	enfore: 'pre',
+	async setup(nuxtApp){
+		// 与上述的函数参数的插件定义方法功能一致
+	},
+	order: number,	// 插件加载的顺序排序
+	dependsOn: [],// 依赖于其他的插件
+	parallel: boolean,
+	hooks: {
+		// 直接注册插件的运行时钩子函数
+		'app:create'() {
+			const nuxtApp = useNuxtApp()
+		}
+	},
+	env: {
+		islands: true
+	}
+})
+```
+:trollface: 上述的对象参数方式调用的时候，如果`hooks`以及`nuxtApp.hook`都注册了同样名称的钩子函数动作的话， hooks中定义的钩子将优先于`nuxtApp.hook`中定义的钩子！
+
+##### Nuxt插件中nuxtApp对象的组成
+![nuxtApp的输出](./assets/images/nuxtApp的输出.png)
+![nuxtApp的构成](./assets/images/nuxtApp的构成.png)
+
+:point_right: 在实际的coding中，除了可以在自定义插件访问到这个`nuxtApp`实例之外，还可以通过组合式函数`useNuxtApp()`来访问到运行中的nuxtApp实例！！！
+
+##### nuxtApp中所涉及到的钩子函数都有哪些
+| 钩子函数 | 描述 |
+|---|:---|
+| `app:created` | 在`Nuxt`应用实例创建之后立即触发，适用于需要在应用初始化阶段执行的逻辑 |
+| `app:beforeMount` | 在`Nuxt`应用挂在到DOM之前触发，适用于在应用挂在之前需要执行的操作 |
+| `app:mounted` | 在`Nuxt`应用挂载到DOM之后触发，适用于在应用已经挂在之后需要执行的操作 |
+| `app:rendered` | 在应用完成第一次渲染之后触发，适用于需要在初次渲染完成后执行的操作，例如分析渲染时间 |
+| `app:redirected` | 在应用执行重定向时触发，适用于需要在重定向发生时执行的操作 |
+| `app:suspense:resolve` | 当一个Suspense组件的所有异步依赖解析完毕时触发，适用于处理Suspense的解析逻辑 |
+| `app:error` | 当应用中发生错误时触发，适用于全局错误处理 |
+| `app:error:cleared` | 当错误状态被清除时触发，适用于清理错误的相关逻辑 |
+| `app:chunkError` | 当应用中发生代码分开(chunk)错误时触发，适用于处理代码分块加载错误 |
+| `app:data:refresh` | 当应用中的数据需要刷新时触发，适用于数据刷新逻辑 |
+| `app:manifest:update` | 当应用的manifest文件更新时触发，适用于处理manifest文件更新的逻辑 |
+| `dev:ssr-logs` | 在开发模式下，服务端渲染日志输出时触发，适用于在开发模式下处理SSR日志 |
+| `link:prefetch` | 当应用预取链接时触发，适用于处理链接预取逻辑 |
+| `page:start` | 在页面开始加载时触发，适用于页面加载开始时的逻辑 |
+| `page:finish` | 在页面加载完成时触发，适用于页面加载完成后的逻辑 |
+| `page:transition:start` | 在页面过度开始时触发，适用于处理页面过度开始逻辑 |
+| `page:transition:finish` | 在页面过度结束时触发 |
+| `page:view-transition:start` | 在视图过渡开始时触发 |
+| `page:loading:start` | 在页面加载指示器开始时触发 |
+| `page:loading:end` | 在页面加载指示器结束时触发 |
+| `vue:setup` | 在vue组件setup函数执行前触发 |
+| `vue:error` | 当vue组件捕获到错误时触发 |
+
+
+#### Nuxt中间件
+> `Nuxt`提供了中间件来在导航到特定路由之前运行对应的代码的机制！它提供了一个可定制的路由中间件框架，使得我们可以在整个应用程序中使用，非常适合在导航到特定路由之前提取我们想要运行的代码，可分为三种类型的中间件(这有点类似于`vue-router`中的路由守卫)：
+1. 全局所有路由中间件，存放于`middleware/`目录中，一般已`.global.ts`结尾；
+2. 命名路由中间件，存放于`middleware/`目录中，需要使用时需要在具体的页面中通过`usePageMeta`函数来声明；
+3. 匿名路由中间件，没有具体文件命名，一般由具体页面通过`usePageMeta`来定义
+
+:star: 一般中间件的定义，是通过`defineNuxtRouteMiddleware()`函数来声明定义的，如下代码所示：
+```typescript
+	export default defineNuxtRouteMiddleware((to, from) => {
+		if(to.params.id === '1'){
+			return absortNavigation()
+		}
+		if(to.path !== '/'){
+			return navigateTo('/')
+		}
+	})
+```
+:star2:  在上述的代码中，在中间件上下文提供了全局的`absortNavigation()`以及`navigateTo()`方法，分别用于重定向操作以及终止路由跳转动作！关于这个`navigateTo`的具体用法见[官网](https://nuxt.com/docs/api/utils/navigate-to)
+
+:star: 然后在具体的页面中通过`usePageMeta()`方法来声明路由使用顺序
+```vue
+<script setup lang="ts">
+	definePageMeta({
+		middleware: ['auth', (to, from) => {}]
+	})
+</script>
+```
+
+##### 动态的路由中间件
+> `Nuxt`还提供了`addRouteMiddleware()`方法来帮助我们创建并使用动态的路由中间件，如下代码所示：
+```typescript
+export default defineNuxtPlugin(nuxtApp => {
+	addRouteMiddleware('global-middleware', (to, from) => {
+		console.info('我是全局的动态路由中间件')
+	}, { global: true })
+	addRouteMiddleware('named-middleware', (to, from) => {
+		console.info('我是命名路由中间件')
+	})
+})
+```
 
 ### 踩坑之路
 > 记录在项目过程中所踩的坑
@@ -464,5 +639,19 @@ useHead({
 ![开启tailwindcss服务.png](./assets/images/开启tailwindcss服务.png)
 >而打开此路径对应的效果如下图所示：
 ![tailwindcss样式对照表.png](./assets/images/tailwindcss样式对照表.png)
+
+#### 页面级别的自定义组件
+> 由于`Nuxt3`会自动扫描`pages`目录下的vue文件来生成对应的路由，而在实际的项目coding过程中，会经常性地在页面级别创建专属于页面级别的子组件，这个时候不想让这个子组件被当作路由来使用，可以通过将子组件给命名为`_XXX.vue`的方式，来自定义命名并使用，因为下划线前缀不会被`Nuxt`用来生成路由的！
+```vue
+<template>
+	<div>
+		<MyComponent></MyComponent>
+	</div>
+</template>
+<script setup lang="ts">
+import MyComponent from './component/MyComponent.vue'
+</script>
+```
+
 
 ## 思考总结
