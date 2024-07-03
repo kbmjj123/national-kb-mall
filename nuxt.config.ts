@@ -29,5 +29,11 @@ export default defineNuxtConfig({
       baseUrl: envConfig['NUXT_PUBLIC_BASE_URL'],
 			common: envConfig['NUXT_PUBLIC_COMMON']
     }
-  }
+  },
+	// 数据持久化配置
+	piniaPersistedstate: {
+		cookieOptions: {
+			sameSite: 'strict'
+		}
+	}
 })

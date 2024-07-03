@@ -5,6 +5,8 @@ export default defineAppConfig({
 	// 主题相关
 	primaryColor: '#de3428',
 	// 使用语言相关
-	defaultLanguage: 'zh_cn'
-	
+	defaultLanguage: 'zh_cn',
+	ui: {
+		primary: 'purple'
+	}
 })
