@@ -27,7 +27,10 @@ function fetch<DataT>(url: string, params: any, options: FetchOptions = {}) {
 			isReturnAllRes
 		}
 	}
-	const { data: result, execute, error, status } = useAsyncData<DataT>(requestCacheKey, () => nuxtApp.$api(url, fetchOptions))
+	const { publicConfig } = useSafeRuntimeConfig()
+	const useMockFlag = Boolean(publicConfig.useMock)
+	const finalUrl = useMockFlag ? `/api/mock${url}` : `/api/${url}`
+	const { data: result, execute, error, status } = useAsyncData<DataT>(requestCacheKey, () => nuxtApp.$api(finalUrl, fetchOptions))
 	return {
 		result, execute, error, status
 	}

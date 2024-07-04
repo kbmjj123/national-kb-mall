@@ -1,6 +1,7 @@
 export interface PublicRunTimeConfig {
 	readonly baseUrl: string;
-	readonly common: string
+	readonly common: string;
+	readonly useMock: boolean;
 }
 
 export const useSafeRuntimeConfig = () => {

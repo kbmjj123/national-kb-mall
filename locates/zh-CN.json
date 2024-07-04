@@ -1,3 +1,10 @@
 {
-  "welcome": "Welcome For Inviting!"
+  "welcome": "欢迎您！",
+  "login": {
+    "loginBtn": "登录",
+		"forgetPwd": "忘记密码？"
+  },
+  "register": {
+    "registerBtn": "注册"
+  }
 }

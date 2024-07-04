@@ -617,6 +617,30 @@ export default defineNuxtPlugin(nuxtApp => {
 })
 ```
 
+#### Nuxt中的服务端
+> 在`Nuxt3`中提供了`server`目录，通过在此目录下创建的文件夹/文件，都将会映射为对应的(接口)服务，比如有下述的文件夹结构：
+```shell
+-| server/
+---| api/
+-----| hello.ts      # /api/hello
+---| routes/
+-----| bonjour.ts    # /bonjour
+---| middleware/
+-----| log.ts        # 将捕获所有的请求中间件
+---| utils/
+-----| utils.ts        # 
+```
+:point_right: 我们可以简单地这样子认为：一切定义在`server`目录下的js脚本，都将会根据其文件目录、文件名称，映射成为后台的(接口)服务，在该目录下的服务，一般通过下述的方式来定义
+```typescript
+import type { EventHandler, EventHandlerRequest, H3Event } from 'h3'
+export default defineEventHandler((event: H3Event<EventHandlerRequest>) => {
+	return {
+		hello: 'world'
+	}
+})
+```
+:point_right: 关于这个`H3Event`的使用，具体可见[h3官网Event](https://h3.unjs.io/guide/event)的具体介绍
+
 ### 踩坑之路
 > 记录在项目过程中所踩的坑
 #### 升级了版本之后发现sharp不兼容
@@ -653,5 +677,11 @@ import MyComponent from './component/MyComponent.vue'
 </script>
 ```
 
+#### 集成Mock服务
+> 在`Nuxt3`中并不存在这个`Mock`相关的模块，也没有开箱即用的三方库，因此这边根据之前的项目经验，进行对应的调整
+1. 安装相关的依赖：`pnpm i mockjs`以及`pnpm i --save-dev @types/mockjs`
+2. 在根目录中创建`mock`文文件夹，并对外暴露统一的`index.ts`，该`index.ts`主要是将业务模块`modules`文件夹中的模块进行一一加载，并通过`url+method`拼接的方式作为key，`response`作为value，对外提供一个完整的mock对象
+3. 在`server`目录中新建`api/mock/[...].ts`统一的mock访问接口文件，然后通过获取`event`请求信息，从mock对象中匹配到对应的response函数，进行输出对应的响应结果；
+4. 在runtimeConfig配置中添加是否mock的标识，结合统一的自定义`useKbFetch`组合式API，当开启mock的时候，则请求`/api/mock${url}`路径，当没有开启mock的时候，则请求`/api${url}`路径，实现一键切换mock的机制！
 
 ## 思考总结

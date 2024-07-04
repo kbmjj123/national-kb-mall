@@ -1,4 +1,6 @@
 
+export type ProductInfoType = {}
+
 export const getProductList = () => {}
 
 export const getProductDetail = () => {}

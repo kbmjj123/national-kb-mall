@@ -5,7 +5,6 @@ export default defineNuxtPlugin(() => {
 		timeout: 30000,
 		method: 'post',
 		onRequest({ request, options }) {
-			// console.info(options)
 			if(!options.headers){
 				options.headers = {}
 			}

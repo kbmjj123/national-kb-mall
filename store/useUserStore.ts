@@ -1,13 +1,6 @@
-import { login, logout } from '~/api/user.js'
+import { type UserInfoType, login, logout } from '~/api/user.js'
 
 const USER_STORE_ID = 'user'
-
-export type UserInfoType = {
-	id: string,
-	nickName: string,
-	avatar: string,
-	account: string
-}
 
 export type UserType = {
 	token: string,

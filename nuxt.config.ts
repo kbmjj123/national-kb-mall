@@ -27,7 +27,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: envConfig['NUXT_PUBLIC_BASE_URL'],
-			common: envConfig['NUXT_PUBLIC_COMMON']
+			common: envConfig['NUXT_PUBLIC_COMMON'],
+			useMock: envConfig['NUXT_PUBLIC_USE_MOCK']
     }
   },
 	// 数据持久化配置
