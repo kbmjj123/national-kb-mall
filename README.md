@@ -68,7 +68,8 @@ national-kb-mall
 6. 
 
 ## 三方插件
-1. @nuxt/devtools:
+
+### 开发调试`@nuxt/devtools`
 > `nuxt`专属的调试开发工具，官网：[https://devtools.nuxt.com/](https://devtools.nuxt.com/)
 > 运行成功后，点击页面底部按钮，即可进入`devtools`的可视化界面，如下图所示：
 ![nuxt_devtools的可视化界面](./assets/images/nuxt_devtools的可视化界面.png)
@@ -87,7 +88,8 @@ national-kb-mall
 :star2: 由于在项目中即成了`icones`了，因此可通过这个`devtools`的可视化界面入口，切换到对应的视图，并在该视图下进行相关图标的查找工作：
 ![devtools中浏览icones图标](./assets/images/devtools中浏览icones图标.png)
 
-2. @nuxt/tailwindcss: 通过对`tailwindcss`的集成，可在项目中方便的使用class来直接作用于样式，且结合[vscode的tailwindcss插件](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)，来实现在项目中快速查看类对应的样式，另外，需要在`.vscode/settings.json`文件中配置以下的配置，使其支持语法高亮以及自动提示
+### 样式管理`tailwindcss`
+> @nuxt/tailwindcss: 通过对`tailwindcss`的集成，可在项目中方便的使用class来直接作用于样式，且结合[vscode的tailwindcss插件](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)，来实现在项目中快速查看类对应的样式，另外，需要在`.vscode/settings.json`文件中配置以下的配置，使其支持语法高亮以及自动提示
 ```json
 {
 	"tailwindCSS.experimental.classRegex": ["tw`(.*?)`", "tw\\('(.*?)'\\)", "tw\\(\\s*('(.*?)'|\"(.*?)\")\\s*\\)"],
@@ -108,6 +110,8 @@ national-kb-mall
 	}
 </script>
 ```
+
+### 多语言支持`i18n`
 
 
 ## 项目过程文档记录

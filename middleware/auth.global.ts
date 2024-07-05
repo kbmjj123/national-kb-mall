@@ -3,7 +3,7 @@
  * */
 import { NO_NEED_LOGIN_LIST } from '~/config/white-list.js'
 export default defineNuxtRouteMiddleware((to, from) => {
-	console.info(to)
+	// console.info(to)
   if(!NO_NEED_LOGIN_LIST.includes(to.path)){
 		// 不在未登录的白名单中，则重定向到登录页面
 		return navigateTo({
