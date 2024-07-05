@@ -2,7 +2,8 @@
   <div>
     我是首页
     <UButton>我是按钮</UButton>
-    <UButton
+		<ClientOnly>
+			<UButton
       :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
       color="gray"
       variant="ghost"
@@ -10,6 +11,7 @@
       @click="isDark = !isDark">123
       </UButton
     >
+		</ClientOnly>
   </div>
 </template>
 

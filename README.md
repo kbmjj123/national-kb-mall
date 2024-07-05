@@ -313,6 +313,27 @@ declare module 'nuxt/schema' {
 4. 使用以及效果
 ![自定义appConfig拥有了类型检测的加持.png](./assets/images/自定义appConfig拥有了类型检测的加持.png)
 
+5. 处理与`nuxt-ui`的冲突
+由于这里我们使用`Object.freeze()`方法来冻结一个appConfig对象，而这个对象是`Nuxt`内置的一个响应式对象，如果直接使用`Object.freeze`冻结它的话，将会导致一些不可预期的行为，因为可以考虑先审拷贝这个对象，再进行冻结； 
+![appConfig使用不规范的冲突](./assets/images/appConfig使用不规范的冲突.png)
+:point_right: 这里可以采用`Vue`的`reactive`和`readonly`方法来替代`Object.freeze()`，关于这个调整后的`useSafeAppConfig.ts`内容如下：
+```typescript
+// 对外暴露app的自定义属性，且不能直接修改，需要修改的话，则通过这个函数返回的changXXX方法来进行修改
+export const useSafeAppConfig = () => {
+	const appConfig = reactive(useAppConfig()) as AppConfig
+	const frozenConfig = readonly(appConfig)	// 不可直接修改的app配置对象
+	
+	const changeLanguage = (lang: string) => {
+		appConfig.defaultLanguage = lang
+	}
+	return {
+		config: frozenConfig,
+		changeLanguage
+	}
+}
+```
+
+
 #### nuxt.config.ts中的app节点配置
 > 在`nuxt.config.ts`存在那么的一个属性`app`，主要用于"静态化"地设置当前webapp应用的配置信息，改属性主要有以下那么一些成员属性
 | 属性 | 描述 | 默认值 |
