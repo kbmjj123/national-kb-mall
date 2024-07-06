@@ -1,4 +1,4 @@
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
 	const api = $fetch.create({
 		baseURL: '',
 		responseType: 'json',

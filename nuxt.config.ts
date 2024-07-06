@@ -31,6 +31,15 @@ export default defineNuxtConfig({
 			useMock: envConfig['NUXT_PUBLIC_USE_MOCK']
     }
   },
+	// 多语言支持
+	i18n: {
+		locales: [
+			{ code: 'en', iso: 'en', name: 'English' },
+			{ code: 'zh', iso: 'zh-CN', name: '中文' }
+		],
+		defaultLocale: 'zh',
+		vueI18n: './i18n.config.ts'
+	},
 	// 数据持久化配置
 	piniaPersistedstate: {
 		cookieOptions: {

@@ -112,7 +112,28 @@ national-kb-mall
 ```
 
 ### 多语言支持`i18n`
+> `@nuxt/i18n`: 通过对`@nuxt/i18n`的集成，可在项目中方便的配置语言的切换，并将这个`i18n`的语言支持配置，通过下述在`nuxt.config.ts`中的配置，抽离至单独的配置文件中(i18n.config.ts)来进行配置:
+```typescript
+import zhCN from "./locates/zh-CN.json"
+import en from "./locates/en.json"
+export default defineI18nConfig(() => ({
+  legacy: false,
+  locale: 'zhCN',
+	fallbackLocale: 'en',
+  messages: {
+    'en': en,
+    'zhCN': zhCN,
+  }
+}))
+```
+在这里将所有的语言包配置文件都丢到`locates`目录中，按照对应的文件进行命名！
+:point_right: 这样子之后，我们就可以通过在`<template></template>`模版中使用`$t()`方法来引用到对应的语言定义，或者在ts中通过`const i18n = useI18n(); i18n.t('message')`的方式来进行当前语言的自动翻译！
+由于拥有`Nuxt3`的自动导入，因此，我们可以通过`const { setLocale } = useI18n()`这个方式获取到一个设置本地访问的站点的语言类型，从而设置给用户展示对应的语言(通过`setLocale('en')`)
 
+:thinking: 但是在随着项目逐渐越来越大的时候，这个语言的定义也会越来越大，因此，需要一个可视化的工具来进行管理，有时甚至还可以直接生成，本项目在`vscode`中进行开发，因此，可借助于`vscode-i18n`插件，实现可视化管理，
+并在项目中根据配置的当前语言，展示对应的代码运行效果语言，使用效果如下图所示：
+![vscode-i18n插件的使用](./assets/images/vscode-i18n插件的使用.png)
+:+1: 还可以通过这个翻译进度栏目，对未翻译到位的信息进行对应的翻译，并在对应的目标语言中追加对应的翻译结果关键词！
 
 ## 项目过程文档记录
 > 本章节将记录在进行整体项目开发调试过程中所遇到的相关问题，并进行发散性思维，联想相关的知识，并记录下来

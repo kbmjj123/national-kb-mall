@@ -1,6 +1,7 @@
 <template>
   <div>
     我是首页
+		{{ $t('welcome') }}
     <UButton>我是按钮</UButton>
 		<ClientOnly>
 			<UButton

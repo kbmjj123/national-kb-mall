@@ -6,5 +6,10 @@
   },
   "register": {
     "registerBtn": "Register"
+  },
+  "shoppingCart": {
+    "addToCart": "Add to the cart",
+    "clearCart": "Clear shopping cart",
+    "name": "Shopping cart"
   }
 }
