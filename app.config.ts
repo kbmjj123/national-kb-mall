@@ -6,7 +6,7 @@ export default defineAppConfig({
 	defaultLanguage: 'zh_cn',
 	// 以下是系统通过配置使用的系统主题色(nuxt-ui)
 	ui: {
-		primary: 'sky',
+		primary: 'red',
 		gray: 'cool'
 	}
 })

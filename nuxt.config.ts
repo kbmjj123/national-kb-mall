@@ -6,13 +6,12 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/image',
-    '@nuxt/content',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@vite-pwa/nuxt',
-    'nuxt-svgo',
+    // '@vite-pwa/nuxt',
+    // 'nuxt-svgo',
     "@nuxt/ui",
-    "@nuxtjs/seo"
+    // "@nuxtjs/seo"
   ],
   components: {
     global: true,
@@ -34,10 +33,11 @@ export default defineNuxtConfig({
 	// 多语言支持
 	i18n: {
 		locales: [
-			{ code: 'en', iso: 'en', name: 'English' },
-			{ code: 'zh', iso: 'zh-CN', name: '中文' }
+			{ code: 'en', iso: 'en', name: 'English', icon: 'i-flag-us-4x3' },
+			{ code: 'zh-CN', iso: 'zh-CN', name: '简体中文', icon: 'i-flag-cn-4x3' },
+			{ code: 'zh-TW', iso: 'zh-TW', name: '繁體中文', icon: 'i-flag-tw-4x3' },
 		],
-		defaultLocale: 'zh',
+		defaultLocale: 'zh-CN',
 		vueI18n: './i18n.config.ts'
 	},
 	// 数据持久化配置
@@ -45,5 +45,9 @@ export default defineNuxtConfig({
 		cookieOptions: {
 			sameSite: 'strict'
 		}
+	},
+	// 配置使用的图标库
+	ui: {
+		icons: 'all'
 	}
 })

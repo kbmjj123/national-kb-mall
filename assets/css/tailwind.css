@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 @layer components{
-  /* custom app width in project */
+  /* 自定义项目中的尺寸 */
   .app-width{
     @apply sm:w-screen md:w-screen lg:w-10/12 xl:w-9/12 2xl:w-8/12;
   }
+	.uicon{
+		@apply text-current;
+	}
+	.uicon:hover{
+		@apply text-gray-500 cursor-pointer;
+	}
 }

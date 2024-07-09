@@ -730,4 +730,15 @@ import MyComponent from './component/MyComponent.vue'
 3. 在`server`目录中新建`api/mock/[...].ts`统一的mock访问接口文件，然后通过获取`event`请求信息，从mock对象中匹配到对应的response函数，进行输出对应的响应结果；
 4. 在runtimeConfig配置中添加是否mock的标识，结合统一的自定义`useKbFetch`组合式API，当开启mock的时候，则请求`/api/mock${url}`路径，当没有开启mock的时候，则请求`/api${url}`路径，实现一键切换mock的机制！
 
+#### 对icon的使用 
+> 项目中使用的`nuxt-ui`库，其自带的组件`<UIcon></UIcon>`将默认使用`heroicons`作为其图标库，但是在实际coding的时候发现，需要使用到`Iconify`中的其他集合，为避免在每次使用到一个个的图标库，需要一个个去安装，因此采用全量安装使用`Iconify`整个图标库，通过`pnpm i @iconify/json`安装整个图标库依赖，并在对应的`nuxt.config.ts`中添加如下的配置
+```typescript
+// nuxt.config.ts
+export default defineNuxtConfig({
+	ui: {
+		icons: 'all'
+	}
+})
+```
+
 ## 思考总结
