@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-white sticky top-0 flex justify-between items-center p-4 shadow-md dark:shadow-black dark:bg-slate-950">
+    class="bg-background-light sticky top-0 flex justify-between items-center p-4 shadow-sm dark:shadow-black dark:bg-background-dark">
     <div class="flex items-center gap-4">
       <UIcon name="i-heroicons-bars-3-16-solid" class="uicon text-lg"></UIcon>
       <AppIcon></AppIcon>

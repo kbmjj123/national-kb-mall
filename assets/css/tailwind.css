@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	body{ 
+		@apply bg-background-light text-text-light;
+	}
+	.dark body{
+		@apply bg-background-dark text-text-dark;
+	}
+}
+
 @layer components{
   /* 自定义项目中的尺寸 */
   .app-width{
