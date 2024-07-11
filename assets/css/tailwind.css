@@ -4,10 +4,10 @@
 
 @layer base {
 	body{ 
-		@apply bg-background-light text-text-light;
+		@apply bg-white text-gray-700 text-sm;
 	}
 	.dark body{
-		@apply bg-background-dark text-text-dark;
+		@apply dark:bg-gray-900 text-gray-200;
 	}
 }
 
@@ -16,6 +16,9 @@
   .app-width{
     @apply sm:w-screen md:w-screen lg:w-10/12 xl:w-9/12 2xl:w-8/12;
   }
+	.form-container{
+		@apply sm:px-10 md:px-36 lg:px-64 xl:px-64 2xl:px-80;
+	}
 	.uicon{
 		@apply text-current;
 	}

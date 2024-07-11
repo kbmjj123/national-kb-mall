@@ -5,7 +5,15 @@
 		"forgetPwd": "忘记密码？"
   },
   "register": {
-    "registerBtn": "注册"
+    "registerBtn": "注册",
+		"title": "注册新账号",
+		"alreadyHasAccount": "已有账号？",
+		"pleaseLogin": "请登录。",
+		"email": "邮箱",
+		"account": "用户名",
+		"password": "密码",
+		"invalidEmail": "无效的电子邮件",
+		"passwordLimited": "必须至少为8个字符"
   },
 	"shoppingCart": {
 		"name": "购物车",

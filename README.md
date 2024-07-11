@@ -758,7 +758,7 @@ export default <Partial<Config>> {
 
 6. PurgeCSS优化生产环境：在生产环境中，`tailwindcss`将使用`PurgeCSS`来移除未使用到的样式，从而减少最终生成的css文件大小
 
-#### tailwindcss使用思考
+#### tailwindcss结合nuxt-ui使用思考
 > 整理关于在使用`tailwindcss`过程中的最佳实践
 
 ##### 关于主题切换
@@ -835,6 +835,21 @@ export default <Partial<Config>> {
 @import './components.css';
 @import './utilities.css'
 ```
+
+##### 结合nuxt-ui进行项目实战
+> 在项目中，使用了`nuxt-ui`，主要借助于`app.config.ts`中自定义`ui`节点来实现全局站点样式管理的，根据[官方文档](https://ui.nuxt.com/getting-started/theming#configuration)的介绍，建议我们在搭建日间/夜间模式切换的时候，采用`tailwindcss`生成的`text-primary`、`bg-primary`、`text-primary-500`、`dark:text-primary-400`、`bg-gray-100`、`dark:bg-gray-900`等内置生成的工具类来定义站点的统一样式，能够保持当调整系统的`primary`以及`gray`的时候，站点也能够整体进行风格的改变！
+```css
+/* assets/css/tailwind.css */
+@layer base {
+	body{ 
+		@apply bg-white text-gray-700;
+	}
+	.dark body{
+		@apply dark:bg-gray-900 text-gray-200;
+	}
+}
+```
+:trollface: 这里目前采用的设置`light/dark`的统一默认风格！
 
 ### 踩坑之路
 > 记录在项目过程中所踩的坑

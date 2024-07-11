@@ -7,7 +7,6 @@ export default defineAppConfig({
 	// 以下是系统通过配置使用的系统主题色(nuxt-ui)
 	ui: {
 		primary: 'red',
-		gray: 'cool',
-		variables: {}
+		gray: 'cool'
 	}
 })

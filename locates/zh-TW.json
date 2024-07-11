@@ -4,7 +4,15 @@
     "loginBtn": "登入"
   },
   "register": {
-    "registerBtn": "註冊"
+    "registerBtn": "註冊",
+    "title": "註冊新帳號",
+    "alreadyHasAccount": "已有帳號？",
+    "pleaseLogin": "請登入。",
+    "account": "使用者名稱",
+    "email": "信箱",
+    "password": "密碼",
+    "invalidEmail": "無效的電子郵件",
+    "passwordLimited": "必須至少為8個字符"
   },
   "shoppingCart": {
     "addToCart": "加入購物車",
