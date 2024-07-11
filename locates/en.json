@@ -2,7 +2,11 @@
   "welcome": "Welcome For Inviting!",
   "login": {
     "loginBtn": "Login",
-    "forgetPwd": "Forget Password?"
+    "forgetPwd": "Forget Password?",
+    "emalOrUsername": "Email or username",
+    "loginTip": "Log in to your account",
+    "noHaveAccount": "Don’t have an account yet?",
+    "signUp": "Sign up."
   },
   "register": {
     "registerBtn": "Register",

@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
-
+import { register } from '~/api/user'
 const { t } = useI18n()
 
 const registerSchema = z.object({
@@ -32,7 +32,7 @@ const registerSchema = z.object({
 	password: z.string().min(8, t('register.passwordLimited'))
 })
 
-type RegisterSchema = z.output<typeof registerSchema>
+type RegisterSchemaType = z.output<typeof registerSchema>
 
 const registerForm = reactive({
 	email: '', 
@@ -40,7 +40,7 @@ const registerForm = reactive({
 	password: ''
 })
 
-const onSubmit = async (event: FormSubmitEvent<RegisterSchema>) => {
-
+const onSubmit = async (event: FormSubmitEvent<RegisterSchemaType>) => {
+	
 }
 </script>

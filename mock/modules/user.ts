@@ -26,7 +26,7 @@ export default [
 	{
 		url: `${USER_TARGET}/register`,
 		method: 'post',
-		response: () => resultSuccess(generateUserInfo())
+		response: () => resultSuccess()
 	},
 	{
 		url: `${USER_TARGET}/info`,

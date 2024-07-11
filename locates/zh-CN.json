@@ -2,6 +2,10 @@
   "welcome": "欢迎您！",
   "login": {
     "loginBtn": "登录",
+		"loginTip": "登录到您的账户",
+		"noHaveAccount": "还没有账户？",
+		"signUp": "注册。",
+		"emalOrUsername": "邮箱或用户名",
 		"forgetPwd": "忘记密码？"
   },
   "register": {

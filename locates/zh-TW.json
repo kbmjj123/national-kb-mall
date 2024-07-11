@@ -1,7 +1,11 @@
 {
   "login": {
     "forgetPwd": "忘記密碼？",
-    "loginBtn": "登入"
+    "loginBtn": "登入",
+    "emalOrUsername": "郵箱或用戶名",
+    "loginTip": "登入您的帳戶",
+    "noHaveAccount": "還沒有帳戶？",
+    "signUp": "註冊。"
   },
   "register": {
     "registerBtn": "註冊",
