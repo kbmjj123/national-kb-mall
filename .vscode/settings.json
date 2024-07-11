@@ -1,5 +1,13 @@
 {
   "i18n-ally.localesPaths": [
     "locates"
-  ]
+  ],
+	"tailwindCSS.experimental.classRegex": ["tw`(.*?)`", "tw\\('(.*?)'\\)", "tw\\(\\s*('(.*?)'|\"(.*?)\")\\s*\\)"],
+	"files.associations": {
+      "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+      "strings": true
+	},
+	"i18n-ally.keystyle": "nested"
 }

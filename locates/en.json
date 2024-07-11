@@ -1,3 +1,15 @@
 {
-  "welcome": "欢迎您！"
+  "welcome": "Welcome For Inviting!",
+  "login": {
+    "loginBtn": "Login",
+    "forgetPwd": "Forget Password?"
+  },
+  "register": {
+    "registerBtn": "Register"
+  },
+  "shoppingCart": {
+    "addToCart": "Add to the cart",
+    "clearCart": "Clear shopping cart",
+    "name": "Shopping cart"
+  }
 }

@@ -1,3 +1,15 @@
 {
-  "welcome": "Welcome For Inviting!"
+  "welcome": "欢迎您！",
+  "login": {
+    "loginBtn": "登录",
+		"forgetPwd": "忘记密码？"
+  },
+  "register": {
+    "registerBtn": "注册"
+  },
+	"shoppingCart": {
+		"name": "购物车",
+		"addToCart": "加入购物车",
+		"clearCart": "清空购物车"
+	}
 }

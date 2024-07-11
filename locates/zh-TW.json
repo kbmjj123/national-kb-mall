@@ -1,0 +1,15 @@
+{
+  "login": {
+    "forgetPwd": "忘記密碼？",
+    "loginBtn": "登入"
+  },
+  "register": {
+    "registerBtn": "註冊"
+  },
+  "shoppingCart": {
+    "addToCart": "加入購物車",
+    "clearCart": "清空購物車",
+    "name": "購物車"
+  },
+  "welcome": "歡迎您！"
+}
