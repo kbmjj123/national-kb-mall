@@ -11,7 +11,7 @@ export type UserInfoType = {
 }
 
 export const login = (account: string, password: string) => {
-	return useKbFetch.post('/user/login', { account, password })
+	return useKbFetch.postClient('/user/login', { account, password })
 }
 
 export const register = (email: string, account: string, password: string) => {

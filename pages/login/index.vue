@@ -6,14 +6,14 @@
 			<p class="mt-1 text-base">{{ $t('login.noHaveAccount') }}
 				<NuxtLink to="/register" class="text-primary">{{ $t('login.signUp') }}</NuxtLink></p>
 		</div>
-		<UForm class="form-container" :schema="loginSchema" :state="loginForm" @submit="onSubmit">
+		<UForm class="form-container space-y-4" :schema="loginSchema" :state="loginForm" @submit="onSubmit">
 			<UFormGroup :label="$t('login.emalOrUsername')" required>
 				<UInput size="xl" v-model="loginForm.emailOrUsername" variant="outline"></UInput>
 			</UFormGroup>
-			<UFormGroup :label="$t('register.password')" required>
+			<UFormGroup :label="$t('register.password')" required class="mt-3">
 				<UInput size="xl" v-model="loginForm.password" variant="outline"</UInput>
 			</UFormGroup>
-			<UButton type="submit" size="xl" class="mt-3" block>{{ $t('login.loginBtn') }}</UButton>
+			<UButton type="submit" size="xl" class="mt-5" block >{{ $t('login.loginBtn') }}</UButton>
 		</UForm>
 	</UContainer>
 </template>
@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
+import { login } from '~/api/user'
 const { t } = useI18n()
 
 const loginSchema = z.object({
@@ -31,12 +32,12 @@ const loginSchema = z.object({
 type LoginSchemaType = z.output<typeof loginSchema>
 
 const loginForm = reactive({
-	emailOrUsername: '',
-	password: ''
+	emailOrUsername: 'kbmjj123@gmail.com',
+	password: 'zgl99999999'
 })
 
 const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
-
+	login(loginForm.emailOrUsername, loginForm.password)
 }
 
 </script>

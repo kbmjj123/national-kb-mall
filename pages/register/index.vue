@@ -1,7 +1,7 @@
 <template>
 	<UContainer class="mx-auto">
 		<div class="text-center p-12">
-			<AppIcon></AppIcon>
+			<AppIcon size="sm"></AppIcon>
 			<p class="mt-5 font-bold text-lg">{{ $t('register.title') }}</p>
 			<p class="mt-1 text-base">{{ $t('register.alreadyHasAccount') }}<NuxtLink to="/login" class="text-primary">{{ $t('register.pleaseLogin') }}</NuxtLink></p>
 		</div>

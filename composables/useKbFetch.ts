@@ -11,12 +11,13 @@ type FetchOptions = {
 }
 
 // 对外暴露的统一接口请求函数
-function fetch<DataT>(url: string, params: any, options: FetchOptions = {}) {
+function fetch<DataT>(url: string, params: any, options: FetchOptions = {}, clientRequestFlag = false) {
 	const { successResponseType = 'none', errorResponseType = 'toast', customHeaders, isReturnAllRes = false, method = 'post' } = options
 	const requestCacheKey = `${url}-${JSON.stringify(params)}`	// 统一的针对每个请求生成的缓存key
 	const nuxtApp = useNuxtApp()
 	const fetchOptions = {
-		params: params,
+		// params: params,
+		body: JSON.stringify(params),
 		method,
 		headers: {
 			...customHeaders
@@ -30,9 +31,15 @@ function fetch<DataT>(url: string, params: any, options: FetchOptions = {}) {
 	const { publicConfig } = useSafeRuntimeConfig()
 	const useMockFlag = Boolean(publicConfig.useMock)
 	const finalUrl = useMockFlag ? `/api/mock${url}` : `/api/${url}`
-	const { data: result, execute, error, status } = useAsyncData<DataT>(requestCacheKey, () => nuxtApp.$api(finalUrl, fetchOptions))
-	return {
-		result, execute, error, status
+	if(clientRequestFlag){
+		// 客户端直接发起的请求
+		return nuxtApp.$api(finalUrl, fetchOptions)
+	}else{
+		// 服务端请求
+		const { data: result, execute, error, status } = useAsyncData<DataT>(requestCacheKey, () => nuxtApp.$api(finalUrl, fetchOptions))
+		return {
+			result, execute, error, status
+		}
 	}
 }
 
@@ -48,5 +55,17 @@ export const useKbFetch = {
 	},
 	delete<DataT>(url: string, params?: any, options?: FetchOptions) {
 		return fetch<DataT>(url, params, { method: 'delete' })
+	},
+	getClient<DataT>(url: string, params?: any, options?: FetchOptions) {
+		return fetch<DataT>(url, params, { method: 'get' }, true)
+	},
+	postClient<DataT>(url: string, params?: any, options?: FetchOptions) {
+		return fetch<DataT>(url, params, { method: 'post' }, true)
+	},
+	putClient<DataT>(url: string, params?: any, options?: FetchOptions) {
+		return fetch<DataT>(url, params, { method: 'put' }, true)
+	},
+	deleteClient<DataT>(url: string, params?: any, options?: FetchOptions) {
+		return fetch<DataT>(url, params, { method: 'delete' }, true)
 	}
 }

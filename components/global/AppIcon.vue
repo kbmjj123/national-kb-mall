@@ -24,10 +24,10 @@ interface Props {
 	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 const { size } = withDefaults(defineProps<Props>(), {
-	size: 'md'
+	size: 'xs'
 })
 const appIconSize = computed(() => {
-	return `w-${SIZE_MAP[size]}` || 'w-8'
+	return `${SIZE_MAP[size]}` || 'w-8'
 })
 const appTitleSize = computed(() => {
 	return `${FONT_SIZE_MAP[size]}` || 'text-lg'
