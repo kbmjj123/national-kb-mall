@@ -1,11 +1,11 @@
 export default defineNuxtPlugin((nuxtApp) => {
 	const { publicConfig } = useSafeRuntimeConfig()
 	const useMockFlag = Boolean(publicConfig.useMock)
+	const baseURL = publicConfig.baseUrl
 	const api = $fetch.create({
-		baseURL: useMockFlag ? 'http://localhost:3000' : '',
+		baseURL: useMockFlag ? 'http://localhost:3000' : baseURL,
 		responseType: 'json',
 		timeout: 30000,
-		method: 'post',
 		onRequest({ request, options }) {
 			if(!options.headers){
 				options.headers = {}
@@ -17,7 +17,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 			if(import.meta.server){
 				// 如果是服务端渲染的话，需要自动从请求头中捞对应的token
 				Object.assign(options.headers, {
-					token: useRequestHeader('token') || '我是服务端拿到的token的值'
+					token: useRequestHeader('token')
 				})
 			}
 		},
