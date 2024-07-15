@@ -1,4 +1,4 @@
-
+import type { ObjectResponseModel } from './types'
 export type UserInfoType = {
 	id: string,
 	nickName: string,
@@ -10,11 +10,11 @@ export type UserInfoType = {
 	[index: string]: any
 }
 
-export const login = (account: string, password: string) => {
-	return useKbFetch.post('/user/login', { data: { account, password } })
+export const login = (account: string, password: string): Promise<ObjectResponseModel<UserInfoType>> => {
+	return useKbFetch.post('/user/login', { data: { account, password }, errorResponseType: 'modal' })
 }
 
-export const register = (email: string, account: string, password: string) => {
+export const register = (email: string, account: string, password: string): Promise<ObjectResponseModel<UserInfoType>> => {
 	return useKbFetch.post('/user/register', { data: { email, account, password } })
 }
 

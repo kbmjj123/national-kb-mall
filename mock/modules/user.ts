@@ -1,7 +1,7 @@
 import mockjs from 'mockjs'
 import { type MockMethod } from '../types'
 import { type UserInfoType } from '~/api/user'
-import { resultSuccess } from '../_utils'
+import { resultFailed, resultSuccess } from '../_utils'
 
 const USER_TARGET = '/user'
 
@@ -21,7 +21,8 @@ export default [
 	{
 		url: `${USER_TARGET}/login`,
 		method: 'post',
-		response: () => resultSuccess(generateUserInfo())
+		// response: () => resultSuccess(generateUserInfo())
+		response: () => resultFailed(generateUserInfo())
 	},
 	{
 		url: `${USER_TARGET}/register`,

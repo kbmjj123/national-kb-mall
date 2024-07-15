@@ -23,5 +23,12 @@
     "addToCart": "Add to the cart",
     "clearCart": "Clear shopping cart",
     "name": "Shopping cart"
+  },
+  "successTip": "Successful operation",
+  "failedTip": "operation failed",
+  "modalTip": {
+    "cancelTxt": "let me think again",
+    "title": "Kind tips",
+    "okTxt": "Sure"
   }
 }

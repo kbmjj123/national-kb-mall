@@ -13,7 +13,7 @@
 			<UFormGroup :label="$t('register.password')" required class="mt-3">
 				<UInput size="xl" v-model="loginForm.password" variant="outline"</UInput>
 			</UFormGroup>
-			<UButton type="submit" size="xl" class="mt-5" block >{{ $t('login.loginBtn') }}</UButton>
+			<UButton type="submit" size="xl" class="mt-5" block :loading="loading">{{ $t('login.loginBtn') }}</UButton>
 		</UForm>
 	</UContainer>
 </template>
@@ -23,6 +23,7 @@ import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
 import { login } from '~/api/user'
 const { t } = useI18n()
+const loading = ref(false)
 
 const loginSchema = z.object({
 	emailOrUsername: z.string(),
@@ -35,9 +36,11 @@ const loginForm = reactive({
 	emailOrUsername: 'kbmjj123@gmail.com',
 	password: 'zgl99999999'
 })
-
 const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
-	login(loginForm.emailOrUsername, loginForm.password)
+	loading.value = true
+	const res = await login(loginForm.emailOrUsername, loginForm.password)
+	loading.value = false
+	console.info(res)
 }
 
 </script>

@@ -2,6 +2,8 @@
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+	<UModals />
+	<UNotifications />
 </template>
 
 <script setup lang="ts">

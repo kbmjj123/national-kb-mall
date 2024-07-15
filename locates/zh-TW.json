@@ -23,5 +23,12 @@
     "clearCart": "清空購物車",
     "name": "購物車"
   },
-  "welcome": "歡迎您！"
+  "welcome": "歡迎您！",
+  "failedTip": "操作失敗",
+  "successTip": "操作成功",
+  "modalTip": {
+    "cancelTxt": "我再想想",
+    "title": "溫馨提示",
+    "okTxt": "確定"
+  }
 }

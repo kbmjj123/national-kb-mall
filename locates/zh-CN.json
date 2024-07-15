@@ -1,5 +1,12 @@
 {
   "welcome": "欢迎您！",
+	"successTip": "操作成功",
+	"failedTip": "操作失败",
+	"modalTip": {
+		"title": "温馨提示",
+		"cancelTxt": "我再想想",
+		"okTxt": "确定"
+	},
   "login": {
     "loginBtn": "登录",
 		"loginTip": "登录到您的账户",

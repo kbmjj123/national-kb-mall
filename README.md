@@ -856,6 +856,24 @@ export default <Partial<Config>> {
 #### 升级了版本之后发现sharp不兼容
 > 打开一个比较久的项目，升级相关的库版本信息，发现`sharp`不兼容（一个将常见格式的大图像转换为较小的、web友好的不同格式的图片）， :point_right: 但是要求这个node的版本必须大于18.17.0，因此需要对应升级一下！
 
+#### 在defineProps中使用`i18n.t()`方法时的异常
+> 在自定义组件的时候，有以下的一个使用方式：
+```vue
+<script setup lang="ts">
+const { title, okTxt, cancelTxt } = withDefaults(defineProps<{
+	title?: string,
+	okTxt?: string,
+	cancelTxt?: string
+}>(), {
+	title: t('modalTip.title'),
+	okTxt: t('modalTip.okTxt'),
+	cancelTxt: t('modalTip.cancelTxt')
+})
+</script>
+```
+:point_down: 然后就喜提以下的报错信息：
+![属性定义与i18N的冲突](./assets/images/属性定义与i18N的冲突.png)
+
 
 ### 最佳实践
 
