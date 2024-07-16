@@ -1,8 +1,8 @@
 <template>
-	<span class="inline-flex items-center gap-1">
+	<NuxtLink class="inline-flex items-center gap-1" to="/">
 		<img src="~/assets/icons/ic_app_icon.png" :class="appIconSize"></img>
 		<span class="text-current font-bold" :class="['text-current', 'font-bold', appTitleSize]">KB商城</span>
-	</span>
+	</NuxtLink>
 </template>
 
 <script setup lang="ts">

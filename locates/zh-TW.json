@@ -31,7 +31,42 @@
     "title": "溫馨提示",
     "okTxt": "確定"
   },
-	"menu": [
-		"首頁", "產品", "分類", "聯絡我們", "願望清單", "我的帳號"
-	]
+  "menu": [
+    "首頁",
+    "產品",
+    "分類",
+    "聯絡我們",
+    "願望清單",
+    "我的帳號"
+  ],
+  "footer": {
+    "customerService": {
+      "contactUs": "聯絡我們",
+      "privacyPolicy": "隱私權政策",
+      "shippingReturns": "運輸與退貨",
+      "termsConditions": "條款與條件",
+      "title": "客戶服務"
+    },
+    "information": {
+      "about": "關於",
+      "careers": "職業",
+      "faq": "常見問題",
+      "press": "新聞",
+      "title": "資訊"
+    },
+    "myAccount": {
+      "myAccount": "我的帳號",
+      "newsletter": "通訊",
+      "orderHistory": "歷史訂單",
+      "title": "我的帳號",
+      "wishlist": "願望清單"
+    },
+    "products": {
+      "giftCards": "禮品卡",
+      "newArrivals": "新品上架",
+      "onSale": "在販售商品",
+      "title": "產品",
+      "topRated": "評分最高"
+    }
+  }
 }

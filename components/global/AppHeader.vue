@@ -36,7 +36,6 @@
         padded
         @click="isShowMenu = false" />
 			<HeadMenu></HeadMenu>
-      <Placeholder class="h-full" />
     </div>
   </USlideover>
 </template>

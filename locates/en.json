@@ -31,7 +31,42 @@
     "title": "Kind tips",
     "okTxt": "Sure"
   },
-	"menu": [
-		"Home", "Products", "Categories", "Contact", "Wishlist", "My Account"
-	]
+  "menu": [
+    "Home",
+    "Products",
+    "Categories",
+    "Contact",
+    "Wishlist",
+    "My Account"
+  ],
+  "footer": {
+    "customerService": {
+      "contactUs": "Contact Us",
+      "privacyPolicy": "Privacy Policy",
+      "shippingReturns": "Shipping & Returns",
+      "termsConditions": "Terms & Conditions",
+      "title": "Customer Service"
+    },
+    "information": {
+      "about": "About",
+      "careers": "Profession",
+      "faq": "FAQ's",
+      "press": "Press",
+      "title": "Information"
+    },
+    "myAccount": {
+      "myAccount": "My Account",
+      "newsletter": "Newsletter",
+      "orderHistory": "Order History",
+      "title": "My Account",
+      "wishlist": "Wishlist"
+    },
+    "products": {
+      "giftCards": "Gift Card",
+      "newArrivals": "New Arrivals",
+      "onSale": "On sale",
+      "title": "Products",
+      "topRated": "Top rated"
+    }
+  }
 }

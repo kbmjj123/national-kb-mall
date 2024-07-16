@@ -33,5 +33,35 @@
 		"name": "购物车",
 		"addToCart": "加入购物车",
 		"clearCart": "清空购物车"
+	},
+	"footer": {
+		"information": {
+			"title": "信息",
+			"about": "关于",
+			"careers": "职业",
+			"press": "新闻",
+			"faq": "常见问题"
+		},
+		"products": {
+			"title": "产品",
+			"newArrivals": "新品上架",
+			"onSale": "在售商品",
+			"topRated": "评分最高",
+			"giftCards": "礼品卡"
+		},
+		"customerService": {
+			"title": "客户服务",
+			"contactUs": "联系我们",
+			"shippingReturns": "运输与退货",
+			"privacyPolicy": "隐私政策",
+			"termsConditions": "条款与条件"
+		},
+		"myAccount": {
+			"title": "我的账号",
+			"myAccount": "我的账号",
+			"orderHistory": "历史订单",
+			"wishlist": "愿望清单",
+			"newsletter": "通讯"
+		}
 	}
 }
