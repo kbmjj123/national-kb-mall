@@ -1,4 +1,7 @@
 import type { BasicResponseModel } from '~/api/types'
+import { TipModal } from '#components'
+
+const SUCCESS_FLAG = 0
 
 type FetchParams = {
 	[index: string]: any
@@ -46,13 +49,15 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 	return new Promise<DataT>(async (resolve, reject) => {
 		let result = await nuxtApp.$api<DataT>(finalUrl, fetchOptions)
 		if (result) {
-			if (1 === result.status) {
+			if (SUCCESS_FLAG === result.status) {
 				if ('toast' === successResponseType) {
 					//! 展示全局的toast
 					toast.add({ title: result.message || t('successTip'), id: 'modal-success' })
 				} else if ('modal' === successResponseType) {
 					//! 展示全局的modal
-					modal.open()
+					modal.open(TipModal, {
+						content: result.message || t('successTip'),
+					})
 				}
 				resolve(result)
 			} else {
@@ -62,6 +67,9 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 					toast.add({ title: result.message || t('failedTip'), id: 'modal-failed' })
 				} else if ('modal' === errorResponseType) {
 					//! 展示全局异常的modal
+					modal.open(TipModal, {
+						content: result.message || t('successTip')
+					})
 				}
 				resolve(result)
 			}

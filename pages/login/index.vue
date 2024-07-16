@@ -21,7 +21,9 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
-import { login } from '~/api/user'
+import { useStore } from '~/store/useUserStore'
+
+const useUserStore = useStore()
 const { t } = useI18n()
 const loading = ref(false)
 
@@ -38,9 +40,8 @@ const loginForm = reactive({
 })
 const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
 	loading.value = true
-	const res = await login(loginForm.emailOrUsername, loginForm.password)
+	const res = await useUserStore.loginAction(loginForm.emailOrUsername, loginForm.password)
 	loading.value = false
-	console.info(res)
 }
 
 </script>

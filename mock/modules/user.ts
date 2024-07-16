@@ -21,8 +21,7 @@ export default [
 	{
 		url: `${USER_TARGET}/login`,
 		method: 'post',
-		// response: () => resultSuccess(generateUserInfo())
-		response: () => resultFailed(generateUserInfo())
+		response: () => resultSuccess(generateUserInfo())
 	},
 	{
 		url: `${USER_TARGET}/register`,

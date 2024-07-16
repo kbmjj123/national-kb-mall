@@ -13,12 +13,12 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     // "@nuxtjs/seo"
   ],
+	css: [
+		'~/assets/css/scrollbars.css'
+	],
   components: {
     global: true,
     dirs: ['~/components/global']
-  },
-  app: {
-    
   },
   imports: {
     dirs: ['store']

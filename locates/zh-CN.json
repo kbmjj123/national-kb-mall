@@ -2,6 +2,9 @@
   "welcome": "欢迎您！",
 	"successTip": "操作成功",
 	"failedTip": "操作失败",
+	"menu": [
+		"首页", "产品", "分类", "联系我们", "愿望清单", "我的账号"
+	],
 	"modalTip": {
 		"title": "温馨提示",
 		"cancelTxt": "我再想想",

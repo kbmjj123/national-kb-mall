@@ -30,5 +30,8 @@
     "cancelTxt": "let me think again",
     "title": "Kind tips",
     "okTxt": "Sure"
-  }
+  },
+	"menu": [
+		"Home", "Products", "Categories", "Contact", "Wishlist", "My Account"
+	]
 }

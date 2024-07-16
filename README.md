@@ -856,6 +856,17 @@ export default <Partial<Config>> {
 #### 升级了版本之后发现sharp不兼容
 > 打开一个比较久的项目，升级相关的库版本信息，发现`sharp`不兼容（一个将常见格式的大图像转换为较小的、web友好的不同格式的图片）， :point_right: 但是要求这个node的版本必须大于18.17.0，因此需要对应升级一下！
 
+#### useI18n必须只能在setup函数中调用的解决方案
+:star2: 在`Nuxt3`中`useI18n`必须在`setup`函数的顶部调用，因为它依赖于Vue的组合式API提供的上下文，这意味着我们不能在`setup`外部调用`useI18n`， :point_right: 为了能够在composable中使用`useI18n`，我们可以利用`Nuxt3`的`useNuxtApp()`函数来获得当前的应用程序实例，并从中获取`i18n`实例，这样子就可以避免在`setup`函数中调用`useI18n`，如下代码所示：
+```typescript
+/* composables/xxx.ts */
+export const xx = () => {
+	const nuxtApp = useNuxtApp()
+	const { t } = nuxtApp.$i18n
+}
+```
+:trollface: 通过上述的方式，我们就可以在这个composables中直接调用到这个t方法了！！
+
 #### 在defineProps中使用`i18n.t()`方法时的异常
 > 在自定义组件的时候，有以下的一个使用方式：
 ```vue
@@ -874,6 +885,25 @@ const { title, okTxt, cancelTxt } = withDefaults(defineProps<{
 :point_down: 然后就喜提以下的报错信息：
 ![属性定义与i18N的冲突](./assets/images/属性定义与i18N的冲突.png)
 
+:thinking: 这里出现这个错误，是因为在`<script setup></script>`中，`defineProps`会在编译阶段被提升到模块的顶层，因此无法引用在本地声明的变量，为了在`defineProps`中使用`withDefaults`设置默认值，并结合`i18n`的`t`函数来自动赋值，可以使用常规的`<script></script>`部分来导出组件选项，解决方式如下：
+```vue
+<script>
+export default defineComponent({
+	props: {
+		title: {
+			type: String,
+			default() {
+				const { t } = useI18n()
+				return t('modalTip.title')
+			}
+		}
+	}
+})
+</script>
+<script setup lang="ts">
+	const props = defineProps<{ title: string }>()
+</script>
+```
 
 ### 最佳实践
 

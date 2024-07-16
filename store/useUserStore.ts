@@ -3,34 +3,46 @@ import { type UserInfoType, login, logout } from '~/api/user.js'
 const USER_STORE_ID = 'user'
 
 export type UserType = {
-	token: string,
+	accessToken: string,
 	userInfo: UserInfoType | null
 }
 
-export const useUserStore = defineStore(USER_STORE_ID, {
+const useUserStore = defineStore(USER_STORE_ID, {
 	state: (): UserType => {
 		return {
-			token: '',
+			accessToken: '',
 			userInfo: null
 		}
 	},
 	getters: {
-		getToken(): string {
-			return this.token
+		getAccessToken(): string {
+			return this.accessToken
 		},
 		getUserinfo(): UserInfoType | null {
 			return this.userInfo
 		}
 	},
 	actions: {
+		resetUserInfo() {
+			this.accessToken = ''
+			this.userInfo = null
+		},
 		async loginAction(account: string, password: string) {
-			const { result } = login(account, password)
+			const res = await login(account, password)
+			this.accessToken = res.data.accessToken
+			this.userInfo = res.data
+			return res
 		},
 		async logoutAction() {
-			const { result } = logout()
+			await logout()
+			this.resetUserInfo()
 		}
 	},
 	persist: {
 		storage: persistedState.cookies
 	}
 })
+
+export const useStore = () => {
+	return useUserStore()
+}

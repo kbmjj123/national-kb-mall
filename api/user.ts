@@ -1,4 +1,4 @@
-import type { ObjectResponseModel } from './types'
+import type { ObjectResponseModel, StringOrBooleanResponseModel } from './types'
 export type UserInfoType = {
 	id: string,
 	nickName: string,
@@ -22,6 +22,6 @@ export const resetPwd = (account: string, code: string, password: string) => {
 	return useKbFetch.post('/user/resetPwd', { data: { account, code, password } })
 }
 
-export const logout = () => {
+export const logout = (): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/user/logout')
 }
