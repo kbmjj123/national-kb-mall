@@ -1,6 +1,6 @@
 <template>
   <UButton
-    icon="i-ph-shopping-cart-bold"
+    icon="i-heroicons-shopping-cart"
     color="gray"
     @click="isShowShoppingCar = true"
     variant="ghost"

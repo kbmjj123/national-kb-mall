@@ -16,7 +16,7 @@
       <ToggleLanguage></ToggleLanguage>
       <ToggleColor></ToggleColor>
       <UButton
-        icon="i-heroicons-outline-magnifying-glass"
+        icon="i-heroicons-magnifying-glass"
         color="gray"
         variant="ghost"
         aria-label="Theme"></UButton>

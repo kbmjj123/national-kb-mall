@@ -952,5 +952,17 @@ export default defineNuxtConfig({
 	}
 })
 ```
+:-1: 上述这种做法是有点对开发机器要求有点高，而且需要较长的编译时间的，因此，采用按需添加对应的引用的方式，当前项目中主要采用的是: [heroicons](https://icones.js.org/collection/heroicons)、[flag](https://icones.js.org/collection/flag)、[ic](https://icones.js.org/collection/ic)三个图标库，仅需要在对应的`nuxt.config.ts`中配置一下：
+```typescript
+export default defineNuxtConfig({
+	ui: {
+		icons: ['heroicons', 'flag', 'ic']
+	}
+})
+```
+然后对应安装图标库：
+```shell
+pnpm i @iconify-json/flag @iconify-json/ic --save-dev
+```
 
 ## 思考总结
