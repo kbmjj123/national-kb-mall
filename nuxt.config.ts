@@ -48,6 +48,6 @@ export default defineNuxtConfig({
 	},
 	// 配置使用的图标库
 	ui: {
-		icons: ['heroicons', 'flag', 'ic']
+		icons: ['heroicons', 'flag', 'ic', 'ri']
 	}
 })

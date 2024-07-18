@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[1000px]">
+  <div class="h-[1000px] container">
     我是首页
 		{{ $t('welcome') }}
     <UButton>我是按钮</UButton>

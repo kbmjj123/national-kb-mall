@@ -6,11 +6,17 @@ type LinkType = {
 		target: string
 	}[]
 }
+type SocialType = {
+	title: string,
+	icon: string,
+	link: string
+}
 
 export interface AppConfig{
 	readonly appName: string,
 	readonly keywords: string,
 	readonly footerLinks: LinkType[],
+	readonly socialList: SocialType[],
 	[index: string]: any
 }
 
@@ -18,7 +24,6 @@ export interface AppConfig{
 export const useSafeAppConfig = () => {
 	const appConfig = reactive(useAppConfig()) as AppConfig
 	const frozenConfig = readonly(appConfig)	// 不可直接修改的app配置对象
-	
 	
 	return {
 		config: frozenConfig

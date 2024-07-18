@@ -12,6 +12,7 @@
   "devDependencies": {
     "@iconify-json/flag": "^1.1.53",
     "@iconify-json/ic": "^1.1.17",
+    "@iconify-json/ri": "^1.1.21",
     "@nuxt/devtools": "latest",
     "@nuxt/ui": "^2.17.0",
     "@nuxtjs/seo": "2.0.0-rc.10",

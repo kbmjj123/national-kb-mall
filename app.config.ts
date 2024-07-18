@@ -39,12 +39,12 @@ export default defineAppConfig({
 				},
 				{
 					key: 'onSale',
-					link: '/on-sale',
+					link: '/',
 					target: '_self'
 				},
 				{
 					key: 'topRated',
-					link: '/top-rated',
+					link: '/',
 					target: '_self'
 				},
 				{
@@ -59,7 +59,7 @@ export default defineAppConfig({
 			links: [
 				{
 					key: 'contactUs',
-					link: '/contace-us',
+					link: '/contact-us',
 					target: '_self'
 				},
 				{
@@ -89,7 +89,7 @@ export default defineAppConfig({
 				},
 				{
 					key: 'orderHistory',
-					link: '/order-history',
+					link: '/order',
 					target: '_self'
 				},
 				{
@@ -103,6 +103,34 @@ export default defineAppConfig({
 					target: '_self'
 				}
 			]
+		}
+	],
+	// 以下是社会化分享的相关配置
+	socialList: [
+		{
+			title: 'blogger',
+			icon: 'i-ri-blogger-fill',
+			link: 'https://www.91temaichang.com'
+		},
+		{
+			title: 'instagram',
+			icon: 'i-ri-instagram-line',
+			link: 'https://www.instagram.com/kbmjj123'
+		},
+		{
+			title: 'twitter',
+			icon: 'i-ri-twitter-fill',
+			link: 'https://x.com/kbmjj123'
+		},
+		{
+			title: 'github',
+			icon: 'i-ri-github-fill',
+			link: 'https://github.com/kbmjj123'
+		},
+		{
+			title: 'linkedin',
+			icon: 'i-ri-linkedin-box-fill',
+			link: 'https://www.linkedin.com/in/%E8%80%BF%E6%9E%97-%E9%83%91-a34014230/'
 		}
 	],
 	// 以下是系统通过配置使用的系统主题色(nuxt-ui)

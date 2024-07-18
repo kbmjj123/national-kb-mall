@@ -1,26 +1,27 @@
 <template>
   <header
-    class="bg-white sticky top-0 flex justify-between items-center p-4 shadow-sm dark:shadow-black dark:bg-gray-900">
-    <div class="flex items-center gap-4">
-      <UButton
-				class="lg:hidden"
-        @click="isShowMenu = true"
-        icon="i-heroicons-bars-3-16-solid"
-        color="gray"
-        variant="ghost"
-        ></UButton>
-      <AppIcon></AppIcon>
-    </div>
-		<HeadMenu mode="horizontal"></HeadMenu>
-    <div class="flex items-center gap-3 text-lg">
-      <ToggleLanguage></ToggleLanguage>
-      <ToggleColor></ToggleColor>
-      <UButton
-        icon="i-heroicons-magnifying-glass"
-        color="gray"
-        variant="ghost"
-        aria-label="Theme"></UButton>
-			<ShoppingCar></ShoppingCar>
+    class="bg-white sticky top-0 shadow-sm dark:shadow-black dark:bg-gray-900">
+    <div class="container flex justify-between items-center p-4">
+      <div class="flex items-center gap-4">
+        <UButton
+          class="lg:hidden"
+          @click="isShowMenu = true"
+          icon="i-heroicons-bars-3-16-solid"
+          color="gray"
+          variant="ghost"></UButton>
+        <AppIcon></AppIcon>
+      </div>
+      <HeadMenu mode="horizontal"></HeadMenu>
+      <div class="flex items-center gap-3 text-lg">
+        <ToggleLanguage></ToggleLanguage>
+        <ToggleColor></ToggleColor>
+        <UButton
+          icon="i-heroicons-magnifying-glass"
+          color="gray"
+          variant="ghost"
+          aria-label="Theme"></UButton>
+        <ShoppingCar></ShoppingCar>
+      </div>
     </div>
   </header>
   <!-- 以下是移动端展示的菜单 -->
@@ -35,12 +36,11 @@
         square
         padded
         @click="isShowMenu = false" />
-			<HeadMenu></HeadMenu>
+      <HeadMenu></HeadMenu>
     </div>
   </USlideover>
 </template>
 
 <script setup lang="ts">
   const isShowMenu = ref(false)
-  
 </script>

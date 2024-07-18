@@ -1,5 +1,5 @@
 <template>
-	<UContainer class="mx-auto">
+	<div class="container">
 		<div class="text-center p-12">
 			<AppIcon></AppIcon>
 			<p class="mt-5 font-bold text-lg">{{ $t('login.loginTip') }}</p>
@@ -8,14 +8,14 @@
 		</div>
 		<UForm class="form-container space-y-4" :schema="loginSchema" :state="loginForm" @submit="onSubmit">
 			<UFormGroup :label="$t('login.emalOrUsername')" required>
-				<UInput size="xl" v-model="loginForm.emailOrUsername" variant="outline"></UInput>
+				<AppInput is-clearable size="xl" v-model="loginForm.emailOrUsername" variant="outline"></AppInput>
 			</UFormGroup>
 			<UFormGroup :label="$t('register.password')" required class="mt-3">
-				<UInput size="xl" v-model="loginForm.password" variant="outline"</UInput>
+				<AppInput is-clearable is-toggle-type type="password" size="xl" v-model="loginForm.password" variant="outline"></AppInput>
 			</UFormGroup>
 			<UButton type="submit" size="xl" class="mt-5" block :loading="loading">{{ $t('login.loginBtn') }}</UButton>
 		</UForm>
-	</UContainer>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -35,8 +35,8 @@ const loginSchema = z.object({
 type LoginSchemaType = z.output<typeof loginSchema>
 
 const loginForm = reactive({
-	emailOrUsername: 'kbmjj123@gmail.com',
-	password: 'zgl99999999'
+	emailOrUsername: '',
+	password: ''
 })
 const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
 	loading.value = true
