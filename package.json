@@ -1,6 +1,8 @@
 {
-  "name": "nuxt-app",
-  "private": true,
+  "name": "kb-mall",
+  "private": false,
+	"author": "kbmjj123",
+	"version": "1.0.0",
   "type": "module",
   "scripts": {
     "build": "nuxt build",

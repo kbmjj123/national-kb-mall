@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex items-center justify-between py-3 border-t border-gray-100 border-solid">
-    <span class="">KB-Mall v1.0.0 - by Genglin Zheng</span>
+    <span class="">KB-Mall v{{ appVerion }} - by {{ author }}</span>
     <span class="flex gap-x-1">
       <UButton
         v-for="(item, index) in socialList"
@@ -16,4 +16,5 @@
 
 <script setup lang="ts">
   const { socialList } = useSafeAppConfig().config
+	const { appVerion, author } = useSafeRuntimeConfig().publicConfig
 </script>
