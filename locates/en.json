@@ -68,5 +68,20 @@
       "title": "Products",
       "topRated": "Top rated"
     }
+  },
+  "index": {
+    "browseAll": "View All",
+    "categoryInShop": "Shop by Category",
+    "popularProduct": "Popular Products",
+    "platformDesc": {
+      "freeShipping": "Free shipping",
+      "paymentSecure": "100% Payment Security",
+      "peaceOfMind": "Peace of Mind",
+      "peaceOfMindDesc": "30-days money back guarantee",
+      "support": "Support 24/7",
+      "supportDesc": "24/7 Online support",
+      "paymentSecureDesc": "Your payment is safe with us.",
+      "freeShippingDesc": "Free shipping on order over €50"
+    }
   }
 }

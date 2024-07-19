@@ -68,5 +68,20 @@
       "title": "產品",
       "topRated": "評分最高"
     }
+  },
+  "index": {
+    "browseAll": "看全部",
+    "categoryInShop": "店內分類",
+    "popularProduct": "熱門商品",
+    "platformDesc": {
+      "freeShipping": "免運",
+      "paymentSecureDesc": "您的付款在我們這裡是安全的。",
+      "peaceOfMindDesc": "30天退款保證",
+      "support": "7x24小時支持",
+      "supportDesc": "24/7線上支持",
+      "peaceOfMind": "資金安全",
+      "freeShippingDesc": "訂單滿50歐元免運費",
+      "paymentSecure": "100%支付安全"
+    }
   }
 }

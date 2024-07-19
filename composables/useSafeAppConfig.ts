@@ -11,12 +11,18 @@ type SocialType = {
 	icon: string,
 	link: string
 }
+type PlatformDesc = {
+	icon: string,
+	titleKey: string,
+	descKey: string
+}
 
 export interface AppConfig{
 	readonly appName: string,
 	readonly keywords: string,
 	readonly footerLinks: LinkType[],
 	readonly socialList: SocialType[],
+	readonly platformDescList: PlatformDesc[],
 	[index: string]: any
 }
 

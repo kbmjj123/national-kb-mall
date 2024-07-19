@@ -34,6 +34,21 @@
 		"addToCart": "加入购物车",
 		"clearCart": "清空购物车"
 	},
+	"index": {
+		"categoryInShop": "店内分类",
+		"browseAll": "查看全部",
+		"popularProduct": "热门商品",
+		"platformDesc": {
+			"freeShipping": "免费送货",
+			"freeShippingDesc": "订单满50欧元免运费",
+			"peaceOfMind": "资金安全",
+			"peaceOfMindDesc": "30天退款保证",
+			"paymentSecure": "100%支付安全",
+			"paymentSecureDesc": "您的付款在我们这里是安全的。",
+			"support": "7x24小时支持",
+			"supportDesc": "24/7在线支持"
+		}
+	},
 	"footer": {
 		"information": {
 			"title": "信息",

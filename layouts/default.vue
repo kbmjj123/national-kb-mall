@@ -1,8 +1,6 @@
 <template>
 	<AppHeader></AppHeader>
-  <UContainer>
-		<slot></slot>
-	</UContainer>
+	<slot></slot>
 	<AppFooter></AppFooter>
 </template>
 

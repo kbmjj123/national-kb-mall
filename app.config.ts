@@ -133,6 +133,29 @@ export default defineAppConfig({
 			link: 'https://www.linkedin.com/in/%E8%80%BF%E6%9E%97-%E9%83%91-a34014230/'
 		}
 	],
+	// 以下是平台说明的相关配置
+	platformDescList: [
+		{
+			icon: 'free-shipping.svg',
+			titleKey: 'freeShipping',
+			descKey: 'freeShippingDesc'
+		},
+		{
+			icon: 'peace-of-mind.svg',
+			titleKey: 'peaceOfMind',
+			descKey: 'peaceOfMindDesc'
+		},
+		{
+			icon: 'payment-secure.svg',
+			titleKey: 'paymentSecure',
+			descKey: 'paymentSecureDesc'
+		},
+		{
+			icon: 'support.svg',
+			titleKey: 'support',
+			descKey: 'supportDesc'
+		}
+	],
 	// 以下是系统通过配置使用的系统主题色(nuxt-ui)
 	ui: {
 		primary: 'red',

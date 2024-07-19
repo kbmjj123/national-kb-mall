@@ -35,12 +35,12 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 	const fetchOptions = {
 		params,
 		method,
-		body: null || '',
 		headers: {
 			...headers
 		}
 	}
 	if (data) {
+		// @ts-ignore
 		fetchOptions.body = JSON.stringify(data)
 	}
 	const { publicConfig } = useSafeRuntimeConfig()

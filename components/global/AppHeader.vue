@@ -1,7 +1,7 @@
 <template>
   <header
-    class="bg-white sticky top-0 shadow-sm dark:shadow-black dark:bg-gray-900">
-    <div class="container flex justify-between items-center p-4">
+    class="bg-white sticky top-0 z-10 shadow-sm dark:shadow-black dark:bg-gray-900">
+    <div class="container flex justify-between items-center py-4">
       <div class="flex items-center gap-4">
         <UButton
           class="lg:hidden"
