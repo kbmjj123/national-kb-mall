@@ -35,6 +35,8 @@
 		"clearCart": "清空购物车"
 	},
 	"index": {
+		"searchHolder": "搜索商品",
+		"shopNow": "立即购买",
 		"categoryInShop": "店内分类",
 		"browseAll": "查看全部",
 		"popularProduct": "热门商品",

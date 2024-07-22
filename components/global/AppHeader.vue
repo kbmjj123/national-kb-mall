@@ -13,11 +13,13 @@
       </div>
       <HeadMenu mode="horizontal"></HeadMenu>
       <div class="flex items-center gap-3 text-lg">
+				<UInput placeholder="" class="sm:hidden"></UInput>
         <ToggleLanguage></ToggleLanguage>
         <ToggleColor></ToggleColor>
         <UButton
           icon="i-heroicons-magnifying-glass"
           color="gray"
+					class="lg:hidden"
           variant="ghost"
           aria-label="Theme"></UButton>
         <ShoppingCar></ShoppingCar>

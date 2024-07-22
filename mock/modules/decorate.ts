@@ -12,8 +12,8 @@ const generateCarousel = (num: number) => {
 		description: mockjs.Random.cword(10, 20),
 		detail: mockjs.Random.cword(20, 30),
 		link: '',
-		bgImage: getOnePic(1280, 660, 10),
-		cover: getOnePic(1280, 660)
+		bgImage: getOnePic(1920, 660, 10),
+		cover: getOnePic(1920, 660)
 	}))
 }
 
