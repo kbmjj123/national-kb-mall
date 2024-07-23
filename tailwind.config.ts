@@ -13,7 +13,15 @@ export default <Partial<Config>> {
 			}
 		},
 		extend: {
-			colors: {}
+			colors: {},
+			gridTemplateColumns: {
+				'min-100': 'repeat(auto-fit, minmax(100px, 1fr))',
+        'min-150': 'repeat(auto-fit, minmax(150px, 1fr))',
+        'min-180': 'repeat(auto-fit, minmax(180px, 1fr))',
+        'min-200': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'min-250': 'repeat(auto-fit, minmax(250px, 1fr))',
+        'min-300': 'repeat(auto-fit, minmax(300px, 1fr))',
+			}
 		}
 	}
 }

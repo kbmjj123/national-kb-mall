@@ -3,7 +3,7 @@
     <UCarousel
 			ref="carouselRef"
       v-slot="{ item }"
-      :items="carouselList"
+      :items="carouselInfo?.data"
       :ui="{ item: 'basis-full', indicators: { active: 'bg-gray-500 dark:bg-gray-400' } }"
 			indicators
       class="overflow-hidden">
@@ -21,19 +21,9 @@
 </template>
 
 <script setup lang="ts">
-  import { type CarouselType, getCarouselListSSR } from '~/api/decorate'
+  import { getCarouselListSSR } from '~/api/decorate'
 
 	const carouselRef = ref()
-  const carouselList = ref<Array<CarouselType>>([] || null)
-	let res = await getCarouselListSSR()
-	carouselList.value = res.data.value!.data
-
-	const currentBg = computed(() => {
-		if(carouselRef.value){
-			const currentIndex = carouselRef.value.page
-			return carouselList.value[currentIndex].cover
-		}
-		return ''
-	})
+	const { data: carouselInfo, isLoading, isError } = await getCarouselListSSR()
 
 </script>

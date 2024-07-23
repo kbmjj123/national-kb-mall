@@ -1,10 +1,10 @@
 <template>
   <ul
-    class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
+    class="my-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
     <li
       v-for="(item, index) in platformDescListRef"
       :key="index"
-      class="flex flex-row items-center gap-x-2 shadow-sm rounded-xl p-3 gap-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:shadow-black">
+      class="flex flex-row items-center gap-x-2 shadow-sm rounded-xl p-3 gap-2 cursor-pointer bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-600 dark:shadow-black">
       <img src="" class="w-7" />
       <div class="flex-1 flex flex-col gap-y-1">
         <p class="font-bold">{{ item.title }}</p>

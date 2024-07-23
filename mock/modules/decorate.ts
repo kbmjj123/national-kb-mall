@@ -16,11 +16,24 @@ const generateCarousel = (num: number) => {
 		cover: getOnePic(1920, 660)
 	}))
 }
+// 生成品牌数据
+const generateBrand = (num: number) => {
+	return Array.from({ length: num },  () => ({
+		id: mockjs.Random.guid(),
+		name: mockjs.Random.cword(2, 6),
+		icon: getOnePic(mockjs.Random.integer(100, 200), mockjs.Random.integer(80, 150))
+	}))
+}
 
 export default [
 	{
 		url: `${DECORATE_TARGET}/carousel/list`,
 		method: 'get',
 		response: () => resultWrapListSuccess(generateCarousel(3))
+	},
+	{
+		url: `${DECORATE_TARGET}/brand/list`,
+		method: 'get',
+		response: () => resultWrapListSuccess(generateBrand(6))
 	}
 ] as MockMethod[]

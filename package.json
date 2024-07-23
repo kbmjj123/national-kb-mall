@@ -1,8 +1,8 @@
 {
   "name": "kb-mall",
   "private": false,
-	"author": "kbmjj123",
-	"version": "1.0.0",
+  "author": "kbmjj123",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
@@ -20,6 +20,7 @@
     "@nuxtjs/seo": "2.0.0-rc.10",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
+    "@types/crypto-js": "^4.2.2",
     "@types/md5": "^2.3.4",
     "@types/mockjs": "^1.0.10",
     "@vite-pwa/nuxt": "^0.8.0",
@@ -37,6 +38,7 @@
     "@nuxt/content": "^2.9.0",
     "@nuxt/image": "^1.1.0",
     "@nuxtjs/i18n": "8.3.1",
+    "crypto-js": "^4.2.0",
     "md5": "^2.3.0",
     "mockjs": "^1.1.0",
     "nuxt-icon": "^0.6.7",

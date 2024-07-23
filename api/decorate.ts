@@ -1,5 +1,4 @@
 import type { WrapArrayResponseModel } from './types'
-import { wrapServiceRequest } from './_utils'
 
 export type CarouselType = {
 	id: string,
@@ -17,12 +16,18 @@ export type BrandType = {
 	icon: string
 }
 
+const getCarouselList = (): Promise<WrapArrayResponseModel<CarouselType>> => {
+	return useKbFetch.get('/decorate/carousel/list', {})
+}
 // 获取首页轮播图列表
 export const getCarouselListSSR = () => {
-	return useSafeAsyncData<WrapArrayResponseModel<CarouselType>>(wrapServiceRequest('get', '/decorate/carousel/list', {}))
+	return useSafeAsyncData(getCarouselList)
 }
 
+const getBrandList = (): Promise<WrapArrayResponseModel<BrandType>> => {
+	return useKbFetch.get('/decorate/brand/list', {})
+}
 // 获取推荐品牌列表
 export const getBrandListSSR = () => {
-	return useSafeAsyncData<WrapArrayResponseModel<BrandType>>(wrapServiceRequest('get', '/decorate/brand/list', {}))
+	return useSafeAsyncData(getBrandList)
 }

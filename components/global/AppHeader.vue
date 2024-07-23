@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-white sticky top-0 z-10 shadow-sm dark:shadow-black dark:bg-gray-900">
+    class="bg-white sticky top-0 z-50 shadow-sm dark:shadow-black dark:bg-gray-900">
     <div class="container flex justify-between items-center py-4">
       <div class="flex items-center gap-4">
         <UButton
@@ -13,13 +13,13 @@
       </div>
       <HeadMenu mode="horizontal"></HeadMenu>
       <div class="flex items-center gap-3 text-lg">
-				<UInput placeholder="" class="sm:hidden"></UInput>
+				<UInput placeholder="" class="hidden lg:inline-block"></UInput>
         <ToggleLanguage></ToggleLanguage>
         <ToggleColor></ToggleColor>
         <UButton
           icon="i-heroicons-magnifying-glass"
           color="gray"
-					class="lg:hidden"
+					class="hidden lg:inline-block"
           variant="ghost"
           aria-label="Theme"></UButton>
         <ShoppingCar></ShoppingCar>
