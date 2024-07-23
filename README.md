@@ -851,6 +851,38 @@ export default <Partial<Config>> {
 ```
 :trollface: 这里目前采用的设置`light/dark`的统一默认风格！
 
+##### tailwindcss扩展
+> `tailwindcss`本身并没有内置的`minmax`类名，但是我们可以通过配置`tailwindo.config.ts`来添加自定义的`gridTemplateColumns`或者是`gridTemplateRows`规则来实现，如下代码所示：
+```typescript
+import type { Config } from 'tailwindcss'
+
+export default <Partial<Config>> {
+	extend: {
+		gridTemplateColumns: {
+				'min-100': 'repeat(auto-fit, minmax(100px, 1fr))',
+        'min-150': 'repeat(auto-fit, minmax(150px, 1fr))',
+        'min-180': 'repeat(auto-fit, minmax(180px, 1fr))',
+        'min-200': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'min-250': 'repeat(auto-fit, minmax(250px, 1fr))',
+        'min-300': 'repeat(auto-fit, minmax(300px, 1fr))',
+			}
+	}
+}
+```
+:stars: 这里配置之后，我们将可以直接在代码中使用`grid-cols-*`比如(`grid-cols-min-100`)的方式来使用这个类！！
+
+:star2: `tailwindcss`给我们提供了默认的配置，如果我们需要像上述对这个`tailwindcss`来扩展自己的类名的话，需要在这个默认[`tailwindcss`配置](https://tailwindcss.com/docs/theme#configuration-reference)，根据实际情况在对应的配置上来扩展自己的类名，当然，还可以通过编写对应的插件进行更加详细的控制！ :point_right: 这里还可以参考一下官方的完整的[默认配置](https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js)
+
+##### tailwindcss实现父节点hover，子节点触发效果
+> 在没有`tailwindcss`参与的css样式交互控制中，我们可以通过往父节点添加`:hover{子节点样式定义}`的方式来控制当hover父节点的时候，子节点应当做如何展示的一个场景
+> :point_right: 但是在`tailwindcss`中，官方则提供了一个`group-*`的机制，实现同样的目的，使用过程如下：
+```html
+	<div class="group">
+		<span class="group-hover:text-2xl">我是孩子节点</span>
+	</div>
+```
+:trollface: 通过上述的操作，可以实现当hover一个div的时候，让这个div下的span节点的字体大小变成`text-2xl`所对应的样式！
+
 ### 踩坑之路
 > 记录在项目过程中所踩的坑
 #### 升级了版本之后发现sharp不兼容
