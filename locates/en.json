@@ -99,6 +99,16 @@
       "logout": "Logout",
       "myDetails": "My Details",
       "orders": "Order"
+    },
+    "details": {
+      "email": "EMAIL",
+      "firstName": "FIRST NAME",
+			"lastName": "LAST NAME",
+      "lastNamePlaceholder": "Please enter last name",
+      "personalInformation": "Personal Information",
+      "updateDetails": "Update Details",
+      "firstNamePlaceholder": "Please type in your name",
+      "emailPlaceholder": "Please input your email"
     }
   }
 }

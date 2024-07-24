@@ -99,6 +99,16 @@
       "logout": "登出登入",
       "myDetails": "個人資訊",
       "orders": "我的訂單"
+    },
+    "details": {
+      "lastName": "姓氏",
+      "firstNamePlaceholder": "請輸入姓名",
+      "personalInformation": "個人資訊",
+      "updateDetails": "更新訊息",
+      "email": "信箱",
+      "emailPlaceholder": "請輸入信​​箱",
+      "firstName": "名字",
+      "lastNamePlaceholder": "請輸入姓氏"
     }
   }
 }

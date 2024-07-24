@@ -42,6 +42,27 @@
 			"orders": "我的订单",
 			"downloads": "我的下载",
 			"logout": "退出登录"
+		},
+		"details": {
+			"personalInformation": "个人信息",
+			"firstName": "名字",
+			"firstNamePlaceholder": "请输入姓名",
+			"lastName": "姓氏",
+			"lastNamePlaceholder": "请输入姓氏",
+			"email": "邮箱",
+			"emailPlaceholder": "请输入邮箱",
+			"updateDetails": "更新信息"
+		},
+		"billing": {
+			"phone": "手机号",
+			"company": "公司",
+			"address1": "地址一",
+			"address2": "地址二",
+			"city": "城市",
+			"state": "省份",
+			"country": "国家",
+			"zip": "邮编",
+			"email": "邮箱"
 		}
 	},
 	"shoppingCart": {
