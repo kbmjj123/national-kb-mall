@@ -1,5 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import envConfig from './loadEnv.mjs'
+
+import { readFileSync } from 'node:fs'
+import { resolve } from 'path'
+const pkg = JSON.parse(readFileSync(resolve(__dirname, 'package.json'), 'utf-8'))
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   debug: true,
@@ -13,18 +18,20 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     // "@nuxtjs/seo"
   ],
+	css: [
+		'~/assets/css/scrollbars.css'
+	],
   components: {
     global: true,
     dirs: ['~/components/global']
-  },
-  app: {
-    
   },
   imports: {
     dirs: ['store']
   },
   runtimeConfig: {
     public: {
+			appVerion: pkg.version,
+			author: pkg.author,
       baseUrl: envConfig['NUXT_PUBLIC_BASE_URL'],
 			common: envConfig['NUXT_PUBLIC_COMMON'],
 			useMock: envConfig['NUXT_PUBLIC_USE_MOCK']
@@ -48,6 +55,6 @@ export default defineNuxtConfig({
 	},
 	// 配置使用的图标库
 	ui: {
-		icons: 'all'
+		icons: ['heroicons', 'flag', 'ic', 'ri']
 	}
 })

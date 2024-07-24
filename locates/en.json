@@ -1,15 +1,104 @@
 {
   "welcome": "Welcome For Inviting!",
+  "money": "$",
   "login": {
     "loginBtn": "Login",
-    "forgetPwd": "Forget Password?"
+    "forgetPwd": "Forget Password?",
+    "emalOrUsername": "Email or username",
+    "loginTip": "Log in to your account",
+    "noHaveAccount": "Don’t have an account yet?",
+    "signUp": "Sign up."
   },
   "register": {
-    "registerBtn": "Register"
+    "registerBtn": "Register",
+    "alreadyHasAccount": "Already have an account?",
+    "pleaseLogin": "please sign in.",
+    "title": "Register a new account",
+    "account": "username",
+    "email": "Mail",
+    "password": "password",
+    "invalidEmail": "Invalid email",
+    "passwordLimited": "Must be at least 8 characters"
+  },
+  "reset": {
+    "tip": "Please enter your email address and we will send you a link to reset your password.",
+    "resetBtn": "Send Password Reset Email",
+    "backToLogin": "Back to login",
+    "title": "Retrieve password"
   },
   "shoppingCart": {
     "addToCart": "Add to the cart",
     "clearCart": "Clear shopping cart",
     "name": "Shopping cart"
+  },
+  "successTip": "Successful operation",
+  "failedTip": "operation failed",
+  "modalTip": {
+    "cancelTxt": "let me think again",
+    "title": "Kind tips",
+    "okTxt": "Sure"
+  },
+  "menu": [
+    "Home",
+    "Products",
+    "Categories",
+    "Contact",
+    "Wishlist",
+    "My Account"
+  ],
+  "footer": {
+    "customerService": {
+      "contactUs": "Contact Us",
+      "privacyPolicy": "Privacy Policy",
+      "shippingReturns": "Shipping & Returns",
+      "termsConditions": "Terms & Conditions",
+      "title": "Customer Service"
+    },
+    "information": {
+      "about": "About",
+      "careers": "Profession",
+      "faq": "FAQ's",
+      "press": "Press",
+      "title": "Information"
+    },
+    "myAccount": {
+      "myAccount": "My Account",
+      "newsletter": "Newsletter",
+      "orderHistory": "Order History",
+      "title": "My Account",
+      "wishlist": "Wishlist"
+    },
+    "products": {
+      "giftCards": "Gift Card",
+      "newArrivals": "New Arrivals",
+      "onSale": "On sale",
+      "title": "Products",
+      "topRated": "Top rated"
+    }
+  },
+  "index": {
+    "browseAll": "View All",
+    "categoryInShop": "Shop by Category",
+    "popularProduct": "Popular Products",
+    "platformDesc": {
+      "freeShipping": "Free shipping",
+      "paymentSecure": "100% Payment Security",
+      "peaceOfMind": "Peace of Mind",
+      "peaceOfMindDesc": "30-days money back guarantee",
+      "support": "Support 24/7",
+      "supportDesc": "24/7 Online support",
+      "paymentSecureDesc": "Your payment is safe with us.",
+      "freeShippingDesc": "Free shipping on order over €50"
+    },
+    "searchHolder": "Search Products",
+    "shopNow": "Buy it now"
+  },
+  "userCenter": {
+    "frame": {
+      "downloads": "Download",
+      "logout": "Logout",
+      "myDetails": "My Details",
+      "orders": "Order"
+    }
   }
 }

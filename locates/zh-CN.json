@@ -1,15 +1,99 @@
 {
   "welcome": "欢迎您！",
+	"successTip": "操作成功",
+	"failedTip": "操作失败",
+	"money": "¥",
+	"menu": [
+		"首页", "产品", "分类", "联系我们", "愿望清单", "我的账号"
+	],
+	"modalTip": {
+		"title": "温馨提示",
+		"cancelTxt": "我再想想",
+		"okTxt": "确定"
+	},
   "login": {
     "loginBtn": "登录",
+		"loginTip": "登录到您的账户",
+		"noHaveAccount": "还没有账户？",
+		"signUp": "注册。",
+		"emalOrUsername": "邮箱或用户名",
 		"forgetPwd": "忘记密码？"
   },
-  "register": {
-    "registerBtn": "注册"
+	"reset": {
+		"title": "找回密码",
+    "backToLogin": "返回登录",
+    "resetBtn": "发送密码重置邮件",
+    "tip": "请输入您的电子邮件地址，我们将向您发送重置密码的链接。"
   },
+  "register": {
+    "registerBtn": "注册",
+		"title": "注册新账号",
+		"alreadyHasAccount": "已有账号？",
+		"pleaseLogin": "请登录。",
+		"email": "邮箱",
+		"account": "用户名",
+		"password": "密码",
+		"invalidEmail": "无效的电子邮件",
+		"passwordLimited": "必须至少为8个字符"
+  },
+	"userCenter": {
+		"frame": {
+			"myDetails": "个人信息",
+			"orders": "我的订单",
+			"downloads": "我的下载",
+			"logout": "退出登录"
+		}
+	},
 	"shoppingCart": {
 		"name": "购物车",
 		"addToCart": "加入购物车",
 		"clearCart": "清空购物车"
+	},
+	"index": {
+		"searchHolder": "搜索商品",
+		"shopNow": "立即购买",
+		"categoryInShop": "店内分类",
+		"browseAll": "查看全部",
+		"popularProduct": "热门商品",
+		"platformDesc": {
+			"freeShipping": "免费送货",
+			"freeShippingDesc": "订单满50欧元免运费",
+			"peaceOfMind": "资金安全",
+			"peaceOfMindDesc": "30天退款保证",
+			"paymentSecure": "100%支付安全",
+			"paymentSecureDesc": "您的付款在我们这里是安全的。",
+			"support": "7x24小时支持",
+			"supportDesc": "24/7在线支持"
+		}
+	},
+	"footer": {
+		"information": {
+			"title": "信息",
+			"about": "关于",
+			"careers": "职业",
+			"press": "新闻",
+			"faq": "常见问题"
+		},
+		"products": {
+			"title": "产品",
+			"newArrivals": "新品上架",
+			"onSale": "在售商品",
+			"topRated": "评分最高",
+			"giftCards": "礼品卡"
+		},
+		"customerService": {
+			"title": "客户服务",
+			"contactUs": "联系我们",
+			"shippingReturns": "运输与退货",
+			"privacyPolicy": "隐私政策",
+			"termsConditions": "条款与条件"
+		},
+		"myAccount": {
+			"title": "我的账号",
+			"myAccount": "我的账号",
+			"orderHistory": "历史订单",
+			"wishlist": "愿望清单",
+			"newsletter": "通讯"
+		}
 	}
 }

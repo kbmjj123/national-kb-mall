@@ -6,7 +6,7 @@ export default defineEventHandler((event: H3Event<EventHandlerRequest>) => {
 	const { pathname } = parse(event.node.req.url || '', true)
 	const query = getQuery(event)
 	const method = event.method
-	const key = `${pathname}-${method}`
+	const key = `${pathname}-${method.toLowerCase()}`
 	const response = finalMockObj[key]
 	if(response){
 		return finalMockObj[key]()

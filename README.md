@@ -758,7 +758,7 @@ export default <Partial<Config>> {
 
 6. PurgeCSS优化生产环境：在生产环境中，`tailwindcss`将使用`PurgeCSS`来移除未使用到的样式，从而减少最终生成的css文件大小
 
-#### tailwindcss使用思考
+#### tailwindcss结合nuxt-ui使用思考
 > 整理关于在使用`tailwindcss`过程中的最佳实践
 
 ##### 关于主题切换
@@ -836,11 +836,109 @@ export default <Partial<Config>> {
 @import './utilities.css'
 ```
 
+##### 结合nuxt-ui进行项目实战
+> 在项目中，使用了`nuxt-ui`，主要借助于`app.config.ts`中自定义`ui`节点来实现全局站点样式管理的，根据[官方文档](https://ui.nuxt.com/getting-started/theming#configuration)的介绍，建议我们在搭建日间/夜间模式切换的时候，采用`tailwindcss`生成的`text-primary`、`bg-primary`、`text-primary-500`、`dark:text-primary-400`、`bg-gray-100`、`dark:bg-gray-900`等内置生成的工具类来定义站点的统一样式，能够保持当调整系统的`primary`以及`gray`的时候，站点也能够整体进行风格的改变！
+```css
+/* assets/css/tailwind.css */
+@layer base {
+	body{ 
+		@apply bg-white text-gray-700;
+	}
+	.dark body{
+		@apply dark:bg-gray-900 text-gray-200;
+	}
+}
+```
+:trollface: 这里目前采用的设置`light/dark`的统一默认风格！
+
+##### tailwindcss扩展
+> `tailwindcss`本身并没有内置的`minmax`类名，但是我们可以通过配置`tailwindo.config.ts`来添加自定义的`gridTemplateColumns`或者是`gridTemplateRows`规则来实现，如下代码所示：
+```typescript
+import type { Config } from 'tailwindcss'
+
+export default <Partial<Config>> {
+	extend: {
+		gridTemplateColumns: {
+				'min-100': 'repeat(auto-fit, minmax(100px, 1fr))',
+        'min-150': 'repeat(auto-fit, minmax(150px, 1fr))',
+        'min-180': 'repeat(auto-fit, minmax(180px, 1fr))',
+        'min-200': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'min-250': 'repeat(auto-fit, minmax(250px, 1fr))',
+        'min-300': 'repeat(auto-fit, minmax(300px, 1fr))',
+			}
+	}
+}
+```
+:stars: 这里配置之后，我们将可以直接在代码中使用`grid-cols-*`比如(`grid-cols-min-100`)的方式来使用这个类！！
+
+:star2: `tailwindcss`给我们提供了默认的配置，如果我们需要像上述对这个`tailwindcss`来扩展自己的类名的话，需要在这个默认[`tailwindcss`配置](https://tailwindcss.com/docs/theme#configuration-reference)，根据实际情况在对应的配置上来扩展自己的类名，当然，还可以通过编写对应的插件进行更加详细的控制！ :point_right: 这里还可以参考一下官方的完整的[默认配置](https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js)
+
+##### tailwindcss实现父节点hover，子节点触发效果
+> 在没有`tailwindcss`参与的css样式交互控制中，我们可以通过往父节点添加`:hover{子节点样式定义}`的方式来控制当hover父节点的时候，子节点应当做如何展示的一个场景
+> :point_right: 但是在`tailwindcss`中，官方则提供了一个`group-*`的机制，实现同样的目的，使用过程如下：
+```html
+	<div class="group">
+		<span class="group-hover:text-2xl">我是孩子节点</span>
+	</div>
+```
+:trollface: 通过上述的操作，可以实现当hover一个div的时候，让这个div下的span节点的字体大小变成`text-2xl`所对应的样式！
+
 ### 踩坑之路
 > 记录在项目过程中所踩的坑
 #### 升级了版本之后发现sharp不兼容
 > 打开一个比较久的项目，升级相关的库版本信息，发现`sharp`不兼容（一个将常见格式的大图像转换为较小的、web友好的不同格式的图片）， :point_right: 但是要求这个node的版本必须大于18.17.0，因此需要对应升级一下！
 
+#### useI18n必须只能在setup函数中调用的解决方案
+:star2: 在`Nuxt3`中`useI18n`必须在`setup`函数的顶部调用，因为它依赖于Vue的组合式API提供的上下文，这意味着我们不能在`setup`外部调用`useI18n`， :point_right: 为了能够在composable中使用`useI18n`，我们可以利用`Nuxt3`的`useNuxtApp()`函数来获得当前的应用程序实例，并从中获取`i18n`实例，这样子就可以避免在`setup`函数中调用`useI18n`，如下代码所示：
+```typescript
+/* composables/xxx.ts */
+export const xx = () => {
+	const nuxtApp = useNuxtApp()
+	const { t } = nuxtApp.$i18n
+}
+```
+:trollface: 通过上述的方式，我们就可以在这个composables中直接调用到这个t方法了！！
+
+#### 当vue3的fragment遇上了refs
+> 在coding的过程中，很经常需要使用到一个组件的尺寸，需要通过`refNode.value.$el.offsetHeight`的方式来获取组件的高度，但是，如果我们的组件是没有一个跟节点包裹的话(也就是多节点并列)，将会出现通过`refNode.value.$el`获取到的是一个`注释<!--[-->`，导致无法正确获取到组件的高度，因此需要使用一个`div`将其包裹起来，从而能够正确获取到对应的节点的高度！
+
+#### 在defineProps中使用`i18n.t()`方法时的异常
+> 在自定义组件的时候，有以下的一个使用方式：
+```vue
+<script setup lang="ts">
+const { title, okTxt, cancelTxt } = withDefaults(defineProps<{
+	title?: string,
+	okTxt?: string,
+	cancelTxt?: string
+}>(), {
+	title: t('modalTip.title'),
+	okTxt: t('modalTip.okTxt'),
+	cancelTxt: t('modalTip.cancelTxt')
+})
+</script>
+```
+:point_down: 然后就喜提以下的报错信息：
+![属性定义与i18N的冲突](./assets/images/属性定义与i18N的冲突.png)
+
+:thinking: 这里出现这个错误，是因为在`<script setup></script>`中，`defineProps`会在编译阶段被提升到模块的顶层，因此无法引用在本地声明的变量，为了在`defineProps`中使用`withDefaults`设置默认值，并结合`i18n`的`t`函数来自动赋值，可以使用常规的`<script></script>`部分来导出组件选项，解决方式如下：
+```vue
+<script>
+export default defineComponent({
+	props: {
+		title: {
+			type: String,
+			default() {
+				const { t } = useI18n()
+				return t('modalTip.title')
+			}
+		}
+	}
+})
+</script>
+<script setup lang="ts">
+	const props = defineProps<{ title: string }>()
+</script>
+```
 
 ### 最佳实践
 
@@ -888,6 +986,18 @@ export default defineNuxtConfig({
 		icons: 'all'
 	}
 })
+```
+:-1: 上述这种做法是有点对开发机器要求有点高，而且需要较长的编译时间的，因此，采用按需添加对应的引用的方式，当前项目中主要采用的是: [heroicons](https://icones.js.org/collection/heroicons)、[flag](https://icones.js.org/collection/flag)、[ic](https://icones.js.org/collection/ic)、[ri](https://icones.js.org/collection/ri)几个图标库，仅需要在对应的`nuxt.config.ts`中配置一下：
+```typescript
+export default defineNuxtConfig({
+	ui: {
+		icons: ['heroicons', 'flag', 'ic', 'ri']
+	}
+})
+```
+然后对应安装图标库：
+```shell
+pnpm i @iconify-json/flag @iconify-json/ic --save-dev
 ```
 
 ## 思考总结

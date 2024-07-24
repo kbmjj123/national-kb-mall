@@ -1,4 +1,6 @@
 export interface PublicRunTimeConfig {
+	readonly appVerion: string;
+	readonly author: string;
 	readonly baseUrl: string;
 	readonly common: string;
 	readonly useMock: boolean;

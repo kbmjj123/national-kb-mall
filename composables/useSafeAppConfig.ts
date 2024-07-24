@@ -1,7 +1,28 @@
+type LinkType = {
+	titleKey: string,
+	links: {
+		key: string,
+		link: string,
+		target: string
+	}[]
+}
+type SocialType = {
+	title: string,
+	icon: string,
+	link: string
+}
+type PlatformDesc = {
+	icon: string,
+	titleKey: string,
+	descKey: string
+}
+
 export interface AppConfig{
 	readonly appName: string,
 	readonly keywords: string,
-	defaultLanguage: string,
+	readonly footerLinks: LinkType[],
+	readonly socialList: SocialType[],
+	readonly platformDescList: PlatformDesc[],
 	[index: string]: any
 }
 
@@ -10,11 +31,7 @@ export const useSafeAppConfig = () => {
 	const appConfig = reactive(useAppConfig()) as AppConfig
 	const frozenConfig = readonly(appConfig)	// 不可直接修改的app配置对象
 	
-	const changeLanguage = (lang: string) => {
-		appConfig.defaultLanguage = lang
-	}
 	return {
-		config: frozenConfig,
-		changeLanguage
+		config: frozenConfig
 	}
 }
