@@ -1,5 +1,5 @@
 <template>
-	<div class="container flex gap-2 justify-center mt-2">
+	<div class="flex gap-2 justify-center mt-2">
 		<NuxtLink to="/" v-for="(item, index) in brandInfo?.data" :key="index">
 			<NuxtImg :src="item.icon"></NuxtImg>
 		</NuxtLink>

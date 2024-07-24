@@ -1,12 +1,12 @@
 <template>
-  <ul class="container grid gap-2 auto-resize">
+  <ul class="grid gap-2 auto-resize">
     <li
       class="relative group hover:cursor-pointer"
       v-for="(item, index) in categoryInfo?.data"
       :key="index">
-      <NuxtImg :src="item.cover" class="object-cover rounded-md"></NuxtImg>
+      <NuxtImg :src="item.cover" loading="lazy" class="object-cover rounded-md" placeholder></NuxtImg>
       <p
-        class="group-hover:bg-gradient-to-b pt-2 from-transparent to-gray-50-transparent absolute left-0 right-0 bottom-0 text-center font-bold p-2 text-2xl">
+        class="group-hover:bg-gradient-to-b pt-2 from-transparent to-gray-50-transparent absolute left-0 right-0 bottom-0 text-center font-bold p-2 text-md">
         {{ item.name }}
       </p>
     </li>

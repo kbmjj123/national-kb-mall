@@ -26,7 +26,7 @@ export default [
 	{
 		url: `${USER_TARGET}/register`,
 		method: 'post',
-		response: () => resultSuccess()
+		response: () => resultSuccess({id: mockjs.Random.guid()})
 	},
 	{
 		url: `${USER_TARGET}/info`,

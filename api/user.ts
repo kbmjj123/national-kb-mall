@@ -14,12 +14,12 @@ export const login = (account: string, password: string): Promise<ObjectResponse
 	return useKbFetch.post('/user/login', { data: { account, password }, errorResponseType: 'modal' })
 }
 
-export const register = (email: string, account: string, password: string): Promise<ObjectResponseModel<UserInfoType>> => {
-	return useKbFetch.post('/user/register', { data: { email, account, password } })
+export const register = (params: { email: string; account: string; password: string }): Promise<ObjectResponseModel<UserInfoType>> => {
+	return useKbFetch.post('/user/register', { data: params })
 }
 
-export const resetPwd = (account: string, code: string, password: string) => {
-	return useKbFetch.post('/user/resetPwd', { data: { account, code, password } })
+export const resetPwd = (account: string): Promise<StringOrBooleanResponseModel> => {
+	return useKbFetch.post('/user/resetPwd', { data: { account } })
 }
 
 export const logout = (): Promise<StringOrBooleanResponseModel> => {

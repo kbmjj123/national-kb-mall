@@ -7,7 +7,7 @@
     "noHaveAccount": "還沒有帳戶？",
     "signUp": "註冊。"
   },
-	"money": "$",
+  "money": "$",
   "register": {
     "registerBtn": "註冊",
     "title": "註冊新帳號",
@@ -86,5 +86,19 @@
     },
     "searchHolder": "搜尋商品",
     "shopNow": "立即購買"
+  },
+  "reset": {
+    "backToLogin": "返回登入",
+    "resetBtn": "發送密碼重設郵件",
+    "tip": "請輸入您的電子郵件地址，我們將向您發送重設密碼的連結。",
+    "title": "找回密碼"
+  },
+  "userCenter": {
+    "frame": {
+      "downloads": "我的下載",
+      "logout": "登出登入",
+      "myDetails": "個人資訊",
+      "orders": "我的訂單"
+    }
   }
 }

@@ -1,6 +1,6 @@
 {
   "welcome": "Welcome For Inviting!",
-	"money": "$",
+  "money": "$",
   "login": {
     "loginBtn": "Login",
     "forgetPwd": "Forget Password?",
@@ -19,6 +19,12 @@
     "password": "password",
     "invalidEmail": "Invalid email",
     "passwordLimited": "Must be at least 8 characters"
+  },
+  "reset": {
+    "tip": "Please enter your email address and we will send you a link to reset your password.",
+    "resetBtn": "Send Password Reset Email",
+    "backToLogin": "Back to login",
+    "title": "Retrieve password"
   },
   "shoppingCart": {
     "addToCart": "Add to the cart",
@@ -86,5 +92,13 @@
     },
     "searchHolder": "Search Products",
     "shopNow": "Buy it now"
+  },
+  "userCenter": {
+    "frame": {
+      "downloads": "Download",
+      "logout": "Logout",
+      "myDetails": "My Details",
+      "orders": "Order"
+    }
   }
 }

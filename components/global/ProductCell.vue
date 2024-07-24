@@ -5,7 +5,7 @@
       v-for="(item, index) in productList"
       :key="index">
       <li class="flex flex-col relative gap-y-2 hover:cursor-pointer">
-        <NuxtImg class="aspect-9-10" :src="item.masterPicture"></NuxtImg>
+        <NuxtImg class="aspect-9-10" loading="lazy" placeholder :src="item.masterPicture"></NuxtImg>
         <Rating></Rating>
         <p class="line-clamp-2 text-ellipsis h-8 leading-4 font-bold">
           {{ item.name }}

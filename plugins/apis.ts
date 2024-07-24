@@ -23,8 +23,16 @@ export default defineNuxtPlugin((nuxtApp) => {
 				})
 			}
 		},
-		onResponse(context) {
-			// console.info(context.response._data)
+		onResponse({ request, response, options }) {
+			console.info(response._data)
+		},
+		onResponseError({ request, response, options }) {
+			console.error(
+				"[fetch response error]",
+      request,
+      response.status,
+      response.body
+			)
 		}
 	})
 

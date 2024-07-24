@@ -19,6 +19,12 @@
 		"emalOrUsername": "邮箱或用户名",
 		"forgetPwd": "忘记密码？"
   },
+	"reset": {
+		"title": "找回密码",
+    "backToLogin": "返回登录",
+    "resetBtn": "发送密码重置邮件",
+    "tip": "请输入您的电子邮件地址，我们将向您发送重置密码的链接。"
+  },
   "register": {
     "registerBtn": "注册",
 		"title": "注册新账号",
@@ -30,6 +36,14 @@
 		"invalidEmail": "无效的电子邮件",
 		"passwordLimited": "必须至少为8个字符"
   },
+	"userCenter": {
+		"frame": {
+			"myDetails": "个人信息",
+			"orders": "我的订单",
+			"downloads": "我的下载",
+			"logout": "退出登录"
+		}
+	},
 	"shoppingCart": {
 		"name": "购物车",
 		"addToCart": "加入购物车",
