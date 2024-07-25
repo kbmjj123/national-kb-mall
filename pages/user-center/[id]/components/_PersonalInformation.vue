@@ -3,6 +3,9 @@
     :is-loading="isUserInfoLoading"
     loading-ui-mode="form"
     @on-retry="() => getUserInfoAction">
+    <template #loading>
+      <SkeletonForm :form-item-lines="2"></SkeletonForm>
+    </template>
     <UCard>
       <h3 class="font-bold text-lg mb-3">
         {{ $t('userCenter.details.personalInformation') }}

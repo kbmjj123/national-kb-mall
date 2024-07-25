@@ -38,7 +38,7 @@
     isClearable?: boolean
     isToggleType?: boolean
   }
-  const { isClearable, isToggleType } = withDefaults(defineProps<InputType>(), {
+  withDefaults(defineProps<InputType>(), {
     isClearable: false,
     isToggleType: false,
   })
