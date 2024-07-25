@@ -57,14 +57,21 @@
 		"billing": {
 			"title": "账单",
 			"phone": "手机号",
+			"phonePlaceholder": "请输入手机号码",
 			"company": "公司",
+			"companyPlaceholder": "请输入公司名称",
 			"address1": "地址一",
+			"address1Placeholder": "请输入地址一",
 			"address2": "地址二",
+			"address2Placeholder": "请地址地址二",
 			"city": "城市",
-			"state": "省份",
+			"cityPlaceholder": "请输入城市",
+			"state": "州",
+			"statePlaceholder": "请输入州",
 			"country": "国家",
+			"countryPlaceholder": "请选择国家",
 			"zip": "邮编",
-			"email": "邮箱"
+			"zipPlaceholder": "请输入邮编"
 		}
 	},
 	"shoppingCart": {

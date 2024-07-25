@@ -20,7 +20,14 @@
           <UButton
             icon="i-heroicons-magnifying-glass"
             color="gray"
-            class="hidden lg:inline-block"
+            class="inline-flex lg:hidden"
+            variant="ghost"
+            aria-label="Theme"></UButton>
+					<UButton
+            icon="i-heroicons-user"
+            color="gray"
+						to="/user-center/u888/details"
+            class="inline-flex lg:hidden"
             variant="ghost"
             aria-label="Theme"></UButton>
           <ShoppingCar></ShoppingCar>
