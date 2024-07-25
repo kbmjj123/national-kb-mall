@@ -109,6 +109,19 @@
       "emailPlaceholder": "請輸入信​​箱",
       "firstName": "名字",
       "lastNamePlaceholder": "請輸入姓氏"
+    },
+    "billing": {
+      "address1": "地址一",
+      "address2": "地址二",
+      "city": "城市",
+      "company": "公司",
+      "country": "國家",
+      "email": "信箱",
+      "phone": "手機號",
+      "state": "省份",
+      "title": "帳單",
+      "zip": "郵編"
     }
-  }
+  },
+  "retry": "重試"
 }

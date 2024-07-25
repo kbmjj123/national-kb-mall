@@ -2,6 +2,7 @@
   "welcome": "欢迎您！",
 	"successTip": "操作成功",
 	"failedTip": "操作失败",
+	"retry": "重试",
 	"money": "¥",
 	"menu": [
 		"首页", "产品", "分类", "联系我们", "愿望清单", "我的账号"
@@ -54,6 +55,7 @@
 			"updateDetails": "更新信息"
 		},
 		"billing": {
+			"title": "账单",
 			"phone": "手机号",
 			"company": "公司",
 			"address1": "地址一",

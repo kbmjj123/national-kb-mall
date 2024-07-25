@@ -25,3 +25,11 @@ export const resetPwd = (account: string): Promise<StringOrBooleanResponseModel>
 export const logout = (): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/user/logout')
 }
+
+export const getUserInfo = (): Promise<ObjectResponseModel<UserInfoType>> => {
+	return useKbFetch.get('/user/info', {})
+}
+
+export const modifyUserInfo = (params: any): Promise<StringOrBooleanResponseModel> => {
+	return useKbFetch.post('/user/modify', { data: params})
+}
