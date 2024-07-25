@@ -1,6 +1,6 @@
 <template>
 	<AppHeader ref="appHeader"></AppHeader>
-	<div class="bg-[#F2F3F5] dark:bg-gray-900 pb-4 content-body">
+	<div class="bg-[#F2F3F5] dark:bg-gray-900 pb-4 content-body flex flex-col">
 		<slot></slot>
 	</div>
 	<AppFooter ref="appFooter"></AppFooter>

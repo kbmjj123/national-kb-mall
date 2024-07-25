@@ -12,17 +12,19 @@
 }
 
 @layer components{
-  /* 自定义项目中的尺寸 */
-  .app-width{
-    @apply sm:w-screen md:w-screen lg:w-10/12 xl:w-9/12 2xl:w-8/12;
-  }
+	/*公共的Form表单所拥有的样式*/
 	.form-container{
 		@apply sm:px-10 md:px-36 lg:px-64 xl:px-64 2xl:px-80;
 	}
+	/*系统的UIcon组件所具备的样式*/
 	.uicon{
 		@apply text-current;
 	}
 	.uicon:hover{
 		@apply text-gray-500 cursor-pointer;
 	}
+}
+
+@layer utilities {
+	
 }
