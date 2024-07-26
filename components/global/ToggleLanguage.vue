@@ -1,7 +1,7 @@
 <template>
-	<USelectMenu :modalValue="currentLocale" leading :leadingIcon="currentLocale.icon" :options="locales" @change="onToggleLacale" option-attribute="name">
+	<USelectMenu size="xs" :modalValue="currentLocale" leading :leadingIcon="currentLocale?.icon" :options="locales" @change="onToggleLacale" option-attribute="name">
 		<template #label>
-			<span>{{ currentLocale.name }}</span>
+			<span>{{ currentLocale?.name }}</span>
 		</template>
 		<template #option="{ option: item }">
 			<UIcon :name="item.icon" class="w-5 h-5"></UIcon>

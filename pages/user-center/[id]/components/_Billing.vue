@@ -1,10 +1,20 @@
 <template>
-  <AsyncDataWrapper>
+  <AsyncDataWrapper
+    :is-loading="isGettingBilling"
+    loading-ui-mode="form"
+    @on-retry="() => getBillingAction()">
+    <template #loading>
+      <SkeletonForm :form-item-lines="5"></SkeletonForm>
+    </template>
     <UCard>
       <h3 class="font-bold text-lg mb-3">
         {{ $t('userCenter.billing.title') }}
       </h3>
-      <UForm class="grid grid-cols-1 gap-3 md:grid-cols-2">
+      <UForm
+        class="grid grid-cols-1 gap-3 md:grid-cols-2"
+        :state="billingForm"
+        :schema="billingSchema"
+        @submit="onSubmit">
         <UFormGroup :label="$t('userCenter.details.firstName')">
           <AppInput
             is-clearable
@@ -21,7 +31,7 @@
             v-model="billingForm.lastName"
             variant="outline"></AppInput>
         </UFormGroup>
-				<UFormGroup :label="$t('userCenter.billing.phone')">
+        <UFormGroup :label="$t('userCenter.billing.phone')">
           <AppInput
             is-clearable
             size="xl"
@@ -37,7 +47,7 @@
             v-model="billingForm.company"
             variant="outline"></AppInput>
         </UFormGroup>
-				<UFormGroup :label="$t('userCenter.billing.address1')">
+        <UFormGroup :label="$t('userCenter.billing.address1')">
           <AppInput
             is-clearable
             size="xl"
@@ -53,7 +63,7 @@
             v-model="billingForm.address2"
             variant="outline"></AppInput>
         </UFormGroup>
-				<UFormGroup :label="$t('userCenter.billing.city')">
+        <UFormGroup :label="$t('userCenter.billing.city')">
           <AppInput
             is-clearable
             size="xl"
@@ -69,7 +79,7 @@
             v-model="billingForm.state"
             variant="outline"></AppInput>
         </UFormGroup>
-				<UFormGroup :label="$t('userCenter.billing.country')">
+        <UFormGroup :label="$t('userCenter.billing.country')">
           <AppInput
             is-clearable
             size="xl"
@@ -85,7 +95,10 @@
             v-model="billingForm.zip"
             variant="outline"></AppInput>
         </UFormGroup>
-        <UFormGroup class="col-span-2" :label="$t('userCenter.details.email')">
+        <!-- 最后的邮箱 -->
+        <UFormGroup
+          class="col-span-1 md:col-span-2"
+          :label="$t('userCenter.details.email')">
           <AppInput
             is-clearable
             size="xl"
@@ -96,7 +109,10 @@
       </UForm>
       <template #footer>
         <div class="text-right">
-          <UButton :label="$t('userCenter.details.updateDetails')"></UButton>
+          <UButton
+            type="submit"
+						:loading="isModifying"
+            :label="$t('userCenter.details.updateDetails')"></UButton>
         </div>
       </template>
     </UCard>
@@ -104,19 +120,50 @@
 </template>
 
 <script lang="ts" setup>
-  const billingForm = reactive({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    company: '',
-    address1: '',
-    address2: '',
-    city: '',
-    state: '',
-    country: '',
-    zip: '',
-    email: '',
+  import { z } from 'zod'
+  import type { FormSubmitEvent } from '#ui/types'
+  import { getBillingInfo, modifyBillingInfo } from '~/api/user'
+
+  const billingSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    phone: z.string(),
+    company: z.string(),
+    address1: z.string(),
+    city: z.string(),
+    address2: z.string(),
+    state: z.string(),
+    country: z.string(),
+    zip: z.string(),
+    email: z.string().email(),
   })
+  type BillingType = z.output<typeof billingSchema>
+  // const billingForm = reactive({
+  //   firstName: '',
+  //   lastName: '',
+  //   phone: '',
+  //   company: '',
+  //   address1: '',
+  //   address2: '',
+  //   city: '',
+  //   state: '',
+  //   country: '',
+  //   zip: '',
+  //   email: '',
+  // })
+  const {
+    data: billingForm,
+    isLoading: isGettingBilling,
+    execute: getBillingAction,
+  } = useLoading(getBillingInfo)
+
+	const { isLoading: isModifying, execute: modifyBillingAction } = useLoading(modifyBillingInfo)
+  const onSubmit = (event: FormSubmitEvent<BillingType>) => {
+		modifyBillingAction && modifyBillingAction(billingForm)
+	}
+	onMounted(() => {
+		getBillingAction && getBillingAction()
+	});
 </script>
 
 <style scoped></style>

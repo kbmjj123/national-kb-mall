@@ -2,7 +2,7 @@
   <AsyncDataWrapper
     :is-loading="isUserInfoLoading"
     loading-ui-mode="form"
-    @on-retry="() => getUserInfoAction">
+    @on-retry="() => getUserInfoAction()">
     <template #loading>
       <SkeletonForm :form-item-lines="2"></SkeletonForm>
     </template>

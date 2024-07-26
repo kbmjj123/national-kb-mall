@@ -43,8 +43,7 @@
     "Products",
     "Categories",
     "Contact",
-    "Wishlist",
-    "My Account"
+    "Wishlist"
   ],
   "footer": {
     "customerService": {

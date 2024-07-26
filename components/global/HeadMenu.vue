@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 	const { locale } = useI18n()
-  const {} = withDefaults(
+  withDefaults(
     defineProps<{
       mode?: 'vertical' | 'horizontal'
     }>(),
