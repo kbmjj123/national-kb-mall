@@ -4,9 +4,9 @@
       class="relative group hover:cursor-pointer"
       v-for="(item, index) in categoryInfo?.data"
       :key="index">
-      <NuxtImg :src="item.cover" loading="lazy" class="object-cover rounded-md" placeholder></NuxtImg>
+      <NuxtImg :src="item.cover" loading="lazy" class="object-fill w-full rounded-md" placeholder></NuxtImg>
       <p
-        class="group-hover:bg-gradient-to-b pt-2 from-transparent to-gray-50-transparent absolute left-0 right-0 bottom-0 text-center font-bold p-2 text-md">
+        class="group-hover:bg-gradient-to-b pt-2 from-transparent to-gray-50-transparent absolute left-0 right-0 bottom-0 text-center font-bold px-2 py-4 text-md rounded-bl-md rounded-br-md">
         {{ item.name }}
       </p>
     </li>
