@@ -14,6 +14,7 @@
           </h3>
           <UButton
             type="submit"
+            color="gray"
             :loading="isLoading"
             :label="$t('userCenter.details.updateDetails')"></UButton>
         </div>
@@ -23,7 +24,18 @@
         :schema="userInfoSchema"
         :state="userInfoForm"
         @submit="onUpdateUserInfo">
-        <UFormGroup class="flex-1" :label="$t('userCenter.details.firstName')">
+        <section
+          class="flex flex-col justify-center items-center col-span-1 md:col-span-2 p-4">
+          <div class="relative group rounded-full hover:cursor-pointer">
+            <UAvatar
+              src="https://avatars.githubusercontent.com/u/1559584?v=4"
+              icon="i-heroicons-photo"
+              size="2xl"
+              alt="Avatar"></UAvatar>
+            <UIcon class="absolute left-[50%] top-[50%] translate-x-[-50%] w-7 h-7 hidden group-hover:block" name="i-heroicons-camera-16-solid"></UIcon>
+          </div>
+        </section>
+        <UFormGroup :label="$t('userCenter.details.firstName')">
           <AppInput
             is-clearable
             size="xl"
@@ -31,7 +43,7 @@
             v-model="userInfoForm.firstName"
             variant="outline"></AppInput>
         </UFormGroup>
-        <UFormGroup class="flex-1" :label="$t('userCenter.details.lastName')">
+        <UFormGroup :label="$t('userCenter.details.lastName')">
           <AppInput
             is-clearable
             size="xl"

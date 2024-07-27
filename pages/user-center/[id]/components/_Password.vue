@@ -7,6 +7,7 @@
         </h3>
         <UButton
           type="submit"
+					color="gray"
           :loading="isSettingPwd"
           :label="$t('userCenter.details.updateDetails')"></UButton>
       </div>

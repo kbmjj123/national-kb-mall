@@ -1,6 +1,5 @@
 <template>
   <div class="container flex flex-col gap-4 md:flex-row pt-3 flex-1">
-		<ClientOnly>
     <ul ref="ulElement"
       class="self-start bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg shadow px-4 py-5 sm:p-6 sticky ul-top z-10 flex flex-row flex-wrap gap-4 md:flex-col">
       <li>
@@ -36,7 +35,6 @@
         </NuxtLink>
       </li>
     </ul>
-	</ClientOnly>
     <section class="flex-1 pb-4">
       <NuxtPage></NuxtPage>
     </section>

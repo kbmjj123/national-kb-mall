@@ -14,6 +14,7 @@
           </h3>
           <UButton
             type="submit"
+						color="gray"
             :loading="isModifying"
             :label="$t('userCenter.details.updateDetails')"></UButton>
         </div>
