@@ -8,7 +8,7 @@ const DECORATE_TARGET = '/decorate'
 const generateCarousel = (num: number) => {
 	return Array.from({ length: num }, () => ({
 		id: mockjs.Random.guid(),
-		title: mockjs.Random.cword(4, 6),
+		title: mockjs.Random.ctitle(4, 6),
 		description: mockjs.Random.cword(10, 20),
 		detail: mockjs.Random.cword(20, 30),
 		link: '',

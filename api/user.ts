@@ -5,8 +5,10 @@ export type UserInfoType = {
 	avatar: string,
 	account: string,
 	email: string,
-	refreshToken: string,
-	accessToken: string,
+	firstName: string,
+	lastName: string,
+	// refreshToken: string,
+	// accessToken: string,
 	[index: string]: any
 }
 export type BillingType = {
@@ -21,6 +23,10 @@ export type BillingType = {
 	country: string,
 	zip: string,
 	email: string,
+}
+export type PasswordType = {
+	newPassword: string,
+	confirmPassword: string
 }
 export const login = (account: string, password: string): Promise<ObjectResponseModel<UserInfoType>> => {
 	return useKbFetch.post('/user/login', { data: { account, password }, errorResponseType: 'modal' })
@@ -61,11 +67,7 @@ export const getShippingInfo = () => {
 export const setShippingInfo = (params: BasicParams) => {
 	return useKbFetch.post('/user/shipping/modify')
 }
-// 获取密码信息
-export const getPwdInfo = () => {
-	return useKbFetch.get('/user/pwd', {})
-}
-// 设置密码信息
-export const setPwdInfo = (params: BasicParams) => {
+// 设置新的密码信息
+export const setPwdInfo = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/user/pwd/modify', { data: params })
 }

@@ -7,12 +7,21 @@
       <SkeletonForm :form-item-lines="5"></SkeletonForm>
     </template>
     <UCard>
-      <h3 class="font-bold text-lg mb-3">
-        {{ $t('userCenter.billing.title') }}
-      </h3>
+      <template #header>
+        <div class="flex flex-row justify-between items-center">
+          <h3 class="font-bold text-lg">
+            {{ $t('userCenter.billing.title') }}
+          </h3>
+          <UButton
+            type="submit"
+            :loading="isModifying"
+            :label="$t('userCenter.details.updateDetails')"></UButton>
+        </div>
+      </template>
       <UForm
         class="grid grid-cols-1 gap-3 md:grid-cols-2"
-        :state="billingForm"
+				v-if="billingForm"
+        :state="billingForm.data"
         :schema="billingSchema"
         @submit="onSubmit">
         <UFormGroup :label="$t('userCenter.details.firstName')">
@@ -20,7 +29,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.details.firstNamePlaceholder')"
-            v-model="billingForm.firstName"
+            v-model="billingForm.data.firstName"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.details.lastName')">
@@ -28,7 +37,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.details.lastNamePlaceholder')"
-            v-model="billingForm.lastName"
+            v-model="billingForm.data.lastName"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.phone')">
@@ -36,7 +45,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.phonePlaceholder')"
-            v-model="billingForm.phone"
+            v-model="billingForm.data.phone"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.company')">
@@ -44,7 +53,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.companyPlaceholder')"
-            v-model="billingForm.company"
+            v-model="billingForm.data.company"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.address1')">
@@ -52,7 +61,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.address1Placeholder')"
-            v-model="billingForm.address1"
+            v-model="billingForm.data.address1"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.address2')">
@@ -60,7 +69,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.address2Placeholder')"
-            v-model="billingForm.address2"
+            v-model="billingForm.data.address2"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.city')">
@@ -68,7 +77,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.cityPlaceholder')"
-            v-model="billingForm.city"
+            v-model="billingForm.data.city"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.state')">
@@ -76,7 +85,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.statePlaceholder')"
-            v-model="billingForm.state"
+            v-model="billingForm.data.state"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.country')">
@@ -84,7 +93,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.countryPlaceholder')"
-            v-model="billingForm.country"
+            v-model="billingForm.data.country"
             variant="outline"></AppInput>
         </UFormGroup>
         <UFormGroup :label="$t('userCenter.billing.zip')">
@@ -92,7 +101,7 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.billing.zipPlaceholder')"
-            v-model="billingForm.zip"
+            v-model="billingForm.data.zip"
             variant="outline"></AppInput>
         </UFormGroup>
         <!-- 最后的邮箱 -->
@@ -103,18 +112,10 @@
             is-clearable
             size="xl"
             :placeholder="$t('userCenter.details.emailPlaceholder')"
-            v-model="billingForm.email"
+            v-model="billingForm.data.email"
             variant="outline"></AppInput>
         </UFormGroup>
       </UForm>
-      <template #footer>
-        <div class="text-right">
-          <UButton
-            type="submit"
-						:loading="isModifying"
-            :label="$t('userCenter.details.updateDetails')"></UButton>
-        </div>
-      </template>
     </UCard>
   </AsyncDataWrapper>
 </template>
@@ -157,13 +158,14 @@
     execute: getBillingAction,
   } = useLoading(getBillingInfo)
 
-	const { isLoading: isModifying, execute: modifyBillingAction } = useLoading(modifyBillingInfo)
+  const { isLoading: isModifying, execute: modifyBillingAction } =
+    useLoading(modifyBillingInfo)
   const onSubmit = (event: FormSubmitEvent<BillingType>) => {
-		modifyBillingAction && modifyBillingAction(billingForm)
-	}
-	onMounted(() => {
-		getBillingAction && getBillingAction()
-	});
+    modifyBillingAction && modifyBillingAction(billingForm)
+  }
+  onMounted(() => {
+    getBillingAction && getBillingAction()
+  })
 </script>
 
 <style scoped></style>

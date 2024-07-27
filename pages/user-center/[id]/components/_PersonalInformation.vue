@@ -7,36 +7,42 @@
       <SkeletonForm :form-item-lines="2"></SkeletonForm>
     </template>
     <UCard>
-      <h3 class="font-bold text-lg mb-3">
-        {{ $t('userCenter.details.personalInformation') }}
-      </h3>
+      <template #header>
+        <div class="flex flex-row justify-between items-center">
+          <h3 class="font-bold text-lg">
+            {{ $t('userCenter.details.personalInformation') }}
+          </h3>
+          <UButton
+            type="submit"
+            :loading="isLoading"
+            :label="$t('userCenter.details.updateDetails')"></UButton>
+        </div>
+      </template>
       <UForm
-        class="flex flex-col gap-3"
+        class="grid grid-cols-1 gap-3 md:grid-cols-2"
         :schema="userInfoSchema"
         :state="userInfoForm"
         @submit="onUpdateUserInfo">
-        <div class="flex flex-col gap-3 md:flex-row">
-          <UFormGroup
-            class="flex-1"
-            :label="$t('userCenter.details.firstName')">
-            <AppInput
-              is-clearable
-              size="xl"
-              :placeholder="$t('userCenter.details.firstNamePlaceholder')"
-              v-model="userInfoForm.firstName"
-              variant="outline"></AppInput>
-          </UFormGroup>
-          <UFormGroup class="flex-1" :label="$t('userCenter.details.lastName')">
-            <AppInput
-              is-clearable
-              size="xl"
-              :placeholder="$t('userCenter.details.lastNamePlaceholder')"
-              v-model="userInfoForm.lastName"
-              variant="outline"></AppInput>
-          </UFormGroup>
-        </div>
+        <UFormGroup class="flex-1" :label="$t('userCenter.details.firstName')">
+          <AppInput
+            is-clearable
+            size="xl"
+            :placeholder="$t('userCenter.details.firstNamePlaceholder')"
+            v-model="userInfoForm.firstName"
+            variant="outline"></AppInput>
+        </UFormGroup>
+        <UFormGroup class="flex-1" :label="$t('userCenter.details.lastName')">
+          <AppInput
+            is-clearable
+            size="xl"
+            :placeholder="$t('userCenter.details.lastNamePlaceholder')"
+            v-model="userInfoForm.lastName"
+            variant="outline"></AppInput>
+        </UFormGroup>
 
-        <UFormGroup :label="$t('userCenter.details.email')">
+        <UFormGroup
+          :label="$t('userCenter.details.email')"
+          class="col-span-1 md:col-span-2">
           <AppInput
             is-clearable
             size="xl"
@@ -45,14 +51,6 @@
             variant="outline"></AppInput>
         </UFormGroup>
       </UForm>
-      <template #footer>
-        <div class="text-right">
-          <UButton
-            type="submit"
-            :loading="isLoading"
-            :label="$t('userCenter.details.updateDetails')"></UButton>
-        </div>
-      </template>
     </UCard>
   </AsyncDataWrapper>
 </template>

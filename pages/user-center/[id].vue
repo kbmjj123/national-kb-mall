@@ -1,5 +1,6 @@
 <template>
   <div class="container flex flex-col gap-4 md:flex-row pt-3 flex-1">
+		<ClientOnly>
     <ul ref="ulElement"
       class="self-start bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg shadow px-4 py-5 sm:p-6 sticky ul-top z-10 flex flex-row flex-wrap gap-4 md:flex-col">
       <li>
@@ -35,7 +36,8 @@
         </NuxtLink>
       </li>
     </ul>
-    <section class="flex-1">
+	</ClientOnly>
+    <section class="flex-1 pb-4">
       <NuxtPage></NuxtPage>
     </section>
   </div>
@@ -43,13 +45,12 @@
 
 <script lang="ts" setup>
   import { useRoute } from 'vue-router'
-	import { tryOnMounted } from '@vueuse/core'
 
 	const ulElement = ref()
   const route = useRoute()
   const id = route.params.id
 	const ulTop = ref('0px')
-	tryOnMounted(() => {
+	onMounted(() => {
 		if(ulElement.value){
 			const { top } = ulElement.value.getBoundingClientRect()
 			ulTop.value = `${top}px`
