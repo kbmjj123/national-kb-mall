@@ -1,5 +1,6 @@
 {
   "welcome": "欢迎您！",
+	"homeIndex": "首页",
 	"successTip": "操作成功",
 	"failedTip": "操作失败",
 	"retry": "重试",
@@ -131,5 +132,16 @@
 			"wishlist": "愿望清单",
 			"newsletter": "通讯"
 		}
+	},
+	"product": {
+		"details": "详情",
+		"evaluates": "评价",
+		"availability": "状态",
+		"sku": "规格",
+		"addToCart": "加入购物车",
+		"category": "分类",
+		"addToWishlist": "添加至愿望清单",
+		"share": "分享",
+		"guessYouLike": "猜你喜欢"
 	}
 }

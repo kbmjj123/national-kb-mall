@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  const { title, buttonInfo } = defineProps<{
+  defineProps<{
     title?: string
     buttonInfo?: {
       text: string
