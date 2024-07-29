@@ -74,6 +74,9 @@
 			"zip": "邮编",
 			"zipPlaceholder": "请输入邮编"
 		},
+		"shipping": {
+			"title": "运输"
+		},
 		"changePwd": {
 			"title": "修改密码",
 			"newPassword": "新密码",

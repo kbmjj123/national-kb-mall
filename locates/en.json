@@ -119,8 +119,34 @@
       "phone": "Phone number",
       "state": "province",
       "title": "bill",
-      "zip": "post code"
+      "zip": "post code",
+      "address1Placeholder": "Please enter address one",
+      "address2Placeholder": "Please address address two",
+      "cityPlaceholder": "Please enter city",
+      "companyPlaceholder": "Please enter company name",
+      "countryPlaceholder": "Please select a country",
+      "phonePlaceholder": "Please enter the phone number",
+      "statePlaceholder": "Please enter state",
+      "zipPlaceholder": "Please enter zip code"
+    },
+    "changePwd": {
+      "confirmNewPassword": "Confirm the new password",
+      "newPassword": "New Password",
+      "passwordHolder": "Please enter password",
+      "title": "change Password"
     }
   },
-  "retry": "Retry"
+  "retry": "Retry",
+  "homeIndex": "front page",
+  "product": {
+    "addToWishlist": "Add to wishlist",
+    "availability": "state",
+    "category": "Classification",
+    "details": "Details",
+    "evaluates": "evaluate",
+    "guessYouLike": "you may also like",
+    "share": "share",
+    "sku": "Specification",
+    "addToCart": "add to the cart"
+  }
 }

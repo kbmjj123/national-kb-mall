@@ -24,6 +24,20 @@ export type BillingType = {
 	zip: string,
 	email: string,
 }
+
+export type ShippingType = {
+	firstName: string,
+	lastName: string,
+	phone: string,
+	company: string,
+	address1: string,
+	address2: string,
+	city: string,
+	state: string,
+	country: string,
+	zip: string,
+	email: string,
+}
 export type PasswordType = {
 	newPassword: string,
 	confirmPassword: string
@@ -60,12 +74,12 @@ export const modifyBillingInfo = (params: BasicParams): Promise<StringOrBooleanR
 	return useKbFetch.get('/user/billing/modify', { data: params })
 }
 // 获取收货信息
-export const getShippingInfo = () => {
+export const getShippingInfo = (): Promise<ObjectResponseModel<ShippingType>> => {
 	return useKbFetch.get('/user/shipping', {})
 }
 // 设置收货信息
-export const setShippingInfo = (params: BasicParams) => {
-	return useKbFetch.post('/user/shipping/modify')
+export const modifyShippingInfo = (params: BasicParams) => {
+	return useKbFetch.post('/user/shipping/modify', { data: params})
 }
 // 设置新的密码信息
 export const setPwdInfo = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {

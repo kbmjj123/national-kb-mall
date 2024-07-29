@@ -74,6 +74,17 @@ export default [
 		method: 'post',
 		response: () => resultSuccess()
 	},
+	//! shipping相关
+	{
+		url: `${USER_TARGET}/shipping`,
+		method: 'get',
+		response: () => resultSuccess(generateBillingInfo())
+	},
+	{
+		url: `${USER_TARGET}/shipping/modify`,
+		method: 'post',
+		response: () => resultSuccess()
+	},
 	//! 密码相关
 	{
 		url: `${USER_TARGET}/find-pwd`,

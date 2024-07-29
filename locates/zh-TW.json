@@ -119,8 +119,34 @@
       "phone": "手機號",
       "state": "省份",
       "title": "帳單",
-      "zip": "郵編"
+      "zip": "郵編",
+      "address1Placeholder": "請輸入地址一",
+      "address2Placeholder": "請地址地址二",
+      "cityPlaceholder": "請輸入城市",
+      "companyPlaceholder": "請輸入公司名稱",
+      "phonePlaceholder": "請輸入手機號碼",
+      "statePlaceholder": "請輸入州",
+      "zipPlaceholder": "請輸入郵編",
+      "countryPlaceholder": "請選擇國家"
+    },
+    "changePwd": {
+      "confirmNewPassword": "確認新密碼",
+      "newPassword": "新密碼",
+      "passwordHolder": "請輸入密碼",
+      "title": "修改密碼"
     }
   },
-  "retry": "重試"
+  "retry": "重試",
+  "homeIndex": "首頁",
+  "product": {
+    "addToCart": "加入購物車",
+    "addToWishlist": "加入至願望清單",
+    "availability": "狀態",
+    "details": "詳情",
+    "evaluates": "評價",
+    "guessYouLike": "猜你喜歡",
+    "sku": "規格",
+    "share": "分享",
+    "category": "分類"
+  }
 }

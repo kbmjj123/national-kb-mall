@@ -15,6 +15,7 @@
           <UButton
             type="submit"
             color="gray"
+						@click="onUpdateUserInfo"
             :loading="isLoading"
             :label="$t('userCenter.details.updateDetails')"></UButton>
         </div>
