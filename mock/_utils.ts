@@ -1,11 +1,12 @@
 import Mock from 'mockjs'
+import { HttpResult } from '~/enum/http-code'
 
 export function resultSuccess<T>(
 	data?: T,
 	{ message = '操作成功!' } = {},
 ) {
 	return Mock.mock({
-		status: 0,
+		status: HttpResult.SUCCESS,
 		data,
 		message,
 	})
@@ -13,7 +14,7 @@ export function resultSuccess<T>(
 
 export function resultListSuccess<T>(data: Array<T>, total: number, pageIndex: number, { message = '操作成功' } = {}) {
 	return Mock.mock({
-		status: 0,
+		status: HttpResult.SUCCESS,
 		data: {
 			list: data,
 			total,
@@ -25,7 +26,7 @@ export function resultListSuccess<T>(data: Array<T>, total: number, pageIndex: n
 
 export function resultWrapListSuccess<T>(data: Array<T>, { message = '操作成功' } = {}) {
 	return Mock.mock({
-		status: 0,
+		status: HttpResult.SUCCESS,
 		message: message,
 		data: data
 	})

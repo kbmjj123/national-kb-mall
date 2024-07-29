@@ -1,7 +1,7 @@
 <template>
 	<footer class="container">
-		<ul class="sm:columns-4 mb-3 mt-6">
-			<li v-for="(item, index) in footLinks" :key="index" class="flex flex-col">
+		<ul class="grid grid-cols-3 lg:grid-cols-4">
+			<li v-for="(item, index) in footLinks" :key="index" class="flex flex-col my-3">
 				<div class="font-bold text-lg">{{ item.title }}</div>
 				<ul v-for="(cItem, cIndex) in item.links" :key="index + '-' +cIndex">
 					<NuxtLink :to="cItem.link">{{ cItem.title }}</NuxtLink>

@@ -53,7 +53,7 @@
 			</section>
     </section>
     <!-- 内容与评价切换的tab -->
-    <ul class="flex flex-row gap-4 mt-10 mb-4">
+    <ul class="flex flex-row gap-4 mt-10 mb-4 relative after:content-[''] after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-gray-300 after:absolute">
       <li
         @click="onChangeTab(Description)"
         class="relative hover:cursor-pointer px-4 py-4 hover:after:block after:hidden after:content-[''] after:absolute after:w-10 after:h-0.5 after:bg-current after:bottom-0 after:left-[50%] after:translate-x-[-50%]">
@@ -66,7 +66,7 @@
       </li>
     </ul>
     <keep-alive>
-      <component :is="activeTab"></component>
+      <component :is="activeTab" :product-info="productInfo?.data"></component>
     </keep-alive>
 		<!-- 底部推荐商品 -->
 		<AppTitle :title="$t('product.guessYouLike')"></AppTitle>
