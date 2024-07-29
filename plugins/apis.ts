@@ -24,7 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 			}
 		},
 		onResponse({ request, response, options }) {
-			console.info(response._data)
+			// console.info(response._data)
 		},
 		onResponseError({ request, response, options }) {
 			console.error(

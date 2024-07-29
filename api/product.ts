@@ -26,19 +26,19 @@ export type CategoryType = {
 	cover: string
 }
 // 获取商品列表
-export const getProductList = (params: BasicPageParams): Promise<ArrayResponseModel<ProductInfoType>> => {
-	return useKbFetch.get('/product/list', {})
+export const getProductList = (params?: BasicPageParams): Promise<ArrayResponseModel<ProductInfoType>> => {
+	return useKbFetch.get('/product/list', { params })
 }
-export const getProductListSSR = (params: BasicPageParams) => {
+export const getProductListSSR = (params?: BasicPageParams) => {
 	return useSafeAsyncData(() => getProductList(params))
 }
 // 获取商品详情信息
 const getProductDetail = (slug: string): Promise<ObjectResponseModel<ProductInfoType>> => {
-	return useKbFetch.get(`/product/${slug}`, {  })
+	return useKbFetch.get(`/product/${slug}`)
 }
 export const getProductDetailSSR = (slug: string) => {
-	// return useSafeAsyncData(() => getProductDetail(slug))
-	return useSafeAsyncData(getProductDetail.bind(this, slug))
+	return useSafeAsyncData(() => getProductDetail(slug))
+	// return useSafeAsyncData(getProductDetail.bind(null, slug))
 }
 
 // 获取评论列表信息
