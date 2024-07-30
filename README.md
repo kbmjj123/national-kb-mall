@@ -65,7 +65,7 @@ national-kb-mall
 3. pinia(@pinia-plugin-persistedstate/nuxt)，使app像spa开发维护pinia一样简单，官网：[https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html](https://prazdevs.github.io/pinia-plugin-persistedstate/frameworks/nuxt-3.html)；
 4. pwa(@vite-pwa/nuxt)，0配置生成项目的pwa配置，官网：[https://vite-pwa-org.netlify.app/frameworks/nuxt](https://vite-pwa-org.netlify.app/frameworks/nuxt)；
 5. vueuse(@vueuse/nuxt)，vue社区提供的三方组合式工具API，官网：[https://vueuse.org/](https://vueuse.org/)
-6. 
+6. vue-social-sharing，统一处理系统中的分享功能，实现一键将站点信息分享至各大社交网络，官网: [https://github.com/nicolasbeauvais/vue-social-sharing](https://github.com/nicolasbeauvais/vue-social-sharing)，由于项目没有及时更新，使用的时候，不能按照官方的配置来对应使用，而应用采用[Nuxt3中使用`vue-social-sharing`](https://github.com/nicolasbeauvais/vue-social-sharing/issues/338)的方式来使用
 
 ## 三方插件
 

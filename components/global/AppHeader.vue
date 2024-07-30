@@ -15,13 +15,13 @@
           </div>
           <HeadMenu mode="horizontal"></HeadMenu>
           <div class="flex items-center gap-3 text-lg">
-						<!-- <ClientOnly> -->
+						<ClientOnly>
 							<AppInput
 								is-clearable
 								icon="i-heroicons-magnifying-glass"
 								:placeholder="$t('index.searchHolder')"
 								:class="headerClasses"></AppInput>
-						<!-- </ClientOnly> -->
+						</ClientOnly>
             <ToggleLanguage></ToggleLanguage>
             <ToggleColor></ToggleColor>
             <UButton

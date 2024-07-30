@@ -44,6 +44,7 @@
     "mockjs": "^1.1.0",
     "nuxt-icon": "^0.6.7",
     "sharp": "^0.33.4",
+    "vue-social-sharing": "4.0.0-alpha4",
     "zod": "^3.23.8"
   }
 }

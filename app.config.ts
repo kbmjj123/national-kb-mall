@@ -133,6 +133,17 @@ export default defineAppConfig({
 			link: 'https://www.linkedin.com/in/%E8%80%BF%E6%9E%97-%E9%83%91-a34014230/'
 		}
 	],
+	// 以下是可配置的分享至三方平台的相关配置
+	availableSocialNetworks: [
+		'email',
+		'facebook',
+		'linkedin',
+		'pinterest',
+		'sms',
+		'twitter',
+		'vk',
+		'weibo'
+	],
 	// 以下是平台说明的相关配置
 	platformDescList: [
 		{

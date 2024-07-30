@@ -22,6 +22,7 @@ export interface AppConfig{
 	readonly keywords: string,
 	readonly footerLinks: LinkType[],
 	readonly socialList: SocialType[],
+	readonly availableSocialNetworks: string[],
 	readonly platformDescList: PlatformDesc[],
 	[index: string]: any
 }

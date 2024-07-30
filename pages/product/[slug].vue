@@ -48,7 +48,7 @@
 				<!-- 添加到愿望清单，分享 -->
 				<p class="flex flex-row gap-3">
 					<UButton :label="$t('product.addToWishlist')"></UButton>
-					<UButton :label="$t('product.share')"></UButton>
+					<Sharing></Sharing>
 				</p>
 			</section>
     </section>
@@ -106,6 +106,7 @@
       { label: productInfo.value?.data.name },
     ]
   })
+	//! 生成分享相关的配置
 	
 	// 获取猜你喜欢相关的
 	const { isLoading: isGettingRecommend, execute: getRecommendProductList, data: recommendProductInfo } = useLoading(getProductList)

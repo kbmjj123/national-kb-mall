@@ -1,5 +1,5 @@
 <template>
-  <ul class="grid gap-3 auto-resize grid-cols-min-200">
+  <ul class="grid gap-3 auto-resize grid-cols-min-200" v-if="productList">
     <NuxtLink
       to="/product/x123"
       v-for="(item, index) in productList"
@@ -25,7 +25,7 @@
   import { type ProductInfoType } from '~/api/product'
 
   const { productList } = defineProps<{
-    productList: ProductInfoType[]
+    productList: ProductInfoType[] | undefined
   }>()
 </script>
 

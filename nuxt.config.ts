@@ -13,9 +13,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    // '@vite-pwa/nuxt',
+    '@nuxt/ui',
+		// '@vite-pwa/nuxt',
     // 'nuxt-svgo',
-    "@nuxt/ui",
     // "@nuxtjs/seo"
   ],
 	css: [
