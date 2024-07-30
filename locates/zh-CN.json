@@ -145,6 +145,16 @@
 		"category": "分类",
 		"addToWishlist": "添加至愿望清单",
 		"share": "分享",
-		"guessYouLike": "猜你喜欢"
+		"guessYouLike": "猜你喜欢",
+		"customerReviews": "顾客评论",
+		"reviewsNum": "评论数{num}",
+		"shareYourThoughts": "分享你的想法",
+		"shareThoughtsDesc": "如果您使用过本产品，我们很乐意听取您的经验。",
+		"writeAReview": "撰写评论",
+		"close": "关闭",
+		"reviewsTip": "您如何评价您使用此产品的体验？我们努力为您提供五星级星星体验",
+		"yourExperience": "你的体验如何？",
+		"yourEmail": "你的邮箱",
+		"submit": "提交"
 	}
 }

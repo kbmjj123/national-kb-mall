@@ -66,7 +66,7 @@
       </li>
     </ul>
     <keep-alive>
-      <component :is="activeTab" :product-info="productInfo?.data"></component>
+      <component :is="activeTab" :product-info="{...productInfo?.data, slug}"></component>
     </keep-alive>
 		<!-- 底部推荐商品 -->
 		<AppTitle :title="$t('product.guessYouLike')"></AppTitle>
@@ -80,8 +80,8 @@
 </template>
 <script setup lang="ts">
 	import { getProductList, getProductDetailSSR } from '~/api/product'
-  import Description from './_Description.vue'
-  import Evaluate from './_Evaluate.vue'
+  import Description from './component/_Description.vue'
+  import Evaluate from './component/_Evaluate.vue'
   const activeTab = shallowRef(Description)
 	
   const { t } = useI18n()

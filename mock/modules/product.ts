@@ -47,6 +47,9 @@ export const generateEvaluateList = (num: number) => {
 		title: mockjs.Random.ctitle(5, 20),
 		content: mockjs.Random.cparagraph(5, 100),
 		score: mockjs.Random.natural(1, 5),
+		avatar: mockjs.Random.image('100x100', mockjs.Random.color(), mockjs.Random.color(), 'png', mockjs.Random.cword(2, 4)),
+		userName: mockjs.Random.cword(2, 10),
+		publishDate: mockjs.Random.datetime(),
 		imageList: Array.from({ length: mockjs.Random.natural(0, 5) }, () => getOnePic(80, 80))
 	}))
 }

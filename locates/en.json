@@ -134,6 +134,9 @@
       "newPassword": "New Password",
       "passwordHolder": "Please enter password",
       "title": "change Password"
+    },
+    "shipping": {
+      "title": "transportation"
     }
   },
   "retry": "Retry",
@@ -147,6 +150,12 @@
     "guessYouLike": "you may also like",
     "share": "share",
     "sku": "Specification",
-    "addToCart": "add to the cart"
+    "addToCart": "add to the cart",
+    "close": "closure",
+    "reviewsNum": "Based on {num} Reviews",
+    "shareThoughtsDesc": "If you've used this product, we'd love to hear about your experience.",
+    "shareYourThoughts": "Share your thoughts",
+    "writeAReview": "Write a review",
+    "customerReviews": "Sustomer Reviews"
   }
 }

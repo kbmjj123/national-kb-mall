@@ -135,9 +135,7 @@ export default defineAppConfig({
 	],
 	// 以下是可配置的分享至三方平台的相关配置
 	availableSocialNetworks: [
-		'email',
 		'facebook',
-		'linkedin',
 		'pinterest',
 		'sms',
 		'twitter',

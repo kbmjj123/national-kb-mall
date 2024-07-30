@@ -22,6 +22,8 @@
 				<NuxtImg src="~/assets/icons/system/ic-empty.png" class="w-10"></NuxtImg>
 			</div>
     </template>
+		<!-- 底部加载更多的视图 -->
+		<UPagination v-if="pagination" v-model="page" :page-count="5" :max="5" :total="items.length" show-last show-first />
   </div>
 </template>
 
@@ -30,7 +32,13 @@
     isLoading?: boolean
     isError?: boolean
     isEmpty?: boolean
-    data?: any
+    data?: any,
+		pagination?: {
+			pageIndex: 1,
+			pageSize: 20,
+			total: 0,
+			onPageChange: Function
+		}
   }
 
   withDefaults(defineProps<Props>(), {
@@ -38,9 +46,13 @@
     isError: false,
     isEmpty: false,
     data: null,
+		onPageChange: undefined
   })
 
   const emit = defineEmits<{
     'on-retry': []
   }>()
+
+	const page = ref(1)
+	const items = ref(Array(55))
 </script>

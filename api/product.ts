@@ -17,6 +17,9 @@ export type EvaluateTtype = {
 	title: string,
 	content?: string,
 	score: number,
+	avatar: string,
+	userName: string,
+	publishDate: string,
 	imageList?: Array<string>
 }
 
@@ -38,12 +41,11 @@ const getProductDetail = (slug: string): Promise<ObjectResponseModel<ProductInfo
 }
 export const getProductDetailSSR = (slug: string) => {
 	return useSafeAsyncData(() => getProductDetail(slug))
-	// return useSafeAsyncData(getProductDetail.bind(null, slug))
 }
 
 // 获取评论列表信息
 export const getEvaluateList = (slug: string, params: BasicPageParams): Promise<ArrayResponseModel<EvaluateTtype>> => {
-	return useKbFetch.get(`/product/${slug}/evaluate/info`, { data: { params } })
+	return useKbFetch.get(`/product/${slug}/evaluate/info`, { params })
 }
 // 发布评论动作
 export const publishEvaluate = (slug: string, params: EvaluateTtype): Promise<StringOrBooleanResponseModel> => {

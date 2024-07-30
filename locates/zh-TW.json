@@ -134,6 +134,9 @@
       "newPassword": "新密碼",
       "passwordHolder": "請輸入密碼",
       "title": "修改密碼"
+    },
+    "shipping": {
+      "title": "運輸"
     }
   },
   "retry": "重試",
@@ -147,6 +150,12 @@
     "guessYouLike": "猜你喜歡",
     "sku": "規格",
     "share": "分享",
-    "category": "分類"
+    "category": "分類",
+    "close": "關閉",
+    "customerReviews": "顧客評論",
+    "reviewsNum": "評論數{num}",
+    "shareThoughtsDesc": "如果您使用過本產品，我們很樂意聽取您的經驗。",
+    "shareYourThoughts": "分享你的想法",
+    "writeAReview": "撰寫評論"
   }
 }
