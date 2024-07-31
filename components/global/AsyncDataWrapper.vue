@@ -7,11 +7,25 @@
     </template>
     <!-- 这个是默认的内容插槽 -->
     <slot v-else></slot>
+    <!-- 底部加载更多的视图 -->
+    <UPagination
+      v-if="pagination"
+      v-model="pagination.pageIndex"
+      :page-count="5"
+      :max="5"
+      :total="pagination.total"
+			:onClickPrev="onClickPagePrev"
+			:onClickNext="onClickPageNext"
+			:onClickPage="onClickPage"
+      show-last
+      show-first />
     <!-- 统一的异常效果 -->
     <template v-if="isError">
       <slot name="error" v-if="$slots.error"></slot>
       <div v-else class="flex flex-col items-center justify-center gap-4 p-6">
-				<NuxtImg src="~/assets/icons/system/ic-error.png" class="w-10"></NuxtImg>
+        <NuxtImg
+          src="~/assets/icons/system/ic-error.png"
+          class="w-10"></NuxtImg>
         <UButton :label="$t('retry')" @click="emit('on-retry')"></UButton>
       </div>
     </template>
@@ -19,11 +33,11 @@
     <template v-if="isEmpty">
       <slot name="empty" v-if="$slots.empty"></slot>
       <div v-else class="flex flex-col items-center justify-center gap-4 p-6">
-				<NuxtImg src="~/assets/icons/system/ic-empty.png" class="w-10"></NuxtImg>
-			</div>
+        <NuxtImg
+          src="~/assets/icons/system/ic-empty.png"
+          class="w-10"></NuxtImg>
+      </div>
     </template>
-		<!-- 底部加载更多的视图 -->
-		<UPagination v-if="pagination" v-model="page" :page-count="5" :max="5" :total="items.length" show-last show-first />
   </div>
 </template>
 
@@ -32,13 +46,13 @@
     isLoading?: boolean
     isError?: boolean
     isEmpty?: boolean
-    data?: any,
-		pagination?: {
-			pageIndex: 1,
-			pageSize: 20,
-			total: 0,
-			onPageChange: Function
-		}
+    data?: any
+    pagination?: {
+      pageIndex: 1
+      pageSize: 20
+      total: 0
+      onPageChange: Function
+    }
   }
 
   withDefaults(defineProps<Props>(), {
@@ -46,13 +60,14 @@
     isError: false,
     isEmpty: false,
     data: null,
-		onPageChange: undefined
+    onPageChange: undefined,
   })
 
   const emit = defineEmits<{
     'on-retry': []
   }>()
 
-	const page = ref(1)
-	const items = ref(Array(55))
+	const onClickPagePrev = () => {}
+	const onClickPageNext = () => {}
+	const onClickPage = () => {}
 </script>

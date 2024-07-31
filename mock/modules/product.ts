@@ -45,7 +45,7 @@ export const generateEvaluateList = (num: number) => {
 	return Array.from({ length: num }, () => ({
 		id: mockjs.Random.guid(),
 		title: mockjs.Random.ctitle(5, 20),
-		content: mockjs.Random.cparagraph(5, 100),
+		content: mockjs.Random.cparagraph(5, 30),
 		score: mockjs.Random.natural(1, 5),
 		avatar: mockjs.Random.image('100x100', mockjs.Random.color(), mockjs.Random.color(), 'png', mockjs.Random.cword(2, 4)),
 		userName: mockjs.Random.cword(2, 10),

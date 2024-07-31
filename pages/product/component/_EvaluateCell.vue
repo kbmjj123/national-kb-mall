@@ -25,7 +25,7 @@
 <script setup lang="ts">
   import type { EvaluateTtype } from '~/api/product'
   defineProps<{
-    evaluateList: Array<EvaluateTtype>,
+    evaluateList?: Array<EvaluateTtype>,
 		isLoading: boolean
   }>()
 </script>
