@@ -10,6 +10,9 @@
     <UFormGroup v-model="reviewsForm.email" :label="$t('product.yourEmail')">
       <AppInput></AppInput>
     </UFormGroup>
+		<UFormGroup :label="$t('product.reviewsPic')">
+			<UploadFiles></UploadFiles>
+		</UFormGroup>
     <UButton
       block
       :loading="isLoading"

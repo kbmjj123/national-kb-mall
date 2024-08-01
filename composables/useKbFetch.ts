@@ -32,16 +32,20 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 		params = {}
 	} = options
 
-	const fetchOptions = {
+	const fetchOptions: Record<string, any> = {
 		params,
 		method,
 		headers: {
 			...headers
 		}
 	}
-	if (data) {
-		// @ts-ignore
-		fetchOptions.body = JSON.stringify(data)
+	if(method === 'put'){
+		// put 仅用来处理文件上传
+		fetchOptions.body = data
+	}else{
+		if (data) {
+			fetchOptions.body = JSON.stringify(data)
+		}
 	}
 	const { publicConfig } = useSafeRuntimeConfig()
 	const useMockFlag = Boolean(publicConfig.useMock)

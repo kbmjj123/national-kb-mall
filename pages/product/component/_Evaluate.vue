@@ -31,7 +31,21 @@
       <div class="flex-1">
         <EvaluateCell
           :evaluate-list="evaluateList?.data?.list"
+          :pagination="params"
           :is-loading="isLoading"></EvaluateCell>
+        <!-- 底部加载更多的视图 -->
+        <div class="flex flex-row-reverse mt-4">
+          <UPagination
+            v-model="params.pageIndex"
+            :page-count="5"
+            :max="5"
+            :total="params.total"
+            :onClickPrev="onClickPrevPage"
+            :onClickNext="onClickNextPage"
+            :onClickPage="onClickPage"
+            show-last
+            show-first />
+        </div>
       </div>
     </div>
   </ClientOnly>
@@ -52,7 +66,7 @@
   const params = reactive({
     pageIndex: 1,
     pageSize: 20,
-    total: 0,
+    total: 200,
   })
   const {
     isLoading,
@@ -60,6 +74,19 @@
     data: evaluateList,
   } = useLoading(() => getEvaluateList(props.productInfo?.slug, params))
   onMounted(() => {
-    execute && execute()
+    execute && execute(props.productInfo?.slug, params)
   })
+	const onClickPrevPage = () => {
+		console.info('onClickPrevPage')
+		params.pageIndex --
+		execute && execute(props.productInfo?.slug, params)
+	}
+	const onClickNextPage = () => {
+		params.pageIndex ++
+		execute && execute(props.productInfo?.slug, params)
+	}
+	const onClickPage = (page: number) => {
+		params.pageIndex = page
+		execute && execute(props.productInfo?.slug, params)
+	}
 </script>

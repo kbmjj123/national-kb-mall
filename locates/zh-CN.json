@@ -22,6 +22,10 @@
 		"emalOrUsername": "邮箱或用户名",
 		"forgetPwd": "忘记密码？"
   },
+	"resources": {
+		"selectFileEmptyTip": "请选择要提交的文件",
+		"upload": "上传"
+	},
 	"reset": {
 		"title": "找回密码",
     "backToLogin": "返回登录",
@@ -152,6 +156,7 @@
 		"reviewsNum": "评论数{num}",
 		"shareYourThoughts": "分享你的想法",
 		"shareThoughtsDesc": "如果您使用过本产品，我们很乐意听取您的经验。",
+		"reviewsPic": "评价图片",
 		"writeAReview": "撰写评论",
 		"close": "关闭",
 		"reviewsTip": "您如何评价您使用此产品的体验？我们努力为您提供五星级星星体验",
