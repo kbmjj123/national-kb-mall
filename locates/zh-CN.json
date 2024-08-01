@@ -4,6 +4,7 @@
 	"successTip": "操作成功",
 	"failedTip": "操作失败",
 	"retry": "重试",
+	"loadingAndWaiting": "加载中，请稍后",
 	"money": "¥",
 	"menu": [
 		"首页", "产品", "分类", "联系我们", "愿望清单"
@@ -72,7 +73,8 @@
 			"country": "国家",
 			"countryPlaceholder": "请选择国家",
 			"zip": "邮编",
-			"zipPlaceholder": "请输入邮编"
+			"zipPlaceholder": "请输入邮编",
+			"email": "邮箱"
 		},
 		"shipping": {
 			"title": "运输"
