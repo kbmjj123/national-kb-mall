@@ -17,6 +17,12 @@
           </section>
         </div>
 				<p v-if="item.content">{{ item.content }}</p>
+				<!-- 评价图片 -->
+				<ul v-if="item.imageList && item.imageList.length > 0" class="flex flex-row gap-2">
+					<li v-for="(image, imgIndex) in item.imageList" :key=imgIndex>
+						<NuxtImg lazy class="w-[60px] aspect-square" :src="image"></NuxtImg>
+					</li>
+				</ul>
       </li>
     </ul>
   </AsyncDataWrapper>

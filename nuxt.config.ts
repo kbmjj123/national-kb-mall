@@ -6,37 +6,54 @@ import { resolve } from 'path'
 const pkg = JSON.parse(readFileSync(resolve(__dirname, 'package.json'), 'utf-8'))
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  debug: true,
-  modules: [
-    '@nuxtjs/i18n',
-    '@nuxt/image',
-    '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
-    '@nuxt/ui',
+	devtools: { enabled: true },
+	debug: true,
+	modules: [
+		'@nuxtjs/i18n',
+		'@nuxt/image',
+		'@pinia/nuxt',
+		'@pinia-plugin-persistedstate/nuxt',
+		'@nuxt/ui',
+		['@nuxtjs/google-fonts', {
+			families: {
+				Roboto: true,
+				'Josefin+Sans': true,
+				Lato: [100, 300],
+				Raleway: {
+					wght: [100, 400],
+					ital: [100]
+				},
+				Inter: '200..700',
+				'Crimson Pro': {
+					wght: '200..900',
+					ital: '200..700',
+				}
+			},
+			display: 'swap'
+		}],
 		// '@vite-pwa/nuxt',
-    // 'nuxt-svgo',
-    // "@nuxtjs/seo"
-  ],
+		// 'nuxt-svgo',
+		// "@nuxtjs/seo"
+	],
 	css: [
 		'~/assets/css/scrollbars.css'
 	],
-  components: {
-    global: true,
-    dirs: ['~/components/global']
-  },
-  imports: {
-    dirs: ['store']
-  },
-  runtimeConfig: {
-    public: {
+	components: {
+		global: true,
+		dirs: ['~/components/global']
+	},
+	imports: {
+		dirs: ['store']
+	},
+	runtimeConfig: {
+		public: {
 			appVerion: pkg.version,
 			author: pkg.author,
-      baseUrl: envConfig['NUXT_PUBLIC_BASE_URL'],
+			baseUrl: envConfig['NUXT_PUBLIC_BASE_URL'],
 			common: envConfig['NUXT_PUBLIC_COMMON'],
 			useMock: envConfig['NUXT_PUBLIC_USE_MOCK']
-    }
-  },
+		}
+	},
 	// 多语言支持
 	i18n: {
 		locales: [

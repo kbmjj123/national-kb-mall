@@ -2,7 +2,7 @@
   <div class="container" v-if="productInfo?.data">
     <UBreadcrumb :links="breadcrumbList" class="my-4" />
     <!-- 商品信息左右视图 -->
-    <section class="flex flex-col md:flex-row gap-6">
+    <section class="flex flex-col md:flex-row gap-20">
 			<!-- 左侧图片视图区域 -->
       <div class="flex flex-col relative flex-1 gap-4">
         <NuxtImg class="w-full aspect-square" :src="productInfo?.data.masterPicture"></NuxtImg>

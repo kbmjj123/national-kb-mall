@@ -2,7 +2,7 @@
   <ClientOnly>
     <div class="flex flex-col gap-20 md:flex-row">
       <!-- 评价主视图 -->
-      <div class="flex flex-col gap-4 min-w-[50%]">
+      <div class="flex flex-col gap-4 sm:w-full md:w-[35%]">
         <h2>{{ $t('product.customerReviews') }}</h2>
         <div>
           <Rating></Rating>
@@ -13,16 +13,19 @@
           v-for="(item, index) in 5"
           :key="index">
           <span>{{ 5 - index }}✨</span>
-          <UProgress
-            size="lg"
-            :value="100 - index * 10"></UProgress>
+          <UProgress size="lg" :value="100 - index * 10"></UProgress>
         </div>
-				<h2>{{ $t('product.shareYourThoughts') }}</h2>
-				<p>{{ $t('product.shareThoughtsDesc') }}</p>
-				<UButton block color="gray" size="lg" :label="$t('product.writeAReview')"></UButton>
-				<Transition name="fade">
-					
-				</Transition>
+        <h2>{{ $t('product.shareYourThoughts') }}</h2>
+        <p>{{ $t('product.shareThoughtsDesc') }}</p>
+        <UButton
+          block
+          color="gray"
+          @click="isShowPublishEvaluateFlag = !isShowPublishEvaluateFlag"
+          size="lg"
+          :label="$t('product.writeAReview')"></UButton>
+        <Transition name="fade" v-if="isShowPublishEvaluateFlag">
+          <PublishEvaluate :slug="productInfo?.slug"></PublishEvaluate>
+        </Transition>
       </div>
       <!-- 评价cell列表 -->
       <div class="flex-1">
@@ -36,11 +39,13 @@
 
 <script setup lang="ts">
   import EvaluateCell from './_EvaluateCell.vue'
+  import PublishEvaluate from './_PublishEvaluate.vue'
   import {
     type ProductInfoType,
     getEvaluateList,
     publishEvaluate,
   } from '~/api/product'
+  const isShowPublishEvaluateFlag = ref(false)
   const props = defineProps<{
     productInfo: ProductInfoType
   }>()

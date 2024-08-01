@@ -1,4 +1,4 @@
-import type { WrapArrayResponseModel, ArrayResponseModel, ObjectResponseModel, BasicPageParams, StringOrBooleanResponseModel } from './types'
+import type { WrapArrayResponseModel, ArrayResponseModel, ObjectResponseModel, BasicPageParams, BasicParams, StringOrBooleanResponseModel } from './types'
 export type ProductInfoType = {
 	id: string,
 	name: string,
@@ -48,7 +48,7 @@ export const getEvaluateList = (slug: string, params: BasicPageParams): Promise<
 	return useKbFetch.get(`/product/${slug}/evaluate/info`, { params })
 }
 // 发布评论动作
-export const publishEvaluate = (slug: string, params: EvaluateTtype): Promise<StringOrBooleanResponseModel> => {
+export const publishEvaluate = (slug: string, params: BasicParams): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post(`/product/${slug}/evaluate`, { data: {params} })
 }
 
