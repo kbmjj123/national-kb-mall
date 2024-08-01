@@ -156,6 +156,11 @@
     "shareThoughtsDesc": "If you've used this product, we'd love to hear about your experience.",
     "shareYourThoughts": "Share your thoughts",
     "writeAReview": "Write a review",
-    "customerReviews": "Sustomer Reviews"
-  }
+    "customerReviews": "Sustomer Reviews",
+    "reviewsTip": "How would you rate your experience with this product? \nWe strive to provide you with a five-star experience",
+    "submit": "submit",
+    "yourEmail": "your mailbox",
+    "yourExperience": "How was your experience?"
+  },
+  "loadingAndWaiting": "Loading, please wait..."
 }

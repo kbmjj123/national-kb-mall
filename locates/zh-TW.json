@@ -156,6 +156,11 @@
     "reviewsNum": "評論數{num}",
     "shareThoughtsDesc": "如果您使用過本產品，我們很樂意聽取您的經驗。",
     "shareYourThoughts": "分享你的想法",
-    "writeAReview": "撰寫評論"
-  }
+    "writeAReview": "撰寫評論",
+    "reviewsTip": "您如何評價您使用此產品的體驗？\n我們努力為您提供五星級星星體驗",
+    "submit": "提交",
+    "yourEmail": "你的信箱",
+    "yourExperience": "你的體驗如何？"
+  },
+  "loadingAndWaiting": "加載中，請稍後..."
 }
