@@ -35,14 +35,14 @@
           :is-loading="isLoading"></EvaluateCell>
         <!-- 底部加载更多的视图 -->
         <div class="flex flex-row-reverse mt-4">
-          <UPagination
+          <AppPagination
             v-model="params.pageIndex"
             :page-count="5"
             :max="5"
             :total="params.total"
-            :onClickPrev="onClickPrevPage"
-            :onClickNext="onClickNextPage"
-            :onClickPage="onClickPage"
+            @click-prev="onClickPrevPage"
+            @click-next="onClickNextPage"
+            :click-page="onClickPage"
             show-last
             show-first />
         </div>
@@ -86,6 +86,7 @@
 		execute && execute(props.productInfo?.slug, params)
 	}
 	const onClickPage = (page: number) => {
+		console.info(page)
 		params.pageIndex = page
 		execute && execute(props.productInfo?.slug, params)
 	}

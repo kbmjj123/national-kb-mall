@@ -1008,4 +1008,27 @@ export default defineNuxtConfig({
 pnpm i @iconify-json/flag @iconify-json/ic --save-dev
 ```
 
+#### 自定义组件插槽
+> 在项目过程中，我们有时需要自定义自己的组件，在提供默认的插槽效果的同时，再额外提供给调用方自定义插槽效果的目的，实现组件拥有默认的插槽效果，也拥有自定义的插槽效果，之前我都是使用的`$slots.name`来进行判断的，原来我错了，插槽可以很简单的就可以使用了，如下代码所示：
+```vue
+<!-- MyComponent.vue -->
+<template>
+	<div>
+		<slot name="default">
+			<div>我是默认的插槽内容</div>
+		</slot>
+	</div>
+</template>
+```
+:star: 然后在调用的时候，则使用如下的方式：
+```vue
+<!-- 使用MyComponent -->
+<template>
+	<MyComponent>
+		<div>我是自定义的插槽的内容</div>
+	</MyComponent>
+</template>
+```
+:trollface: 这样子之后，自定义的插槽的内容将会替换到默认的插槽的内容！
+
 ## 思考总结
