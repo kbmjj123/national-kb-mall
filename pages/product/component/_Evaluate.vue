@@ -35,14 +35,11 @@
           :is-loading="isLoading"></EvaluateCell>
         <!-- 底部加载更多的视图 -->
         <div class="flex flex-row-reverse mt-4">
-          <AppPagination
+          <UPagination
             v-model="params.pageIndex"
             :page-count="5"
             :max="5"
             :total="params.total"
-            @click-prev="onClickPrevPage"
-            @click-next="onClickNextPage"
-            :click-page="onClickPage"
             show-last
             show-first />
         </div>
@@ -57,7 +54,6 @@
   import {
     type ProductInfoType,
     getEvaluateList,
-    publishEvaluate,
   } from '~/api/product'
   const isShowPublishEvaluateFlag = ref(false)
   const props = defineProps<{
@@ -76,18 +72,8 @@
   onMounted(() => {
     execute && execute(props.productInfo?.slug, params)
   })
-	const onClickPrevPage = () => {
-		console.info('onClickPrevPage')
-		params.pageIndex --
-		execute && execute(props.productInfo?.slug, params)
-	}
-	const onClickNextPage = () => {
-		params.pageIndex ++
-		execute && execute(props.productInfo?.slug, params)
-	}
-	const onClickPage = (page: number) => {
-		console.info(page)
-		params.pageIndex = page
-		execute && execute(props.productInfo?.slug, params)
-	}
+	watch(params,(newVal) => {
+		execute && execute(props.productInfo?.slug, newVal)
+	}, { deep: true })
+	
 </script>
