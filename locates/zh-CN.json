@@ -163,5 +163,10 @@
 		"yourExperience": "你的体验如何？",
 		"yourEmail": "你的邮箱",
 		"submit": "提交"
+	},
+	"upload": {
+		"preview": "预览",
+		"download": "下载",
+		"delete": "删除"
 	}
 }

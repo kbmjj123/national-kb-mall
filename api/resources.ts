@@ -1,9 +1,12 @@
 import type { WrapArrayResponseModel } from './types'
 
 export type FileType = {
-	fileName: string,
-	url: string,
-	id: string
+	name: string,
+	size: string,
+	type: string,
+	preview?: string,
+	url?: string,
+	id?: string
 }
 
 export const uploadFiles = (formData: any): Promise<WrapArrayResponseModel<FileType>> => {
