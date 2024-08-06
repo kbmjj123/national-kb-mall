@@ -1,6 +1,5 @@
 import mockjs from 'mockjs'
 import { type MockMethod } from '../types'
-import type { ProductInfoType, CategoryType } from '~/api/product'
 import { resultSuccess, resultListSuccess, resultWrapListSuccess, getOnePic } from '../_utils'
 
 const PRODUCT_TARGET = '/product'
@@ -53,6 +52,24 @@ export const generateEvaluateList = (num: number) => {
 		imageList: Array.from({ length: mockjs.Random.natural(0, 5) }, () => getOnePic(80, 80))
 	}))
 }
+//? 生成单个购物车对象
+const generateSingleCar = () => {
+	return {
+		id: mockjs.Random.guid(),
+		name: mockjs.Random.cword(4, 40),
+		slugTarget: 'kb-product-slug',
+		slug: `${mockjs.Random.word(3, 8)}`,
+		masterPicture: mockjs.Random.image('300x300', mockjs.Random.color(), mockjs.Random.color(), 'png', mockjs.Random.cword(2, 4)),
+		price: mockjs.Random.float(0.01, 9999, 0, 2),
+		marketPrice: mockjs.Random.float(0.01, 9999, 0, 2),
+		carId: mockjs.Random.guid(),
+		quantity: mockjs.Random.natural(1, 50)
+	}
+}
+//? 生成购物车列表
+const generateCarList = (num: number) => {
+	return Array.from({ length: num }, generateSingleCar)
+}
 
 export default [
 	//! 产品信息相关
@@ -82,5 +99,31 @@ export default [
 		url: `${PRODUCT_TARGET}/category/list`,
 		method: 'get',
 		response: () => resultWrapListSuccess(generateCategoryList(6))
-	}
+	},
+	// 购物车相关
+	{
+		url: `${PRODUCT_TARGET}/shoppingCar/list`,
+		method: 'get',
+		response: () => resultWrapListSuccess(generateCarList(15))
+	},
+	{
+		url: `${PRODUCT_TARGET}/shoppingCar/clearExpiredList`,
+		method: 'post',
+		response: () => resultSuccess()
+	},
+	{
+		url: `${PRODUCT_TARGET}/shoppingCar/addToCar`,
+		method: 'post',
+		response: () => resultSuccess(generateSingleCar())
+	},
+	{
+		url: `${PRODUCT_TARGET}/shoppingCar/removeFromCar`,
+		method: 'delete',
+		response: () => resultSuccess(generateSingleCar())
+	},
+	{
+		url: `${PRODUCT_TARGET}/shoppingCar/moveToWishList`,
+		method: 'post',
+		response: () => resultSuccess(generateSingleCar())
+	},
 ] as MockMethod[]

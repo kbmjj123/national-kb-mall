@@ -5,7 +5,7 @@
     @click="isShowShoppingCar = true"
     variant="ghost"
     aria-label="Theme"></UButton>
-  <!-- 以下是购物车愿望清单 -->
+  <!-- 以下是购物车 -->
   <USlideover v-model="isShowShoppingCar" side="right">
     <UCard
       class="flex flex-col flex-1"
@@ -25,13 +25,24 @@
             square
             padded
             @click="isShowShoppingCar = false" />
-
-          <h3>愿望清单</h3>
+          <h3>{{ $t('shoppingCart.name') }}</h3>
         </div>
       </template>
-
-      <Placeholder class="h-full" />
-
+      <div class="relative">
+        <section class="" v-for="(item, index) in carList.data.list" :key="index">
+          <NuxtImg class="" :src="item.masterPicture"></NuxtImg>
+          <p class="line-clamp-1 text-ellipsis h-4 leading-4 font-bold">
+            {{ item.name }}
+          </p>
+					<p class="flex flex-row justify-between">
+						<span>{{ item.price }}</span>
+						<NumberInput v-model="item.quantity"></NumberInput>
+					</p>
+        </section>
+        <!-- 空视图 -->
+        <div v-if="0 === carList.data.list.length && !isLoading">我是空视图效果</div>
+				<Spin v-if="isLoading"></Spin>
+      </div>
       <template #footer>
         <Placeholder class="h-8" />
       </template>
@@ -41,4 +52,9 @@
 
 <script setup lang="ts">
   const isShowShoppingCar = ref(false)
+  import { getShoppingCarList } from '~/api/shoppingCar'
+  const { isLoading, data: carList, execute } = useLoading(getShoppingCarList)
+  onMounted(() => {
+		execute && execute()
+	})
 </script>

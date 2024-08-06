@@ -222,6 +222,10 @@
       )
     }
   })
+	// 非图片资源的仅展示一图标logo
+	const onlyIcon = (item: FileType) => {
+		
+	}
   // 选择文件后的动作
   const onHandleFileChange = (event: any) => {
     const files = Array.from(event.target.files) as File[]
