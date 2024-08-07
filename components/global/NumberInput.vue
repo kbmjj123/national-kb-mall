@@ -1,21 +1,24 @@
 <template>
-  <div class="flex items-center p-2">
+  <UButtonGroup size="sm" orientation="horizontal">
     <UButton
       icon="i-heroicons-minus-16-solid"
-      color="gray"
+      color="white"
+			size="xs"
       variant="ghost"
       @click="onClickMinus"></UButton>
     <UInput
       v-model="model"
       type="number"
-      class="text-center w-10 border border-solid rounded-md border-gray-100"
+			size="2xs"
+      class="text-center w-20"
       variant="none"></UInput>
     <UButton
       icon="i-heroicons-plus-16-solid"
-      color="gray"
+      color="white"
+			size="xs"
       variant="ghost"
       @click="onClickAdd"></UButton>
-  </div>
+  </UButtonGroup>
 </template>
 
 <script setup lang="ts">

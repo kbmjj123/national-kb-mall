@@ -13,6 +13,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@pinia/nuxt',
 		'@pinia-plugin-persistedstate/nuxt',
+		'nuxt-lodash',
 		'@nuxt/ui',
 		['@nuxtjs/google-fonts', {
 			families: {

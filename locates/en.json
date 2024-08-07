@@ -29,7 +29,8 @@
   "shoppingCart": {
     "addToCart": "Add to the cart",
     "clearCart": "Clear shopping cart",
-    "name": "Shopping cart"
+    "name": "Shopping cart",
+    "checkout": "Settlement"
   },
   "successTip": "Successful operation",
   "failedTip": "operation failed",
@@ -160,7 +161,18 @@
     "reviewsTip": "How would you rate your experience with this product? \nWe strive to provide you with a five-star experience",
     "submit": "submit",
     "yourEmail": "your mailbox",
-    "yourExperience": "How was your experience?"
+    "yourExperience": "How was your experience?",
+    "reviewsPic": "Review pictures"
   },
-  "loadingAndWaiting": "Loading, please wait..."
+  "loadingAndWaiting": "Loading, please wait...",
+  "resources": {
+    "selectFileEmptyTip": "Please select files to submit",
+    "upload": "upload"
+  },
+  "upload": {
+    "choose": "Select a document",
+    "delete": "delete",
+    "download": "download",
+    "preview": "Preview"
+  }
 }

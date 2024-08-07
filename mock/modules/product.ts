@@ -104,7 +104,7 @@ export default [
 	{
 		url: `${PRODUCT_TARGET}/shoppingCar/list`,
 		method: 'get',
-		response: () => resultWrapListSuccess(generateCarList(15))
+		response: () => resultWrapListSuccess(generateCarList(5))
 	},
 	{
 		url: `${PRODUCT_TARGET}/shoppingCar/clearExpiredList`,

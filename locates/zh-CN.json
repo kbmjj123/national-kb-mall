@@ -93,7 +93,8 @@
 	"shoppingCart": {
 		"name": "购物车",
 		"addToCart": "加入购物车",
-		"clearCart": "清空购物车"
+		"clearCart": "清空购物车",
+		"checkout": "结算"
 	},
 	"index": {
 		"searchHolder": "搜索商品",

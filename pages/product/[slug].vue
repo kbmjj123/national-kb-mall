@@ -36,20 +36,16 @@
 				<!-- 商品介绍 -->
 				<p class="py-6"></p>
 				<!-- 加入购物车 -->
-				<div class="flex flex-row p-2 g-2">
-					<UInput class="flex-1"></UInput>
-					<UButton color="gray" class="flex-3" :label="$t('product.addToCart')"></UButton>
-				</div>
+				<AddToShoppingCar :slug="slug"></AddToShoppingCar>
 				<!-- 所属分类视图 -->
 				<p class="flex flex-row gap-3">
 					<span>{{ t('product.category') }}:</span>
 					<span></span>
 				</p>
 				<!-- 添加到愿望清单，分享 -->
-				<p class="flex flex-row gap-3">
-					<UButton :label="$t('product.addToWishlist')"></UButton>
+				<AddToWishList :slug="slug">
 					<Sharing></Sharing>
-				</p>
+				</AddToWishList>
 			</section>
     </section>
     <!-- 内容与评价切换的tab -->
@@ -82,6 +78,8 @@
 	import { getProductList, getProductDetailSSR } from '~/api/product'
   import Description from './component/_Description.vue'
   import Evaluate from './component/_Evaluate.vue'
+	import AddToShoppingCar from './component/_AddToShoppingCar.vue'
+	import AddToWishList from './component/_AddToWishList.vue'
   const activeTab = shallowRef(Description)
 	
   const { t } = useI18n()
