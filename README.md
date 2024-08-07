@@ -66,6 +66,7 @@ national-kb-mall
 4. pwa(@vite-pwa/nuxt)，0配置生成项目的pwa配置，官网：[https://vite-pwa-org.netlify.app/frameworks/nuxt](https://vite-pwa-org.netlify.app/frameworks/nuxt)；
 5. vueuse(@vueuse/nuxt)，vue社区提供的三方组合式工具API，官网：[https://vueuse.org/](https://vueuse.org/)
 6. vue-social-sharing，统一处理系统中的分享功能，实现一键将站点信息分享至各大社交网络，官网: [https://github.com/nicolasbeauvais/vue-social-sharing](https://github.com/nicolasbeauvais/vue-social-sharing)，由于项目没有及时更新，使用的时候，不能按照官方的配置来对应使用，而应用采用[Nuxt3中使用`vue-social-sharing`](https://github.com/nicolasbeauvais/vue-social-sharing/issues/338)的方式来使用
+7. nuxt-lodash: 像使用`lodash`一样，在项目中集成`nuxt-lodash`，然后无需导入`lodash`的任何东西，直接在vue上下文中调用即可，具体使用方法见[官网](https://nuxt.com/modules/lodash)
 
 ## 三方插件
 
