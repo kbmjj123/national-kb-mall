@@ -10,7 +10,7 @@
       v-model="model"
       type="number"
 			size="2xs"
-      class="text-center w-20"
+      class="text-center w-16"
       variant="none"></UInput>
     <UButton
       icon="i-heroicons-plus-16-solid"

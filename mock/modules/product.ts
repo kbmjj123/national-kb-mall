@@ -122,6 +122,11 @@ export default [
 		response: () => resultSuccess(generateSingleCar())
 	},
 	{
+		url: `${PRODUCT_TARGET}/shoppingCar/clean`,
+		method: 'post',
+		response: () => resultSuccess()
+	},
+	{
 		url: `${PRODUCT_TARGET}/shoppingCar/moveToWishList`,
 		method: 'post',
 		response: () => resultSuccess(generateSingleCar())
