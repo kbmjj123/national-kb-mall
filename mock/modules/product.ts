@@ -15,6 +15,7 @@ const generateProductInfo = (detailFlag?: boolean) => {
 		masterPicture: mockjs.Random.image('300x300', mockjs.Random.color(), mockjs.Random.color(), 'png', mockjs.Random.cword(2, 4)),
 		price: mockjs.Random.float(0.01, 9999, 0, 2),
 		marketPrice: mockjs.Random.float(0.01, 9999, 0, 2),
+		isInWishList: mockjs.Random.boolean(),
 		descPic: [],
 		detailContent: ''
 	}

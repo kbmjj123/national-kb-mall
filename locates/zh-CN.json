@@ -48,7 +48,16 @@
 			"myDetails": "个人信息",
 			"orders": "我的订单",
 			"downloads": "我的下载",
+			"wishlist": "愿望清单",
 			"logout": "退出登录"
+		},
+		"wishlist": {
+			"items": "{num}个",
+			"editTitle": "编辑分组",
+			"belongGroup": "所属分组",
+			"groupName": "分组名称",
+			"groupNameTip": "请输入分组名称",
+			"recommendGroup": "推荐分组"
 		},
 		"details": {
 			"personalInformation": "个人信息",
@@ -151,6 +160,7 @@
 		"addToCart": "加入购物车",
 		"category": "分类",
 		"addToWishlist": "添加至愿望清单",
+		"removeFromWishlist": "从愿望清单中删除",
 		"share": "分享",
 		"guessYouLike": "猜你喜欢",
 		"customerReviews": "顾客评论",

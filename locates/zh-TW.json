@@ -98,7 +98,8 @@
       "downloads": "我的下載",
       "logout": "登出登入",
       "myDetails": "個人資訊",
-      "orders": "我的訂單"
+      "orders": "我的訂單",
+      "wishlist": "願望清單"
     },
     "details": {
       "lastName": "姓氏",
@@ -138,6 +139,11 @@
     },
     "shipping": {
       "title": "運輸"
+    },
+    "wishlist": {
+      "items": "{num}個",
+      "belongGroup": "所屬分組",
+      "editTitle": "編輯分組"
     }
   },
   "retry": "重試",
@@ -162,7 +168,8 @@
     "submit": "提交",
     "yourEmail": "你的信箱",
     "yourExperience": "你的體驗如何？",
-    "reviewsPic": "評價圖片"
+    "reviewsPic": "評價圖片",
+    "removeFromWishlist": "從願望清單中刪除"
   },
   "loadingAndWaiting": "加載中，請稍後...",
   "resources": {

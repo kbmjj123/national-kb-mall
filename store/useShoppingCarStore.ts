@@ -1,27 +1,26 @@
-import { getShoppingCarList } from '~/api/product.js'
+import { getShoppingCarList } from '~/api/shoppingCar'
 
 const SHOPPING_CAR_STORE_ID = 'shoppingCar'
 
 export type ShoppingCarType = {
-	carNumber: number,
-	carList: []
+	cartList: [],
+	cartCount: number
 }
 
 export const useShoppingCarStore = defineStore(SHOPPING_CAR_STORE_ID, {
 	state: (): ShoppingCarType => {
 		return {
-			carNumber: 0,
-			carList: []
+			cartCount: 0,
+			cartList: []
 		}
 	},
 	getters: {
-		getCarNumber():number {
-			return this.carNumber
+		getCartCount():number {
+			return this.cartCount
 		}
 	},
 	actions: {
 		async getShoppingCarListAction() {
-			const { result, execute } = await getShoppingCarList()
 		}
 	},
 	persist: {

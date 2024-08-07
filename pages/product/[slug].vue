@@ -43,7 +43,7 @@
 					<span></span>
 				</p>
 				<!-- 添加到愿望清单，分享 -->
-				<AddToWishList :slug="slug">
+				<AddToWishList :slug="slug" :is-in-wish-list="productInfo?.data.isInWishList">
 					<Sharing></Sharing>
 				</AddToWishList>
 			</section>

@@ -49,6 +49,7 @@
     "v-viewer": "^3.0.13",
     "viewerjs": "^1.11.6",
     "vue-social-sharing": "4.0.0-alpha4",
+    "vuedraggable": "^4.1.0",
     "zod": "^3.23.8"
   }
 }

@@ -58,9 +58,14 @@ export default [
 		response: () => resultSuccess(mockjs.Random.guid())
 	},
 	{
+		url: `${WISHLIST_TARGET}/group/recommend`,
+		method: 'get',
+		response: () => resultWrapListSuccess(Array.from({ length: mockjs.Random.natural(3, 5) }, () => mockjs.Random.ctitle(3, 5)))
+	},
+	{
 		url: `${WISHLIST_TARGET}/modify`,
 		method: 'post',
-		response: () => resultSuccess(generateSingleWish()) 
+		response: () => resultSuccess(generateSingleWish())
 	},
 	{
 		url: `${WISHLIST_TARGET}/group/edit`,

@@ -84,7 +84,7 @@ export default defineAppConfig({
 			links: [
 				{
 					key: 'myAccount',
-					link: '/my-account',
+					link: '/user-center',
 					target: '_self'
 				},
 				{
@@ -94,7 +94,7 @@ export default defineAppConfig({
 				},
 				{
 					key: 'wishlist',
-					link: '/wishlist',
+					link: '/user-center/wishlist',
 					target: '_self'
 				},
 				{

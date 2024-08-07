@@ -33,8 +33,13 @@ export const modifyProductInWishList = (params: BasicParams): Promise<WrapArrayR
 }
 
 // 新增愿望清单分组信息
-export const addWishListGroup = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {
+export const editWishListGroup = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/wishlist/group/edit', { data: params })
+}
+
+// 获取推荐分组名称
+export const getRecommendGroupNameList = (): Promise<WrapArrayResponseModel<string>> => {
+	return useKbFetch.get('/wishlist/group/recommend')
 }
 
 // 创建待分享的愿望清单临时集合

@@ -98,7 +98,8 @@
       "downloads": "Download",
       "logout": "Logout",
       "myDetails": "My Details",
-      "orders": "Order"
+      "orders": "Order",
+      "wishlist": "wishlist"
     },
     "details": {
       "email": "EMAIL",
@@ -138,6 +139,10 @@
     },
     "shipping": {
       "title": "transportation"
+    },
+    "wishlist": {
+      "items": "Items: {num}",
+      "belongGroup": "Group to which it belongs"
     }
   },
   "retry": "Retry",
@@ -162,7 +167,8 @@
     "submit": "submit",
     "yourEmail": "your mailbox",
     "yourExperience": "How was your experience?",
-    "reviewsPic": "Review pictures"
+    "reviewsPic": "Review pictures",
+    "removeFromWishlist": "Remove from wish list"
   },
   "loadingAndWaiting": "Loading, please wait...",
   "resources": {

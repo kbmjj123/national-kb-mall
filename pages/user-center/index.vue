@@ -5,7 +5,7 @@
       <li>
         <NuxtLink
           class="flex items-center gap-2 rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-400"
-          :to="'/user-center/' + id + '/details'">
+          :to="'/user-center/details'">
           <UIcon name="i-heroicons-information-circle"></UIcon>
           <span>{{ $t('userCenter.frame.myDetails') }}</span>
         </NuxtLink>
@@ -13,7 +13,7 @@
       <li>
         <NuxtLink
           class="flex items-center gap-x-2 rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-400"
-          :to="'/user-center/' + id + '/orders'">
+          :to="'/user-center/orders'">
           <UIcon name="i-heroicons-shopping-bag"></UIcon>
           <span>{{ $t('userCenter.frame.orders') }}</span>
         </NuxtLink>
@@ -21,7 +21,15 @@
       <li>
         <NuxtLink
           class="flex items-center gap-2 rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-400"
-          :to="'/user-center/' + id + '/downloads'">
+          :to="'/user-center/wishlist'">
+          <UIcon name="i-heroicons-clipboard-document-list"></UIcon>
+          <span>{{ $t('userCenter.frame.wishlist') }}</span>
+        </NuxtLink>
+      </li>
+			<li>
+        <NuxtLink
+          class="flex items-center gap-2 rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-400"
+          :to="'/user-center/downloads'">
           <UIcon name="i-heroicons-archive-box-arrow-down"></UIcon>
           <span>{{ $t('userCenter.frame.downloads') }}</span>
         </NuxtLink>
@@ -45,8 +53,6 @@
   import { useRoute } from 'vue-router'
 
 	const ulElement = ref()
-  const route = useRoute()
-  const id = route.params.id
 	const ulTop = ref('0px')
 	onMounted(() => {
 		if(ulElement.value){

@@ -1,9 +1,11 @@
 <template>
   <ClientOnly>
-    <p class="flex flex-row gap-3">
+    <p class="flex flex-row justify-between gap-3">
       <UButton
-        :label="$t('product.addToWishlist')"
+				:icon="isInWishList ? 'i-ri-heart-3-fill' : 'i-ri-heart-3-line'"
+        :label="isInWishList ? $t('product.addToWishlist') : $t('product.removeFromWishlist')"
         size="2xs"
+				:color="isInWishList ? 'primary' : 'gray'"
 				:loading="isLoading"
         variant="link"
         @click="() => execute(slug)"></UButton>

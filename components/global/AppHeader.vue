@@ -34,7 +34,7 @@
             <UButton
               icon="i-heroicons-user"
               color="gray"
-              to="/user-center/u888/details"
+              to="/user-center/details"
               variant="ghost"
               aria-label="Theme"></UButton>
             <ShoppingCar></ShoppingCar>

@@ -9,7 +9,8 @@ export type ProductInfoType = {
 	price: string,
 	descPic: Array<string>,
 	detailContent: string,
-	marketPrice: string
+	marketPrice: string,
+	isInWishList: boolean
 }
 // 评价相关的类型
 export type EvaluateTtype = {
