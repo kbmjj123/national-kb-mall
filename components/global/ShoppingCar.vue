@@ -15,7 +15,7 @@
         divide: 'divide-y divide-gray-100 dark:divide-gray-800',
       }">
       <template #header>
-        <div class="flex items-center h-8">
+        <div ref="headerNode" class="flex items-center h-8">
           <UButton
             color="gray"
             variant="ghost"
@@ -44,7 +44,7 @@
         </div>
       </template>
       <!-- 购物车列表 -->
-      <div class="relative">
+      <div class="relative overflow-auto" :style="{height: leftHeight}">
         <ul class="flex flex-col gap-2">
           <li
             class="flex flex-row items-center gap-3 p-2 rounded-md hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-500"
@@ -143,6 +143,7 @@
       <!-- 底部的结算 -->
       <template #footer>
         <UButton
+					ref="footerNode"
           color="gray"
           block
           size="md"
@@ -157,6 +158,7 @@
 </template>
 
 <script setup lang="ts">
+  import { useElementSize, useWindowSize } from '@vueuse/core'
   import {
     getShoppingCarList,
     cleanProductInCar,
@@ -166,41 +168,53 @@
     type CarProductType,
   } from '~/api/shoppingCar'
   const isShowShoppingCar = ref(false)
-
+	
+	// 计算购物车内容可使用高度
+  const useLeftHeight = () => {
+		const headerNode = ref(null)
+		const footerNode = ref(null)
+		const { height: screenHeight } = useWindowSize()
+		const { height: headerHeight } = useElementSize(headerNode)
+		const { height: footerHeight } = useElementSize(footerNode)
+		return `${(screenHeight.value - headerHeight.value - footerHeight.value) || 0}px`
+	}
+	const leftHeight = useLeftHeight()
   // 获取购物车列表
   const { isLoading, data: carList, execute } = useLoading(getShoppingCarList)
   watch(isShowShoppingCar, (newVal) => {
-    if (newVal && (!carList.value || 0 === carList.value?.data?.list?.length)) {
-      execute &&
-        execute({}, null, (res: any) => {
-          res.data.list = res.data?.list?.map((item: CarProductType) => {
-            // 从购物车中移除商品
-            const {
-              isLoading: isRemovingFromCar,
-              execute: removeFromShoppingCarAction,
-            } = useLoading(removeFromShoppingCar)
-            const onRemoveFromShoppingCar = () => {
-              removeFromShoppingCarAction &&
-                removeFromShoppingCarAction(item.carId)
-            }
-            // 将购物车中的商品移动至愿望清单中
-            const {
-              isLoading: isMovingToWishList,
-              execute: moveToWishListAction,
-            } = useLoading(moveToWishList)
-            const onMoveToWishList = () => {
-              moveToWishListAction && moveToWishListAction(item.carId)
-            }
-            return {
-              ...item,
-              checked: false, // 追加是否选中的标识
-              isRemovingFromCar: isRemovingFromCar, // 是否正在从购物车中移除的标识
-              onRemoveingFromCar: onRemoveFromShoppingCar,
-              isMovingToWishList: isMovingToWishList, // 是否正在迁移至愿望清单的标识
-              onMovingToWishList: onMoveToWishList,
-            }
+    if (newVal) {
+      if (!carList.value || 0 === carList.value?.data?.list?.length) {
+        execute &&
+          execute({}, null, (res: any) => {
+            res.data.list = res.data?.list?.map((item: CarProductType) => {
+              // 从购物车中移除商品
+              const {
+                isLoading: isRemovingFromCar,
+                execute: removeFromShoppingCarAction,
+              } = useLoading(removeFromShoppingCar)
+              const onRemoveFromShoppingCar = () => {
+                removeFromShoppingCarAction &&
+                  removeFromShoppingCarAction(item.carId)
+              }
+              // 将购物车中的商品移动至愿望清单中
+              const {
+                isLoading: isMovingToWishList,
+                execute: moveToWishListAction,
+              } = useLoading(moveToWishList)
+              const onMoveToWishList = () => {
+                moveToWishListAction && moveToWishListAction(item.carId)
+              }
+              return {
+                ...item,
+                checked: false, // 追加是否选中的标识
+                isRemovingFromCar: isRemovingFromCar, // 是否正在从购物车中移除的标识
+                onRemoveingFromCar: onRemoveFromShoppingCar,
+                isMovingToWishList: isMovingToWishList, // 是否正在迁移至愿望清单的标识
+                onMovingToWishList: onMoveToWishList,
+              }
+            })
           })
-        })
+      }
     }
   })
   // 待结算金额
@@ -239,4 +253,5 @@
       },
     })
   }
+	
 </script>

@@ -983,6 +983,44 @@ export default defineComponent({
 ![useAsyncData生成的key](./assets/images/useAsyncData生成的key.png)
 :face_exhaling: 发现除了第一个接口的key在服务端以及客户端生成的是一致的之外，其他的3个接口生成的key居然不一样(之前是根据函数的toString()来加密生成的)，因此，调整了key的生成规则，改为常量的方式来生成，解决这个问题！！！
 
+#### 采用新的数据与动作捆绑操作
+> 有这样子的一个场景：`有一个列表，列表中的每个item都拥有loading控制状态，当点击item中的按钮的时候，将展示item的loading状态`
+> 在之前的编码实现中，一般是在每个item中追加loading属性，然后当点击item的时候，触发自定义的方法，传递item过来，然后在自定义方法中设置`item.loading=true`来控制item的加载效果
+> :trollface: 今天想要解锁一种新的编程模式，就是提前将捆绑给关联好，然后在点击事件发生的时候，让一切“按照原定计划”正常发生，实现方式如下：
+```vue
+	<script>
+		let items = [
+			{
+				// 正常的item数据
+				loading: false,
+				clickAction: () => {
+					this.loading = true
+					// ...执行异步操作
+					this.loading = false
+				}
+			}
+		]
+	</script>
+	<template>
+		<div v-for="(item, index) in items" :key="index" @click="item.clickAction">我是item元素</div>
+	</template>
+```
+:point_right: 当点击事件发生的时候，将触发`item.clickAction`方法，然后在该方法中将自动调用异步操作，且在异步操作中自动将自己的loading设置为ture，这一切都是“按照原定计划”自然发生！！
+
+#### mock模拟网络耗时
+> 由于我这边采用的mock机制，只是简单的将mock数据控制在一个方法中的，因此如果想要模拟网络请求的耗时情况，可以在方法之前返回数据之前，让其睡几秒，然后再执行目标方法返回对应的数据，实现过程如下：
+```typescript
+const delay = (ms: number) => {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+const sleep = async () => {
+  console.log("等待2秒...");
+  await delay(2000);  // 延迟 2 秒
+  console.log("2秒后执行的操作");
+}
+// --> 然后在需要睡眠的时候，调用这个sleep方法，即可
+```
+
 #### 页面级别的自定义组件
 > 由于`Nuxt3`会自动扫描`pages`目录下的vue文件来生成对应的路由，而在实际的项目coding过程中，会经常性地在页面级别创建专属于页面级别的子组件，这个时候不想让这个子组件被当作路由来使用，可以通过将子组件给命名为`_XXX.vue`的方式，来自定义命名并使用，因为下划线前缀不会被`Nuxt`用来生成路由的！
 ```vue

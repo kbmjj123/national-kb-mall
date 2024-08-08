@@ -8,9 +8,7 @@ const delay = (ms: number) => {
 }
 
 const sleep = async () => {
-  console.log("等待2秒...");
   await delay(2000);  // 延迟 2 秒
-  console.log("2秒后执行的操作");
 }
 
 
