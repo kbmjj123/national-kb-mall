@@ -1,22 +1,22 @@
 <template>
-  <UButtonGroup size="sm" orientation="horizontal">
+  <UButtonGroup size="2xs" orientation="horizontal" class="border border-solid border-gray-500">
     <UButton
       icon="i-heroicons-minus-16-solid"
       color="white"
-			size="xs"
-      variant="ghost"
+			size="2xs"
+      variant="link"
       @click="onClickMinus"></UButton>
     <UInput
       v-model="model"
       type="number"
 			size="2xs"
-      class="text-center w-16"
+      class="text-center w-12 border-l-gray-500"
       variant="none"></UInput>
     <UButton
       icon="i-heroicons-plus-16-solid"
       color="white"
-			size="xs"
-      variant="ghost"
+			size="2xs"
+      variant="link"
       @click="onClickAdd"></UButton>
   </UButtonGroup>
 </template>

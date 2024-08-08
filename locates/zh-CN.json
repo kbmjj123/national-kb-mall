@@ -106,7 +106,8 @@
 		"checkout": "结算",
 		"expiredProduct": "失效商品",
 		"clean": "清空",
-		"invalid": "已失效"
+		"invalid": "已失效",
+		"moveToWishlist": "移至愿望清单"
 	},
 	"index": {
 		"searchHolder": "搜索商品",
