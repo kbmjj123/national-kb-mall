@@ -1,4 +1,4 @@
-import type { StringOrBooleanResponseModel, WrapArrayResponseModel, BasicParams } from '~/api/types'
+import type { StringOrBooleanResponseModel, WrapArrayResponseModel, WrapArraysResponseModel, BasicParams } from '~/api/types'
 import type { ProductInfoType } from './product'
 
 export type CarProductType = Omit<ProductInfoType, 'category' | 'descPic' | 'detailContent'> & {
@@ -8,7 +8,7 @@ export type CarProductType = Omit<ProductInfoType, 'category' | 'descPic' | 'det
 }
 
 // 获取购物车列表数据
-export const getShoppingCarList = (): Promise<WrapArrayResponseModel<CarProductType>> => {
+export const getShoppingCarList = (): Promise<WrapArraysResponseModel<CarProductType, CarProductType>> => {
 	return useKbFetch.get('/product/shoppingCar/list', {})
 }
 

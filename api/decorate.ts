@@ -21,13 +21,19 @@ const getCarouselList = (): Promise<WrapArrayResponseModel<CarouselType>> => {
 }
 // 获取首页轮播图列表
 export const getCarouselListSSR = () => {
-	return useSafeAsyncData(getCarouselList)
+	return useSafeAsyncData(getCarouselList, {
+		url: '/decorate/carousel/list',
+		method: 'get'
+	})
 }
 
 const getBrandList = (): Promise<WrapArrayResponseModel<BrandType>> => {
 	return useKbFetch.get('/decorate/brand/list', {})
 }
 // 获取推荐品牌列表
-export const getBrandListSSR = () => {
-	return useSafeAsyncData(getBrandList)
+export const getBrandListSSR = async () => {
+	return useSafeAsyncData(getBrandList, {
+		url: '/decorate/brand/list',
+		method: 'get'
+	})
 }

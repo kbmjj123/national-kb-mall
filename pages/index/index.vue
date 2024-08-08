@@ -1,37 +1,39 @@
 <template>
-  <AppCarousel></AppCarousel>
-  <div class="container">
-    <BrandArea></BrandArea>
-    <AppTitle
-      :title="$t('index.categoryInShop')"
-      :button-info="{
-        text: $t('index.browseAll'),
-        link: '/product/list',
-        target: '_target',
-      }"></AppTitle>
-    <Category></Category>
-    <PlatformDescription></PlatformDescription>
-    <AppTitle
-      :title="$t('index.popularProduct')"
-      :button-info="{
-        text: $t('index.browseAll'),
-        link: '/product/list',
-      }"></AppTitle>
-    <ProductCell
-      :product-list="productListInfo?.data.list || []"
-      class="pb-8"></ProductCell>
-    <!-- 底部加载更多的视图 -->
-    <ClientOnly>
-      <div class="flex flex-row-reverse mt-4">
-        <UPagination
-          v-model="params.pageIndex"
-          :page-count="5"
-          :max="5"
-          :total="params.total"
-          show-last
-          show-first />
-      </div>
-    </ClientOnly>
+  <div class="w-full">
+    <AppCarousel></AppCarousel>
+    <div class="container">
+      <BrandArea></BrandArea>
+      <AppTitle
+        :title="$t('index.categoryInShop')"
+        :button-info="{
+          text: $t('index.browseAll'),
+          link: '/product/list',
+          target: '_target',
+        }"></AppTitle>
+      <Category></Category>
+      <PlatformDescription></PlatformDescription>
+      <AppTitle
+        :title="$t('index.popularProduct')"
+        :button-info="{
+          text: $t('index.browseAll'),
+          link: '/product/list',
+        }"></AppTitle>
+      <ProductCell
+        :product-list="productListInfo?.data.list || []"
+        class="pb-8"></ProductCell>
+      <!-- 底部加载更多的视图 -->
+      <ClientOnly>
+        <div class="flex flex-row-reverse mt-4">
+          <UPagination
+            v-model="params.pageIndex"
+            :page-count="5"
+            :max="5"
+            :total="params.total"
+            show-last
+            show-first />
+        </div>
+      </ClientOnly>
+    </div>
   </div>
 </template>
 
@@ -50,9 +52,14 @@
     total: 0,
   })
   const { data: productListInfo } = await getProductListSSR(params)
-	const { isLoading, execute: getProductListByPage } = useLoading(() => getProductList(params))
-	watch(params, (newVal) => {
-		getProductListByPage && getProductListByPage(params)
-	}, { deep: true })
-
+  const { isLoading, execute: getProductListByPage } = useLoading(() =>
+    getProductList(params)
+  )
+  watch(
+    params,
+    (newVal) => {
+      getProductListByPage && getProductListByPage(params)
+    },
+    { deep: true }
+  )
 </script>

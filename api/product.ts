@@ -34,14 +34,21 @@ export const getProductList = (params?: BasicPageParams): Promise<ArrayResponseM
 	return useKbFetch.get('/product/list', { params })
 }
 export const getProductListSSR = (params?: BasicPageParams) => {
-	return useSafeAsyncData(() => getProductList(params))
+	return useSafeAsyncData(() => getProductList(params), {
+		url: '/product/list',
+		method: 'get',
+		params
+	})
 }
 // 获取商品详情信息
 const getProductDetail = (slug: string): Promise<ObjectResponseModel<ProductInfoType>> => {
 	return useKbFetch.get(`/product/${slug}`)
 }
 export const getProductDetailSSR = (slug: string) => {
-	return useSafeAsyncData(() => getProductDetail(slug))
+	return useSafeAsyncData(() => getProductDetail(slug), {
+		url: `/product/${slug}`,
+		method: 'get'
+	})
 }
 
 // 获取评论列表信息
@@ -58,5 +65,8 @@ const getCategoryList = (): Promise<WrapArrayResponseModel<CategoryType>> => {
 	return useKbFetch.get('/product/category/list')
 }
 export const getCategoryListSSR = () => {
-	return useSafeAsyncData(getCategoryList)
+	return useSafeAsyncData(getCategoryList, {
+		url: '/product/category/list',
+		method: 'get'
+	})
 }

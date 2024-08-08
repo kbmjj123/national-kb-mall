@@ -3,7 +3,7 @@
     <UCarousel
 			ref="carouselRef"
       v-slot="{ item }"
-      :items="carouselInfo?.data"
+      :items="carouselInfo?.data || []"
       :ui="{ item: 'basis-full', indicators: { active: 'bg-gray-500 dark:bg-gray-400' } }"
 			indicators
       class="overflow-hidden">

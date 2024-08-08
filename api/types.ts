@@ -18,6 +18,14 @@ export interface WrapArrayResponseModel<T> extends BasicResponseModel {
 	data: Array<T>
 }
 
+//? 除了常规的data.list之外，额外追加其他的list2信息返回
+export interface WrapArraysResponseModel<T, U> extends BasicResponseModel {
+	data: {
+		list: Array<T>,
+		list2: Array<U>
+	}
+}
+
 //? 列表类型响应结果
 export interface ArrayResponseModel<T> extends BasicResponseModel {
   data: {

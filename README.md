@@ -973,6 +973,16 @@ export default defineComponent({
 >而打开此路径对应的效果如下图所示：
 ![tailwindcss样式对照表.png](./assets/images/tailwindcss样式对照表.png)
 
+#### 网络请求服务端渲染useAsyncData的key管理
+> 在进行服务端渲染的接口请求时，发现 :u6709: 以下的一个警告输出：
+![Hydration children mismatch](./assets/images/Hydration-children-mismatch.png)
+然后对应的浏览器的表现形式是：刷新的时候，刚开始看到数据，然后页面又自动重新刷新，接着控制台就出现上面的这个警告
+:thinking: 感觉好像是客户端并没有正确接管到服务端所传递过来的数据，导致客户端重新发起接口请求了一般。
+![useAsyncData接管](useAsyncData接管.png)
+:point_right: 根据[服务端的描述](https://nuxt.com/docs/api/composables/use-async-data)，客户端应该是能够正常接管服务端所传递的payload，避免在客户端重新发起网络请求去获取同样的数据的， :point_right: 而保证这个payload能够被正常接收的关键所在，就是就是在使用的`useAsyncData`方法时所传递的key，那么有可能这里的key导致客户端和服务端同一个接口请求生成的key不一致了，因此，对之前生成的key进行了一个输出，结果如下：
+![useAsyncData生成的key](./assets/images/useAsyncData生成的key.png)
+:face_exhaling: 发现除了第一个接口的key在服务端以及客户端生成的是一致的之外，其他的3个接口生成的key居然不一样(之前是根据函数的toString()来加密生成的)，因此，调整了key的生成规则，改为常量的方式来生成，解决这个问题！！！
+
 #### 页面级别的自定义组件
 > 由于`Nuxt3`会自动扫描`pages`目录下的vue文件来生成对应的路由，而在实际的项目coding过程中，会经常性地在页面级别创建专属于页面级别的子组件，这个时候不想让这个子组件被当作路由来使用，可以通过将子组件给命名为`_XXX.vue`的方式，来自定义命名并使用，因为下划线前缀不会被`Nuxt`用来生成路由的！
 ```vue

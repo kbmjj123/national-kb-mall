@@ -24,6 +24,16 @@ export function resultListSuccess<T>(data: Array<T>, total: number, pageIndex: n
 	})
 }
 
+export function resultWrapListsSuccess<T, U>(list: Array<T>, list2: Array<U>, { message = '操作成功' } = {}) {
+	return Mock.mock({
+		status: HttpResult.SUCCESS,
+		message,
+		data: {
+			list, list2
+		}
+	})
+}
+
 export function resultWrapListSuccess<T>(data: Array<T>, { message = '操作成功' } = {}) {
 	return Mock.mock({
 		status: HttpResult.SUCCESS,

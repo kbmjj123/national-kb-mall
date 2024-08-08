@@ -89,7 +89,7 @@ export default defineAppConfig({
 				},
 				{
 					key: 'orderHistory',
-					link: '/order',
+					link: '/user-center/orders',
 					target: '_self'
 				},
 				{

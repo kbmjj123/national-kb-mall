@@ -1,6 +1,6 @@
 import mockjs from 'mockjs'
 import { type MockMethod } from '../types'
-import { resultSuccess, resultListSuccess, resultWrapListSuccess, getOnePic } from '../_utils'
+import { resultSuccess, resultListSuccess, resultWrapListSuccess, resultWrapListsSuccess, getOnePic } from '../_utils'
 
 const PRODUCT_TARGET = '/product'
 
@@ -105,7 +105,7 @@ export default [
 	{
 		url: `${PRODUCT_TARGET}/shoppingCar/list`,
 		method: 'get',
-		response: () => resultWrapListSuccess(generateCarList(5))
+		response: () => resultWrapListsSuccess(generateCarList(5), generateCarList(2))
 	},
 	{
 		url: `${PRODUCT_TARGET}/shoppingCar/clearExpiredList`,

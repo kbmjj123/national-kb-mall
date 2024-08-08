@@ -18,7 +18,7 @@
 					<AppInput is-clearable :placeholder="$t('userCenter.wishlist.groupNameTip')"></AppInput>
 				</UFormGroup>
 				<UFormGroup :label="$t('userCenter.wishlist.recommendGroup')">
-					<URadioGroup :options="">
+					<URadioGroup :options="groupOptions">
 
 					</URadioGroup>
 				</UFormGroup>
@@ -35,7 +35,7 @@
   const showEditFlag = ref(false)
 	const { isLoading, execute, data: recommendGroupInfo } = useLoading(getRecommendGroupNameList)
 	const groupOptions = computed(() => {
-		recommendGroupInfo.length
+		return {}
 	})
 	watch(showEditFlag, (newVal: boolean) => {
 		if(newVal){
