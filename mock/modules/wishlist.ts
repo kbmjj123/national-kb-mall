@@ -5,7 +5,7 @@ import { resultSuccess, resultListSuccess, resultWrapListSuccess, getOnePic } fr
 const WISHLIST_TARGET = '/wishlist'
 
 const generateSingleWish = () => {
-	return {
+	let wishListItem = {
 		id: mockjs.Random.guid(),
 		name: mockjs.Random.cword(4, 40),
 		slugTarget: 'kb-product-slug',
@@ -13,14 +13,16 @@ const generateSingleWish = () => {
 		masterPicture: mockjs.Random.image('300x300', mockjs.Random.color(), mockjs.Random.color(), 'png', mockjs.Random.cword(2, 4)),
 		price: mockjs.Random.float(0.01, 9999, 0, 2),
 		marketPrice: mockjs.Random.float(0.01, 9999, 0, 2),
-		wishId: mockjs.Random.guid()
+		wishId: mockjs.Random.guid(),
 	}
+	return wishListItem
 }
 
 const generateGroupInfo = () => {
 	return {
 		id: mockjs.Random.guid(),
-		name: mockjs.Random.ctitle(2, 6),
+		name: mockjs.Random.ctitle(2, 5),
+		remark: mockjs.Random.cparagraph(5, 10),
 	}
 }
 
@@ -36,16 +38,19 @@ const generateDownloadInfo = () => {
 const generateDownloadList = (num: number) => {
 	return Array.from({ length: num }, generateDownloadInfo)
 }
-
+// 生成嵌套的愿望清单列表
 const generateWishList = (num: number) => {
-	return Array.from({ length: num }, generateSingleWish)
+	return Array.from({ length: num }, () => ({
+		...generateGroupInfo(),
+		children: Array.from({ length: mockjs.Random.natural(1, 5) }, generateSingleWish)
+	}))
 }
 
 export default [
 	{
 		url: `${WISHLIST_TARGET}/list`,
 		method: 'get',
-		response: () => resultListSuccess(generateWishList(20), 100, 1)
+		response: () => resultWrapListSuccess(generateWishList(6))
 	},
 	{
 		url: `${WISHLIST_TARGET}`,

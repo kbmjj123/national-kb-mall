@@ -53,11 +53,14 @@
 		},
 		"wishlist": {
 			"items": "{num}个",
+			"addGroup": "新增分组",
+			"deleteGroup": "删除分组",
 			"editTitle": "编辑分组",
 			"belongGroup": "所属分组",
 			"groupName": "分组名称",
 			"groupNameTip": "请输入分组名称",
-			"recommendGroup": "推荐分组"
+			"recommendGroup": "推荐分组",
+			"remark": "备注"
 		},
 		"details": {
 			"personalInformation": "个人信息",

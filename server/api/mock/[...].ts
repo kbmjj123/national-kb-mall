@@ -17,6 +17,7 @@ export default defineEventHandler((event: H3Event<EventHandlerRequest>) => {
 	const query = getQuery(event)
 	const method = event.method
 	const key = `${pathname}-${method.toLowerCase()}`
+	console.info('请求的mock-key是' + key)
 	const response = finalMockObj[key]
 	if(response){
 		sleep()

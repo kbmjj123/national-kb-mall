@@ -1,42 +1,66 @@
 <template>
-  <UCard>
+  <UCard v-if="wishListInfo">
     <template #header>
       <div class="flex flex-row items-center justify-between">
         <h3>{{ $t('userCenter.frame.wishlist') }}</h3>
-				<div class="flex flex-row items-center gap-3">
-					<EditWishListGroup></EditWishListGroup>
-					<span class="text-base">{{ $t('userCenter.wishlist.items', { num: 2 }) }}</span>
-				</div>
+        <div class="flex flex-row items-center gap-3">
+          <UButton
+            icon="i-heroicons-plus-small"
+            color="gray"
+            variant="ghost"
+            :label="$t('userCenter.wishlist.addGroup')"
+            @click="showEditFlag = true"
+            aria-label="Theme"></UButton>
+          <span class="text-base">{{
+            $t('userCenter.wishlist.items', { num: 2 })
+          }}</span>
+        </div>
       </div>
     </template>
-    <ul>
-      <li class="flex flex-row items-center py-3 gap-3">
-        <NuxtImg flex="w-[60px] h-[60px] rounded-md"></NuxtImg>
-        <div class="flex flex-col gap-2 flex-1">
-          <p>XXX</p>
-          <p>
-            <span>划线价</span>
-            <span>销售价</span>
-          </p>
-        </div>
-        <UButton
-          icon="i-heroicons-x-mark-20-solid"
-          color="gray"
-          variant="ghost"
-          @click="onRemoveFromWishList"
-          aria-label="Theme"></UButton>
-      </li>
-    </ul>
+    <!-- 以下是嵌套的可拖动的分组信息 -->
+    <draggable
+      :list="wishListInfo.data"
+      :animation="200"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="id"
+      :component-data="{
+        tag: 'ul',
+        type: 'transition-group',
+        name: !drag ? 'flip-list' : null,
+      }">
+      <template #item="{ element }">
+        <WishListItem :item-info="element"></WishListItem>
+      </template>
+    </draggable>
+		<!-- 新增分组视图 -->
+		<EditGroupModal v-model="showEditFlag"></EditGroupModal>
   </UCard>
 </template>
 
 <script setup lang="ts">
-	import EditWishListGroup from './components/_EditWishListGroup.vue'
-  import { getWishList, removeFromWishList } from '~/api/wishlist'
-  const onRemoveFromWishList = () => {}
+  import draggable from 'vuedraggable'
+  import EditGroupModal from './components/_EditGroupModal.vue'
+  import WishListItem from './components/_WishListItem.vue'
+  import { getWishList } from '~/api/wishlist'
 
-	const { isLoading, execute: getWishListAction, data: wishListInfo } = useLoading(getWishList)
-	onMounted(() => {
-		getWishListAction && getWishListAction()
-	})
+  const drag = ref(false)
+	const showEditFlag = ref(false)
+  const {
+    isLoading,
+    execute: getWishListAction,
+    data: wishListInfo,
+  } = useLoading(getWishList)
+  onMounted(() => {
+    getWishListAction && getWishListAction()
+  })
 </script>
+
+<style scoped>
+  .flip-list-move {
+    transition: transform 0.5s;
+  }
+  .no-move {
+    transition: transform 0s;
+  }
+</style>

@@ -30,7 +30,11 @@
     "addToCart": "Add to the cart",
     "clearCart": "Clear shopping cart",
     "name": "Shopping cart",
-    "checkout": "Settlement"
+    "checkout": "Settlement",
+    "clean": "Clear",
+    "expiredProduct": "Expired goods",
+    "invalid": "Expired",
+    "moveToWishlist": "Move to wish list"
   },
   "successTip": "Successful operation",
   "failedTip": "operation failed",
@@ -142,7 +146,14 @@
     },
     "wishlist": {
       "items": "Items: {num}",
-      "belongGroup": "Group to which it belongs"
+      "belongGroup": "Group to which it belongs",
+      "addGroup": "Add new group",
+      "deleteGroup": "Delete group",
+      "editTitle": "Edit group",
+      "groupName": "Group name",
+      "groupNameTip": "Please enter a group name",
+      "recommendGroup": "Recommended grouping",
+      "remark": "Remark"
     }
   },
   "retry": "Retry",

@@ -1,8 +1,15 @@
-import type { WrapArrayResponseModel, ArrayResponseModel, StringOrBooleanResponseModel, BasicParams, BasicPageParams } from './types'
+import type { WrapArrayResponseModel, ArrayResponseModel, StringOrBooleanResponseModel, BasicParams, BasicPageParams, ObjectResponseModel } from './types'
 import type { CarProductType } from "./shoppingCar"
 
 export type WishProductType = Omit<CarProductType, 'carId' | 'quantity'> & {
 	wishId: string
+}
+
+export type WishListGroupType = {
+	id: string,
+	name: string,
+	remark: string,
+	children: Array<WishProductType>
 }
 
 export type DownloadRecordType = {
@@ -32,6 +39,11 @@ export const modifyProductInWishList = (params: BasicParams): Promise<WrapArrayR
 	return useKbFetch.post('/wishlist/modify', { data: params })
 }
 
+// 查询分组信息
+export const getGroupInfo = (id: string): Promise<ObjectResponseModel<WishListGroupType>> => {
+	return useKbFetch.post(`/wishlist/${id}`)
+}
+
 // 新增愿望清单分组信息
 export const editWishListGroup = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/wishlist/group/edit', { data: params })
@@ -54,5 +66,5 @@ export const generateDownloadWishLish = (params: BasicParams): Promise<StringOrB
 
 // 查询愿望清单下载记录
 export const getDownloadRecord = (params: BasicPageParams): Promise<ArrayResponseModel<DownloadRecordType>> => {
-	return useKbFetch.get('/wishlish/download/record', )
+	return useKbFetch.get('/wishlish/download/record',)
 }

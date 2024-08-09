@@ -23,7 +23,11 @@
     "addToCart": "加入購物車",
     "clearCart": "清空購物車",
     "name": "購物車",
-    "checkout": "結算"
+    "checkout": "結算",
+    "clean": "清空",
+    "expiredProduct": "失效商品",
+    "invalid": "已失效",
+    "moveToWishlist": "移至願望清單"
   },
   "welcome": "歡迎您！",
   "failedTip": "操作失敗",
@@ -143,7 +147,13 @@
     "wishlist": {
       "items": "{num}個",
       "belongGroup": "所屬分組",
-      "editTitle": "編輯分組"
+      "editTitle": "編輯分組",
+      "addGroup": "新增分組",
+      "deleteGroup": "刪除分組",
+      "groupName": "分組名稱",
+      "groupNameTip": "請輸入分組名稱",
+      "recommendGroup": "推薦分組",
+      "remark": "備註"
     }
   },
   "retry": "重試",

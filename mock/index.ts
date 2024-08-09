@@ -3,6 +3,7 @@ import product from "./modules/product";
 import order from "./modules/order";
 import decorate from "./modules/decorate";
 import resources from "./modules/resources";
+import wishlist from './modules/wishlist'
 
 const MOCK_TARGET = '/api/mock'
 
@@ -11,7 +12,8 @@ const finalMockList = [
 	...product,
 	...order,
 	...decorate,
-	...resources
+	...resources,
+	...wishlist
 ]
 const finalMockObj: {[index: string]: any} = {}
 
