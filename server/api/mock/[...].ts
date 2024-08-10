@@ -20,7 +20,7 @@ export default defineEventHandler((event: H3Event<EventHandlerRequest>) => {
 	console.info('请求的mock-key是' + key)
 	const response = finalMockObj[key]
 	if(response){
-		sleep()
+		// sleep()
 		return finalMockObj[key]()
 	}else{
 		return resultFailed(null, { message: '接口服务不存在，请联系管理员' })

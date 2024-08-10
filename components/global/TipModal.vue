@@ -14,7 +14,9 @@
 	</UModal>
 </template>
 
-<script lang="ts">
+<script lang="ts" >
+
+
 export default defineComponent({
 	props: {
 		title: {

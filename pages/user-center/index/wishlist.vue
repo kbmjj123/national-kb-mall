@@ -30,11 +30,13 @@
         name: !drag ? 'flip-list' : null,
       }">
       <template #item="{ element }">
-        <WishListItem :item-info="element"></WishListItem>
+        <WishListItem
+          :item-info="element"
+          @on-edit-group="onEditGroup(element.id)"></WishListItem>
       </template>
     </draggable>
-		<!-- 新增分组视图 -->
-		<EditGroupModal v-model="showEditFlag"></EditGroupModal>
+    <!-- 新增分组视图 -->
+    <EditGroupModal v-model="showEditFlag"></EditGroupModal>
   </UCard>
 </template>
 
@@ -45,7 +47,8 @@
   import { getWishList } from '~/api/wishlist'
 
   const drag = ref(false)
-	const showEditFlag = ref(false)
+  const showEditFlag = ref(false)
+  const currentEditId = ref('')
   const {
     isLoading,
     execute: getWishListAction,
@@ -54,6 +57,10 @@
   onMounted(() => {
     getWishListAction && getWishListAction()
   })
+  const onEditGroup = (id: string) => {
+    currentEditId.value = id
+    showEditFlag.value = true
+  }
 </script>
 
 <style scoped>

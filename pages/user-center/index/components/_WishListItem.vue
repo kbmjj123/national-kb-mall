@@ -8,11 +8,13 @@
         <UButton
           color="gray"
           size="xs"
+					@click="emit('on-edit-group', itemInfo.id)"
           icon="i-ri-edit-2-line"
           variant="ghost"></UButton>
         <UButton
           color="gray"
           size="xs"
+					@click="onConfirmDeleteGroup(itemInfo.id)"
           icon="i-heroicons-trash"
           variant="ghost"></UButton>
       </div>
@@ -59,13 +61,19 @@
 
 <script setup lang="ts">
 	import draggable from 'vuedraggable'
+	const modal = useModal()
   import { type WishListGroupType, removeFromWishList } from '~/api/wishlist'
   defineProps<{
     itemInfo: WishListGroupType
   }>()
   const drag = ref(false)
+	const emit = defineEmits<{
+		'on-edit-group': [id: string]
+	}>()
   const { isLoading, execute } = useLoading(removeFromWishList)
   const onRemoveFromWishList = () => {
     execute && execute()
   }
+	const onConfirmDeleteGroup = (id: string) => {
+	}
 </script>

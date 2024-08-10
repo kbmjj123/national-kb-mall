@@ -11,7 +11,7 @@
 	],
 	"modalTip": {
 		"title": "温馨提示",
-		"cancelTxt": "我再想想",
+		"cancelTxt": "取消",
 		"okTxt": "确定"
 	},
   "login": {
@@ -59,8 +59,9 @@
 			"belongGroup": "所属分组",
 			"groupName": "分组名称",
 			"groupNameTip": "请输入分组名称",
-			"recommendGroup": "推荐分组",
-			"remark": "备注"
+			"recommendGroup": "推荐分组名称",
+			"remark": "备注",
+			"remarkTip": "请输入备注"
 		},
 		"details": {
 			"personalInformation": "个人信息",
