@@ -55,6 +55,7 @@
 			"items": "{num}个",
 			"addGroup": "新增分组",
 			"deleteGroup": "删除分组",
+			"deleteConfirmTip": "您确定要删除该分组吗？",
 			"editTitle": "编辑分组",
 			"belongGroup": "所属分组",
 			"groupName": "分组名称",

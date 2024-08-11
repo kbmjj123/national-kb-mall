@@ -61,7 +61,8 @@
 
 <script setup lang="ts">
 	import draggable from 'vuedraggable'
-	const modal = useModal()
+	const { showTipModal } = useTipModal()
+	const { t } = useI18n()
   import { type WishListGroupType, removeFromWishList } from '~/api/wishlist'
   defineProps<{
     itemInfo: WishListGroupType
@@ -70,10 +71,18 @@
 	const emit = defineEmits<{
 		'on-edit-group': [id: string]
 	}>()
+	// 从愿望清单中移除
   const { isLoading, execute } = useLoading(removeFromWishList)
   const onRemoveFromWishList = () => {
     execute && execute()
   }
+	// 删除整个分组
 	const onConfirmDeleteGroup = (id: string) => {
+		showTipModal({
+			content: t('userCenter.wishlist.deleteConfirmTip'),
+			onOk: () => {
+
+			}
+		})
 	}
 </script>

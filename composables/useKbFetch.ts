@@ -1,5 +1,4 @@
 import type { BasicResponseModel } from '~/api/types'
-import { TipModal } from '#components'
 
 const SUCCESS_FLAG = 0
 
@@ -20,9 +19,9 @@ export type FetchOptions = {
 // 对外暴露的统一接口请求函数
 function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOptions = {}) {
 	const toast = useToast()
-	const modal = useModal()
+	const { showTipModal } = useTipModal()
 	const nuxtApp = useNuxtApp()
-  const { t } = nuxtApp.$i18n
+	const { t } = nuxtApp.$i18n
 	const {
 		successResponseType = 'none',
 		data = null,
@@ -39,10 +38,10 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 			...headers
 		}
 	}
-	if(method === 'put'){
+	if (method === 'put') {
 		// put 仅用来处理文件上传
 		fetchOptions.body = data
-	}else{
+	} else {
 		if (data) {
 			fetchOptions.body = JSON.stringify(data)
 		}
@@ -59,9 +58,7 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 					toast.add({ title: result.message || t('successTip'), id: 'modal-success' })
 				} else if ('modal' === successResponseType) {
 					//! 展示全局的modal
-					modal.open(TipModal, {
-						content: result.message || t('successTip'),
-					})
+					showTipModal({ content: result.message || t('successTip') })
 				}
 				resolve(result)
 			} else {
@@ -71,7 +68,7 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 					toast.add({ title: result.message || t('failedTip'), id: 'modal-failed' })
 				} else if ('modal' === errorResponseType) {
 					//! 展示全局异常的modal
-					modal.open(TipModal, {
+					showTipModal({
 						content: result.message || t('successTip')
 					})
 				}
