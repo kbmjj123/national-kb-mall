@@ -2,6 +2,33 @@ export default defineAppConfig({
 	// 应用相关
 	appName: 'KB商城',
 	keywords: 'KB商城, 我的商城, 开源商城',
+	headerLinks: [
+		{
+			key: 'home',
+			link: '/',
+			target: '_self'
+		},
+		{
+			key: 'product',
+			link: '/product/list',
+			target: '_self'
+		},
+		{
+			key: 'category',
+			link: '/product/category',
+			target: '_self'
+		},
+		{
+			key: 'wishlist',
+			link: '/user-center/wishlist',
+			target: '_selft'
+		},
+		{
+			key: 'contactUs',
+			link: '/contact-us',
+			target: '_self'
+		}
+	],
 	// 以下是系统的链接配置相关
 	footerLinks: [
 		{

@@ -9,15 +9,15 @@
         'menu-item',
         'vertical' === mode ? 'py-4 gap-y-3' : 'gap-x-2',
       ]">
-      <NuxtLink>
-        {{ item }}
+      <NuxtLink :to="item.link" :target="item.target">
+        {{ item.title }}
       </NuxtLink>
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
-	const { locale } = useI18n()
+	const { t } = useI18n()
   withDefaults(
     defineProps<{
       mode?: 'vertical' | 'horizontal'
@@ -28,10 +28,12 @@
   )
 
   const menuList = computed(() => {
-    const nuxtApp = useNuxtApp()
-    const targetMsg = nuxtApp.$i18n.messages.value
-    // @ts-ignore
-    return targetMsg[locale.value]['menu']
+		const { config } = useSafeAppConfig()
+		let headerLinks = config.headerLinks.map(item => ({
+			...item,
+			title: t(`header.${item.key}`)
+		}))
+    return headerLinks
   })
 </script>
 

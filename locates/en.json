@@ -43,13 +43,6 @@
     "title": "Kind tips",
     "okTxt": "Sure"
   },
-  "menu": [
-    "Home",
-    "Products",
-    "Categories",
-    "Contact",
-    "Wishlist"
-  ],
   "footer": {
     "customerService": {
       "contactUs": "Contact Us",
@@ -153,7 +146,9 @@
       "groupName": "Group name",
       "groupNameTip": "Please enter a group name",
       "recommendGroup": "Recommended grouping",
-      "remark": "Remark"
+      "remark": "Remark",
+      "deleteConfirmTip": "Are you sure you want to delete this group?",
+      "remarkTip": "Please enter remarks"
     }
   },
   "retry": "Retry",
@@ -191,5 +186,12 @@
     "delete": "delete",
     "download": "download",
     "preview": "Preview"
+  },
+  "header": {
+    "category": "Classification",
+    "contactUs": "Contact us",
+    "home": "front page",
+    "product": "product",
+    "wishlist": "wish list"
   }
 }

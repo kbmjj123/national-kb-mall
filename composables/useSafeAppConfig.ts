@@ -1,10 +1,12 @@
+type Link = {
+	key: string,
+	link: string,
+	target: string
+}
+
 type LinkType = {
 	titleKey: string,
-	links: {
-		key: string,
-		link: string,
-		target: string
-	}[]
+	links: Link[]
 }
 type SocialType = {
 	title: string,
@@ -20,6 +22,7 @@ type PlatformDesc = {
 export interface AppConfig{
 	readonly appName: string,
 	readonly keywords: string,
+	readonly headerLinks: Link[],
 	readonly footerLinks: LinkType[],
 	readonly socialList: SocialType[],
 	readonly availableSocialNetworks: string[],

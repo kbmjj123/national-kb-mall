@@ -37,13 +37,6 @@
     "title": "溫馨提示",
     "okTxt": "確定"
   },
-  "menu": [
-    "首頁",
-    "產品",
-    "分類",
-    "聯絡我們",
-    "願望清單"
-  ],
   "footer": {
     "customerService": {
       "contactUs": "聯絡我們",
@@ -153,7 +146,9 @@
       "groupName": "分組名稱",
       "groupNameTip": "請輸入分組名稱",
       "recommendGroup": "推薦分組",
-      "remark": "備註"
+      "remark": "備註",
+      "deleteConfirmTip": "您確定要刪除該分組嗎？",
+      "remarkTip": "請輸入備註"
     }
   },
   "retry": "重試",
@@ -191,5 +186,12 @@
     "delete": "刪除",
     "download": "下載",
     "preview": "預覽"
+  },
+  "header": {
+    "category": "分類",
+    "contactUs": "聯絡我們",
+    "home": "首頁",
+    "product": "產品",
+    "wishlist": "願望清單"
   }
 }
