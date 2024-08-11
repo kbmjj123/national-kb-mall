@@ -143,6 +143,14 @@ export default defineI18nConfig(() => ({
 3. viewer.client.ts: 用于图片预览功能的`viewer`三方UI库；
 4. vue-social-sharing.client.ts: 用于客户端实现的一键分享至三方网络平台的三方库
 
+## 自定义组合式API
+> 记录在项目过程中所自定义的辅助项目项目开发的自定义组合式API
+1. useKbFetch.ts: 统一的网络请求封装器，主要用于发起网络请求以及统一的请求头、响应处理等一系列与网络交互有关的操作；
+2. useLoading.ts: 统一的纯客户端发起的网络请求方法，自动管理loading、与现有的业务请求模块无缝结合；
+3. useSafeAppConfig.ts: 安全使用的app配置方法；
+4. useSafeRuntimeConfig.ts: 安全使用的运行时配置方法；
+5. useTipModal.ts: 全局直接自定义modal的调用方法，对`nuxt-ui`的`modal`进行了一个二次封装
+
 ## 项目过程文档记录
 > 本章节将记录在进行整体项目开发调试过程中所遇到的相关问题，并进行发散性思维，联想相关的知识，并记录下来
 
