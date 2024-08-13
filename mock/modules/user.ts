@@ -19,7 +19,7 @@ const generateUserInfo = (): UserInfoType => {
 	}
 }
 
-const generateBillingInfo = () => {
+export const generateBillingInfo = () => {
 	const phoneNumber = '1' + mockjs.Random.pick(['3', '4', '5', '7', '8', '9']) + mockjs.Random.string('number', 9);
 	return {
     firstName: mockjs.Random.cword(2, 4),

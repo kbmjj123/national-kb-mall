@@ -1,11 +1,20 @@
 <template>
-	我是确认订单页面
-	{{ waitToCheckoutList }}
+	<div class="container flex flex-col gap-4 mt-4 md:flex-row lg:gap-10">
+		<section class="flex flex-col gap-8 flex-1">
+			<ContactInfo></ContactInfo>
+			<Billing></Billing>
+			<SelectShipping></SelectShipping>
+			<SelectPayMethod></SelectPayMethod>
+		</section>
+		<OrderSummary></OrderSummary>
+	</div>
 </template>
 
 <script setup lang="ts">
-	const route = useRoute()
-	const { productList } = route.query
-	const waitToCheckoutList = JSON.parse(productList as string)
+	import ContactInfo from './components/_ContactInfo.vue'
+	import OrderSummary from './components/_OrderSummary.vue'
+	import Billing from '~/pages/user-center/index/components/_Billing.vue'
+	import SelectShipping from './components/_SelectShipping.vue'
+	import SelectPayMethod from './components/_SelectPayMethod.vue'
 
 </script>

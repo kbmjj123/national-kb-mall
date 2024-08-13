@@ -4,6 +4,7 @@ import { resultSuccess, resultListSuccess, resultWrapListSuccess, getOnePic } fr
 
 const WISHLIST_TARGET = '/wishlist'
 
+// 生成分组中的商品
 const generateSingleWish = () => {
 	let wishListItem = {
 		id: mockjs.Random.guid(),
@@ -17,7 +18,7 @@ const generateSingleWish = () => {
 	}
 	return wishListItem
 }
-
+// 生成分组信息
 const generateGroupInfo = () => {
 	return {
 		id: mockjs.Random.guid(),
@@ -26,6 +27,7 @@ const generateGroupInfo = () => {
 	}
 }
 
+// 生成下载信息
 const generateDownloadInfo = () => {
 	return {
 		id: mockjs.Random.guid(),
@@ -35,6 +37,7 @@ const generateDownloadInfo = () => {
 	}
 }
 
+// 生成下载记录
 const generateDownloadList = (num: number) => {
 	return Array.from({ length: num }, generateDownloadInfo)
 }
@@ -47,46 +50,55 @@ const generateWishList = (num: number) => {
 }
 
 export default [
+	//? 获取愿望清单列表
 	{
 		url: `${WISHLIST_TARGET}/list`,
 		method: 'get',
 		response: () => resultWrapListSuccess(generateWishList(6))
 	},
+	//? 添加商品到愿望清单中
 	{
 		url: `${WISHLIST_TARGET}`,
 		method: 'post',
 		response: () => resultSuccess(mockjs.Random.guid())
 	},
+	//? 从愿望清单中移除某个商品
 	{
 		url: `${WISHLIST_TARGET}`,
 		method: 'delete',
 		response: () => resultSuccess(mockjs.Random.guid())
 	},
+	//? 获取平台推荐的分组名称
 	{
 		url: `${WISHLIST_TARGET}/group/recommend`,
 		method: 'get',
 		response: () => resultWrapListSuccess(Array.from({ length: mockjs.Random.natural(3, 5) }, () => mockjs.Random.ctitle(3, 5)))
 	},
+	//? 修改调整自己的愿望清单以及分组所属情况
 	{
 		url: `${WISHLIST_TARGET}/modify`,
 		method: 'post',
 		response: () => resultSuccess(generateSingleWish())
 	},
+	//? 编辑分组
 	{
 		url: `${WISHLIST_TARGET}/group/edit`,
 		method: 'post',
 		response: () => resultSuccess(generateGroupInfo())
 	},
+	//? 发布一个临时的愿望清单，用于分享给好友，让好友直接访问浏览
 	{
 		url: `${WISHLIST_TARGET}/temp/publish`,
 		method: 'post',
 		response: () => resultSuccess(generateGroupInfo())
 	},
+	//? 查看自己的可下载愿望清单列表
 	{
 		url: `${WISHLIST_TARGET}/download`,
 		method: 'post',
 		response: () => resultSuccess(generateDownloadInfo())
 	},
+	//? 查看每个愿望清单的下载记录
 	{
 		url: `${WISHLIST_TARGET}/download/record`,
 		method: 'get',

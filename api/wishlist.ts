@@ -39,6 +39,11 @@ export const modifyProductInWishList = (params: BasicParams): Promise<WrapArrayR
 	return useKbFetch.post('/wishlist/modify', { data: params })
 }
 
+// 查询商品是否被当前用户加入到愿望清单中
+export const checkIfInWishList = (slug: string): Promise<StringOrBooleanResponseModel> => {
+	return useKbFetch.get(`/product/${slug}/isInWishList`)
+}
+
 // 查询分组信息
 export const getGroupInfo = (id: string): Promise<ObjectResponseModel<WishListGroupType>> => {
 	return useKbFetch.post(`/wishlist/${id}`)

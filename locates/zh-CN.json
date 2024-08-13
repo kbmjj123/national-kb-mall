@@ -42,6 +42,7 @@
 		"alreadyHasAccount": "已有账号？",
 		"pleaseLogin": "请登录。",
 		"email": "邮箱",
+		"createNewAccount": "创建一个账号？",
 		"account": "用户名",
 		"password": "密码",
 		"invalidEmail": "无效的电子邮件",
@@ -187,6 +188,24 @@
 		"yourExperience": "你的体验如何？",
 		"yourEmail": "你的邮箱",
 		"submit": "提交"
+	},
+	"order": {
+		"confirm": {
+			"contactInfo": "联系信息",
+			"emailCode": "邮箱验证码",
+			"emailCodeHolder": "请输入邮箱收到的验证码",
+			"orderSummary": "订单汇总",
+			"subtotal": "小计",
+			"shipping": "运费",
+			"total": "总计",
+			"checkout": "下单",
+			"selectShippingMethod": "选择配送方式",
+			"paymentOptions": "支付选项",
+			"orderNode": "订单备注(可选)",
+			"orderNoteTip": "关于您的订单的说明，例如交货的特殊说明。",
+			"standardShipping": "标准运输",
+			"expressShipping": "快递运输"
+		}
 	},
 	"upload": {
 		"preview": "预览",
