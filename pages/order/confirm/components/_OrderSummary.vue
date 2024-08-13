@@ -7,7 +7,7 @@
       class="w-full md:w-[300px] lg:w-[400px] self-start bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg shadow px-4 py-5 sm:p-6 sticky ul-top z-10 flex flex-col flex-wrap gap-4 md:flex-col">
       <h3>{{ $t('order.confirm.orderSummary') }}</h3>
       <!-- 以下是商品列表 -->
-      <ShoppingCarItems :cart-list="orderInfo.data.productList"></ShoppingCarItems>
+      <ShoppingCarItems :cart-list="orderInfo?.data?.productList"></ShoppingCarItems>
       <div class="flex flex-row justify-between text-sm font-bold">
         <label>{{ $t('order.confirm.subtotal') }}</label>
         <span>{{ $t('money') }}{{ 100.0 }}</span>

@@ -6,13 +6,13 @@
 			<UFromGroup :label="$t('register.email')">
 				<AppInput is-clearable v-model="contactForm.account" :placeholder="$t('userCenter.details.emailPlaceholder')"></AppInput>
 			</UFromGroup>
-			<p>{{ $t('register.createNewAccount') }}<UCheckbox></UCheckbox></p>
-			<UFormGroup :label="$t('order.confirm.emailCode')">
+			<UFromGroup class="flex flex-row">{{ $t('register.createNewAccount') }}<UCheckbox></UCheckbox></UFromGroup>
+			<UFromGroup :label="$t('order.confirm.emailCode')">
 				<AppInput :placeholder="$t('order.confirm.emailCodeHolder')"></AppInput>
-			</UFormGroup>
-			<UFormGroup :label="$t('register.password')">
+			</UFromGroup>
+			<UFromGroup :label="$t('register.password')">
 				<AppInput is-clearable></AppInput>
-			</UFormGroup>
+			</UFromGroup>
 		</UForm>
 	</div>
 </template>
