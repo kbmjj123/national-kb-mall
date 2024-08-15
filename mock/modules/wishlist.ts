@@ -19,10 +19,11 @@ const generateSingleWish = () => {
 	return wishListItem
 }
 // 生成分组信息
-const generateGroupInfo = () => {
+const generateGroupInfo = (defaultGroup?: boolean) => {
 	return {
 		id: mockjs.Random.guid(),
 		name: mockjs.Random.ctitle(2, 5),
+		isDefault: defaultGroup,
 		remark: mockjs.Random.cparagraph(5, 10),
 	}
 }
@@ -43,8 +44,8 @@ const generateDownloadList = (num: number) => {
 }
 // 生成嵌套的愿望清单列表
 const generateWishList = (num: number) => {
-	return Array.from({ length: num }, () => ({
-		...generateGroupInfo(),
+	return Array.from({ length: num }, (item, index) => ({
+		...generateGroupInfo(index === 0),
 		children: Array.from({ length: mockjs.Random.natural(1, 5) }, generateSingleWish)
 	}))
 }

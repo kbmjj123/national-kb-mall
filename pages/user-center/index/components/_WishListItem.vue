@@ -4,7 +4,7 @@
     <div
       class="flex flex-row items-center p-1 justify-between bg-gray-50 dark:bg-gray-400">
       <h4 class="flex flex-row gap-2"><UCheckbox v-if="showSelectFlag"></UCheckbox>{{ itemInfo.name }}</h4>
-      <div class="flex flex-row gap-2">
+      <div class="flex flex-row gap-2" v-if="!itemInfo.isDefault">
         <UButton
           color="gray"
           size="xs"

@@ -8,11 +8,12 @@ export type WishProductType = Omit<CarProductType, 'carId' | 'quantity'> & {
 export type WishListGroupType = {
 	id: string,
 	name: string,
+	isDefault: boolean,
 	remark: string,
 	children: Array<WishProductType>
 }
 
-export type OnlyWishListGroupType = Omit<WishListGroupType, 'children'>
+export type OnlyWishListGroupType = Omit<WishListGroupType, 'children' | 'isDefault'>
 
 export type DownloadRecordType = {
 	id: string,
