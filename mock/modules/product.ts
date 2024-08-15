@@ -84,6 +84,12 @@ export default [
 		method: 'get',
 		response: () => resultSuccess(generateProductInfo(true))
 	},
+	//? 检查商品是否已加入至用户的愿望清单中
+	{
+		url: `${PRODUCT_TARGET}/xxx/isInWishList`,
+		method: 'get',
+		response: () => resultSuccess(false)
+	},
 	//! 评价相关
 	{
 		url: `${PRODUCT_TARGET}/xxx/evaluate/info`,

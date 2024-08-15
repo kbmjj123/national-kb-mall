@@ -49,12 +49,23 @@ const generateWishList = (num: number) => {
 	}))
 }
 
+// 生成仅愿望清单分组列表
+const generateWishListGroup = (num: number) => {
+	return Array.from({ length: num }, generateGroupInfo)
+}
+
 export default [
 	//? 获取愿望清单列表
 	{
 		url: `${WISHLIST_TARGET}/list`,
 		method: 'get',
 		response: () => resultWrapListSuccess(generateWishList(6))
+	},
+	//? 仅获取愿望清单分组列表
+	{
+		url: `${WISHLIST_TARGET}/group/list`,
+		method: 'get',
+		response: () => resultWrapListSuccess(generateWishListGroup(1))
 	},
 	//? 添加商品到愿望清单中
 	{
@@ -91,6 +102,12 @@ export default [
 		url: `${WISHLIST_TARGET}/temp/publish`,
 		method: 'post',
 		response: () => resultSuccess(generateGroupInfo())
+	},
+	//? 根据一个分享的shareId获取愿望清单商品列表
+	{
+		url: `${WISHLIST_TARGET}/temp/xxx`,
+		method: 'get',
+		response: () => resultWrapListSuccess(Array.from({ length: mockjs.Random.natural(1, 5) }, generateSingleWish))
 	},
 	//? 查看自己的可下载愿望清单列表
 	{

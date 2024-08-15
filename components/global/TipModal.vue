@@ -28,11 +28,13 @@
 </template>
 <script lang="ts">
 	export type TipProps = {
-		title?: string,
-		okTxt?; string,
-		cancelTxt?: string,
-		content: string
-	}
+    title?: string
+    okTxt?: string
+    cancelTxt?: string
+    mode?: 'normal' | 'single'
+    content: string
+    onOk?: Function
+  }
   export default defineComponent({
     props: {
       title: {
@@ -42,6 +44,10 @@
       okTxt: {
         type: String,
         default: '',
+      },
+      mode: {
+        type: String,
+        default: 'normal',
       },
       cancelTxt: {
         type: String,
@@ -59,6 +65,7 @@
       const okTxt = props.okTxt || t('modalTip.okTxt')
       const cancelTxt = props.cancelTxt || t('modalTip.cancelTxt')
       const content = props.content
+      const mode = props.mode || 'normal'
       const onCancel = () => {
         modal.close()
         emit('onCancel')
@@ -72,6 +79,7 @@
         okTxt,
         cancelTxt,
         content,
+        mode,
         onOk,
         onCancel,
       }

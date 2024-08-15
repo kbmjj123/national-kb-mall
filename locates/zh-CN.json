@@ -67,7 +67,9 @@
 			"groupNameTip": "请输入分组名称",
 			"recommendGroup": "推荐分组名称",
 			"remark": "备注",
-			"remarkTip": "请输入备注"
+			"remarkTip": "请输入备注",
+			"share": "分享",
+			"shareTo": "分享至"
 		},
 		"details": {
 			"personalInformation": "个人信息",

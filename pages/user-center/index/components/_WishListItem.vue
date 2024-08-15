@@ -3,7 +3,7 @@
   <li class="flex flex-col">
     <div
       class="flex flex-row items-center p-1 justify-between bg-gray-50 dark:bg-gray-400">
-      <h4>{{ itemInfo.name }}</h4>
+      <h4 class="flex flex-row gap-2"><UCheckbox v-if="showSelectFlag"></UCheckbox>{{ itemInfo.name }}</h4>
       <div class="flex flex-row gap-2">
         <UButton
           color="gray"
@@ -19,6 +19,7 @@
           variant="ghost"></UButton>
       </div>
     </div>
+		<!-- 渲染二级元素 -->
     <draggable
 			class="p-2"
       :list="itemInfo.children"
@@ -34,6 +35,7 @@
       <template #item="{ element }">
         <li
           class="flex flex-row items-center py-3 gap-3">
+					<UCheckbox v-if="showSelectFlag"></UCheckbox>
           <NuxtImg
             :src="element.masterPicture"
             class="w-[60px] h-[60px] rounded-md"></NuxtImg>
@@ -56,20 +58,20 @@
       </template>
     </draggable>
   </li>
-  <!-- 渲染二级元素 -->
 </template>
 
 <script setup lang="ts">
 	import draggable from 'vuedraggable'
 	const { showTipModal } = useTipModal()
 	const { t } = useI18n()
-  import { type WishListGroupType, removeFromWishList } from '~/api/wishlist'
+  import { type WishListGroupType, type WishProductType, removeFromWishList } from '~/api/wishlist'
   defineProps<{
-    itemInfo: WishListGroupType
+    itemInfo: WishListGroupType,
+		showSelectFlag?: boolean	// 是否展示选择框的标识
   }>()
   const drag = ref(false)
 	const emit = defineEmits<{
-		'on-edit-group': [id: string]
+		'on-edit-group': [id: string],
 	}>()
 	// 从愿望清单中移除
   const { isLoading, execute } = useLoading(removeFromWishList)

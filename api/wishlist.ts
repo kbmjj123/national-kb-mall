@@ -12,6 +12,8 @@ export type WishListGroupType = {
 	children: Array<WishProductType>
 }
 
+export type OnlyWishListGroupType = Omit<WishListGroupType, 'children'>
+
 export type DownloadRecordType = {
 	id: string,
 	name: string,
@@ -22,6 +24,11 @@ export type DownloadRecordType = {
 // 获取愿望清单列表信息
 export const getWishList = (): Promise<WrapArrayResponseModel<CarProductType>> => {
 	return useKbFetch.get('/wishlist/list')
+}
+
+// 仅获取愿望清单分组列表
+export const getWishListGroupList = (): Promise<WrapArrayResponseModel<OnlyWishListGroupType>> => {
+	return useKbFetch.get('/wishlist/group/list')
 }
 
 // 添加商品至愿望清单
@@ -62,6 +69,17 @@ export const getRecommendGroupNameList = (): Promise<WrapArrayResponseModel<stri
 // 创建待分享的愿望清单临时集合
 export const publishTempWishList = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/wishlist/temp/publish', { data: params })
+}
+
+// 根据生成的临时id获取愿望清单列表数据
+const getWishListByShareId = (shareId: string): Promise<WrapArrayResponseModel<WishProductType>> => {
+	return useKbFetch.get(`/wishlist/temp/${shareId}`)
+}
+export const getWishListByShareIdSSR = (shareId: string) => {
+	return useSafeAsyncData(() => getWishListByShareId(shareId), {
+		url: `/wishlist/wishlist/${shareId}`,
+		method: 'get'
+	})
 }
 
 // 生成愿望清单下载
