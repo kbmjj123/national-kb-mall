@@ -4,6 +4,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 	const { publicConfig } = useSafeRuntimeConfig()
 	const useMockFlag = Boolean(publicConfig.useMock)
 	const baseURL = publicConfig.baseUrl
+	console.info(useMockFlag, baseURL)
 	const api = $fetch.create({
 		baseURL: useMockFlag ? 'http://localhost:3000' : baseURL,
 		responseType: 'json',

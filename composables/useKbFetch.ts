@@ -48,7 +48,7 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 	}
 	const { publicConfig } = useSafeRuntimeConfig()
 	const useMockFlag = Boolean(publicConfig.useMock)
-	const finalUrl = useMockFlag ? `/api/mock${url}` : `/api/${url}`
+	const finalUrl = useMockFlag ? `/api/mock${url}` : `/api${url}`
 	return new Promise<DataT>(async (resolve, reject) => {
 		let result = await nuxtApp.$api<DataT>(finalUrl, fetchOptions)
 		if (result) {

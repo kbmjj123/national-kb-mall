@@ -61,11 +61,11 @@ export const publishEvaluate = (slug: string, params: BasicParams): Promise<Stri
 
 // 获取分类数据
 const getCategoryList = (): Promise<WrapArrayResponseModel<CategoryType>> => {
-	return useKbFetch.get('/product/category/list')
+	return useKbFetch.get('/product/allCate')
 }
 export const getCategoryListSSR = () => {
 	return useSafeAsyncData(getCategoryList, {
-		url: '/product/category/list',
+		url: '/product/allCate',
 		method: 'get'
 	})
 }
