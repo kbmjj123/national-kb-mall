@@ -12,6 +12,7 @@ export type FetchOptions = {
 	headers?: { [index: string]: any },	// 自定义请求头
 	method?: 'get' | 'post' | 'put' | 'delete',
 	params?: FetchParams,
+	query?: FetchParams,
 	data?: null | FetchParams | undefined,
 	isServer?: boolean
 }
@@ -28,7 +29,8 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 		errorResponseType = 'toast',
 		headers,
 		method = 'post',
-		params = {}
+		params = {},
+		query = {}
 	} = options
 
 	const fetchOptions: Record<string, any> = {
@@ -36,7 +38,8 @@ function fetch<DataT extends BasicResponseModel>(url: string, options: FetchOpti
 		method,
 		headers: {
 			...headers
-		}
+		},
+		query
 	}
 	if (method === 'put') {
 		// put 仅用来处理文件上传

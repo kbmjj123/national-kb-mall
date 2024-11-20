@@ -35,8 +35,8 @@ const loginSchema = z.object({
 type LoginSchemaType = z.output<typeof loginSchema>
 
 const loginForm = reactive({
-	emailOrUsername: '',
-	password: ''
+	emailOrUsername: '569751680@qq.com',
+	password: 'abc123!@#$'
 })
 const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
 	loading.value = true

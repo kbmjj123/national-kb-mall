@@ -1,4 +1,6 @@
 import type { ObjectResponseModel, StringOrBooleanResponseModel, BasicParams } from './types'
+import md5 from 'md5'
+
 export type UserInfoType = {
 	id: string,
 	nickName: string,
@@ -42,8 +44,12 @@ export type PasswordType = {
 	newPassword: string,
 	confirmPassword: string
 }
-export const login = (account: string, password: string): Promise<ObjectResponseModel<UserInfoType>> => {
-	return useKbFetch.post('/user/login', { data: { account, password }, errorResponseType: 'modal' })
+export const login = (email: string, password: string): Promise<ObjectResponseModel<UserInfoType>> => {
+	return useKbFetch.post('/user/login', { data: { email, password: md5(password) }, errorResponseType: 'modal' })
+}
+
+export const getRegisterLink = (email: string): Promise<ObjectResponseModel<string>> => {
+	return useKbFetch.get('/user/getRegisterLink', { query: { email } })
 }
 
 export const register = (params: { email: string; account: string; password: string }): Promise<ObjectResponseModel<UserInfoType>> => {
@@ -79,7 +85,7 @@ export const getShippingInfo = (): Promise<ObjectResponseModel<ShippingType>> =>
 }
 // 设置收货信息
 export const modifyShippingInfo = (params: BasicParams) => {
-	return useKbFetch.post('/user/shipping/modify', { data: params})
+	return useKbFetch.post('/user/shipping/modify', { data: params })
 }
 // 设置新的密码信息
 export const setPwdInfo = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {

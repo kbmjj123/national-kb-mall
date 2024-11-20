@@ -5,17 +5,17 @@
 			<p class="mt-5 font-bold text-lg">{{ $t('register.title') }}</p>
 			<p class="mt-1 text-base">{{ $t('register.alreadyHasAccount') }}<NuxtLink to="/login" class="text-primary">{{ $t('register.pleaseLogin') }}</NuxtLink></p>
 		</div>
-		<UForm class="form-container space-y-4" :schema="registerSchema" :state="registerForm" @submit="onSubmit">
+		<UForm class="form-container space-y-4" :schema="registerSchema" :state="registerForm">
 			<UFormGroup :label="$t('register.email')" name="email" required>
 				<UInput size="xl" v-model="registerForm.email" variant="outline"></UInput>
 			</UFormGroup>
-			<UFormGroup :label="$t('register.account')" name="account" class="mt-3" required>
+			<!-- <UFormGroup :label="$t('register.account')" name="account" class="mt-3" required>
 				<UInput size="xl" v-model="registerForm.account" variant="outline"></UInput>
 			</UFormGroup>
 			<UFormGroup :label="$t('register.password')" name="password" class="mt-3" required>
 				<PwdInput size="xl" v-model="registerForm.password" variant="outline" type="password" placeholder=""></PwdInput>
-			</UFormGroup>
-			<UButton type="submit" :loading="isLoading" size="xl" class="mt-3" block>{{ $t('register.registerBtn') }}</UButton>
+			</UFormGroup> -->
+			<UButton type="submit" @click="onSubmit" :loading="isLoading" size="xl" class="mt-3" block>{{ $t('register.registerBtn') }}</UButton>
 		</UForm>
 	</div>
 </template>
@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
-import { register, type UserInfoType } from '~/api/user'
+import { getRegisterLink, type UserInfoType } from '~/api/user'
 const { t } = useI18n()
 
 const registerSchema = z.object({
@@ -35,14 +35,13 @@ const registerSchema = z.object({
 type RegisterSchemaType = z.output<typeof registerSchema>
 
 const registerForm = reactive({
-	email: 'kbmjj123@gmail.com', 
-	account: 'kbmjj123',
-	password: 'zgl3843386'
+	email: 'kbmjj123@gmail.com',
 })
 
-const { isLoading, execute } = useLoading(register)
+const { isLoading, execute } = useLoading(getRegisterLink)
 
 const onSubmit = async (event: FormSubmitEvent<RegisterSchemaType>) => {
+	debugger
 	execute && execute(registerForm, (userInfo: UserInfoType) => {
 		console.info(userInfo)
 	})
