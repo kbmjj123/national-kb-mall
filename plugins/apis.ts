@@ -1,10 +1,14 @@
+import type { AnyResponseModel } from '~/api/types'
+import { HttpResult, LOGOUT_OUT_CODE } from '~/enum/http-code'
 import { useStore } from '~/store/useUserStore'
+import { useRouter } from 'vue-router'
+
 export default defineNuxtPlugin((nuxtApp) => {
 	const useUserStore = useStore()
 	const { publicConfig } = useSafeRuntimeConfig()
 	const useMockFlag = Boolean(publicConfig.useMock)
 	const baseURL = publicConfig.baseUrl
-	console.info(useMockFlag, baseURL)
+	const router = useRouter()
 	const api = $fetch.create({
 		baseURL: useMockFlag ? 'http://localhost:3000' : baseURL,
 		responseType: 'json',
@@ -14,18 +18,26 @@ export default defineNuxtPlugin((nuxtApp) => {
 				options.headers = {}
 			}
 			Object.assign(options.headers, {
-				accessToken: useUserStore.getAccessToken,
-				platform: 'web'
+				authorization: `Bearer ${useUserStore.getAccessToken}`,
 			})
 			if(import.meta.server){
-				// 如果是服务端渲染的话，需要自动从请求头中捞对应的token
+				// 如果是服务端渲染的话，需要自动从请求头中捞对应的authorization
 				Object.assign(options.headers, {
-					token: useRequestHeader('token')
+					authorization: `Bearer ${useRequestHeader('authorization')}`
 				})
 			}
 		},
-		onResponse({ request, response, options }) {
-			// console.info(response._data)
+		async onResponse({ request, response, options }) {
+			const res = response._data as AnyResponseModel
+			if(LOGOUT_OUT_CODE === res.status){
+				// 登录超时--> 自动重定向到登录页面
+				router.replace({
+					path: '/login',
+					query: {
+						target: encodeURIComponent(router.currentRoute.value.fullPath)
+					}
+				})
+			}
 		},
 		onResponseError({ request, response, options }) {
 			console.error(

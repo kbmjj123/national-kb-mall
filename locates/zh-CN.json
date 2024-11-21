@@ -36,15 +36,25 @@
     "resetBtn": "发送密码重置邮件",
     "tip": "请输入您的电子邮件地址，我们将向您发送重置密码的链接。"
   },
+	"modify": {
+		"title": "修改密码",
+		"oldPwd": "旧密码",
+		"oldPwdtip": "请输入旧密码",
+		"newPwd": "新密码",
+		"newPwdTip": "请输入新密码",
+		"submit": "提交"
+	},
   "register": {
     "registerBtn": "注册",
 		"title": "注册新账号",
 		"alreadyHasAccount": "已有账号？",
 		"pleaseLogin": "请登录。",
 		"email": "邮箱",
+		"registerEmail": "注册邮箱",
 		"createNewAccount": "创建一个账号？",
 		"account": "用户名",
 		"password": "密码",
+		"confirmPassword": "确认密码",
 		"invalidEmail": "无效的电子邮件",
 		"passwordLimited": "必须至少为8个字符"
   },

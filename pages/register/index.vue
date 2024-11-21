@@ -6,7 +6,7 @@
 			<p class="mt-1 text-base">{{ $t('register.alreadyHasAccount') }}<NuxtLink to="/login" class="text-primary">{{ $t('register.pleaseLogin') }}</NuxtLink></p>
 		</div>
 		<UForm class="form-container space-y-4" :schema="registerSchema" :state="registerForm">
-			<UFormGroup :label="$t('register.email')" name="email" required>
+			<UFormGroup :label="$t('register.email')" name="email" required :help="result">
 				<UInput size="xl" v-model="registerForm.email" variant="outline"></UInput>
 			</UFormGroup>
 			<!-- <UFormGroup :label="$t('register.account')" name="account" class="mt-3" required>
@@ -37,13 +37,13 @@ type RegisterSchemaType = z.output<typeof registerSchema>
 const registerForm = reactive({
 	email: 'kbmjj123@gmail.com',
 })
+const result = ref('')
 
 const { isLoading, execute } = useLoading(getRegisterLink)
 
 const onSubmit = async (event: FormSubmitEvent<RegisterSchemaType>) => {
-	debugger
-	execute && execute(registerForm, (userInfo: UserInfoType) => {
-		console.info(userInfo)
+	execute && execute(registerForm, (res: string) => {
+		result.value = res
 	})
 }
 </script>

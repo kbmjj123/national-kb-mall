@@ -1,5 +1,5 @@
 <template>
-	<UInput type="password">
+	<UInput :type="showPwdFlag ? 'password' : 'text'">
 		<template #trailing>
 			<UButton 
 				color="gray"

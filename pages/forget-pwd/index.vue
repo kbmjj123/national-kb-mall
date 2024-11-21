@@ -5,11 +5,10 @@
 			<p class="mt-5 font-bold text-lg">{{ $t('reset.title') }}</p>
 		</div>
 		<UForm class="form-container space-y-4" :schema="resetSchema" :state="resetForm" @submit="onSubmit">
-			<UFormGroup :label="$t('login.emalOrUsername')" name="email" required>
+			<UFormGroup :label="$t('register.registerEmail')" name="email" required>
 				<UInput size="xl" v-model="resetForm.email" variant="outline"></UInput>
 			</UFormGroup>
-			
-			<UButton type="submit" :loading="isLoading" size="xl" class="mt-3" block>{{ $t('register.registerBtn') }}</UButton>
+			<UButton type="submit" :loading="isLoading" size="xl" class="mt-3" block>{{ $t('reset.resetBtn') }}</UButton>
 		</UForm>
 	</div>
 </template>
@@ -17,7 +16,7 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
-import { resetPwd } from '~/api/user'
+import { getResetPwdLink } from '~/api/user'
 const { t } = useI18n()
 
 const resetSchema = z.object({
@@ -28,7 +27,7 @@ const resetForm = reactive({
 	email: ''
 })
 
-const { execute, isLoading } = useLoading(resetPwd)
+const { execute, isLoading } = useLoading(getResetPwdLink)
 
 const onSubmit = async (event: FormSubmitEvent<ResetSchemaType>) => {
 	execute && execute(resetForm, (res: any) => {

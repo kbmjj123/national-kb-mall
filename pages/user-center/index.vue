@@ -37,7 +37,8 @@
       </li>
       <li>
         <NuxtLink
-          class="flex items-center gap-2 rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-400">
+					@click="onLogout"
+          class="flex items-center gap-2 rounded-md p-3 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-400">
           <UIcon
             name="i-heroicons-arrow-right-start-on-rectangle-16-solid"></UIcon>
           <span>{{ $t('userCenter.frame.logout') }}</span>
@@ -53,16 +54,25 @@
 </template>
 
 <script lang="ts" setup>
-
+	import { useStore } from '~/store/useUserStore'
+	import { useRouter } from 'vue-router';
+	const userStore = useStore()
+	const router = useRouter()
   const ulElement = ref()
   const ulTop = ref('0px')
   onMounted(() => {
     if (ulElement.value) {
       const { top } = ulElement.value.getBoundingClientRect()
       ulTop.value = `${top}px`
-      console.info(ulTop.value)
     }
   })
+
+	/**
+	 * 用户退出登录动作
+	*/
+	const onLogout = async () => {
+		await userStore.logoutAction(router)
+	}
 </script>
 
 <style scoped>

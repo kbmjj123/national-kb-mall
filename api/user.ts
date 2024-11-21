@@ -9,8 +9,8 @@ export type UserInfoType = {
 	email: string,
 	firstName: string,
 	lastName: string,
-	// refreshToken: string,
-	// accessToken: string,
+	refreshToken: string,
+	accessToken: string,
 	[index: string]: any
 }
 export type BillingType = {
@@ -44,22 +44,39 @@ export type PasswordType = {
 	newPassword: string,
 	confirmPassword: string
 }
+/**
+ * 登录动作
+*/
 export const login = (email: string, password: string): Promise<ObjectResponseModel<UserInfoType>> => {
 	return useKbFetch.post('/user/login', { data: { email, password: md5(password) }, errorResponseType: 'modal' })
 }
-
-export const getRegisterLink = (email: string): Promise<ObjectResponseModel<string>> => {
-	return useKbFetch.get('/user/getRegisterLink', { query: { email } })
+/**
+ * 获取邮箱的新用户注册链接
+*/
+export const getRegisterLink = (params: BasicParams): Promise<ObjectResponseModel<string>> => {
+	return useKbFetch.get('/user/getRegisterLink', { params })
 }
-
+/**
+ * 注册账号动作
+*/
 export const register = (params: { email: string; account: string; password: string }): Promise<ObjectResponseModel<UserInfoType>> => {
-	return useKbFetch.post('/user/register', { data: params })
+	return useKbFetch.post('/user/register', { data: {...params, password: md5(params['password'])} })
 }
-
+/**
+ * 通过邮箱获取重置密码的链接
+*/
+export const getResetPwdLink = (params: BasicParams): Promise<ObjectResponseModel<string>> => {
+	return useKbFetch.get('/user/getResetPwdLink', { params })
+}
+/**
+ * 重置密码动作
+*/
 export const resetPwd = (account: string): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/user/resetPwd', { data: { account } })
 }
-
+/**
+ * 用户退出登录
+*/
 export const logout = (): Promise<StringOrBooleanResponseModel> => {
 	return useKbFetch.post('/user/logout')
 }

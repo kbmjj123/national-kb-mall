@@ -38,9 +38,11 @@ const loginForm = reactive({
 	emailOrUsername: '569751680@qq.com',
 	password: 'abc123!@#$'
 })
+// const { execute, isLoading, data } = useLoading(useUserStore.loginAction(loginForm.emailOrUsername, loginForm.password, router))
 const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
 	loading.value = true
-	const res = await useUserStore.loginAction(loginForm.emailOrUsername, loginForm.password)
+	const router = useRouter()
+	const res = await useUserStore.loginAction(loginForm.emailOrUsername, loginForm.password, router)
 	loading.value = false
 }
 

@@ -3,6 +3,11 @@ export interface BasicResponseModel {
   status: number
   message: string
 }
+//? any类型的响应结果
+export interface AnyResponseModel extends BasicResponseModel{
+	data: any
+}
+
 //? 字符串或者布尔类型响应结果
 export interface StringOrBooleanResponseModel extends BasicResponseModel {
   data: string | boolean
