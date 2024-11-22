@@ -5,7 +5,6 @@ import { NEED_LOGIN_LIST } from '~/config/white-list.js'
 import { useStore } from '~/store/useUserStore'
 export default defineNuxtRouteMiddleware((to, from) => {
 	const userStore = useStore()
-	debugger
   if(!NEED_LOGIN_LIST.some(regex => regex.test(to.path))){
 		// 不在未登录的白名单中，则重定向到登录页面
 		console.info(userStore.getAccessToken)

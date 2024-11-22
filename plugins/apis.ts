@@ -4,6 +4,7 @@ import { useStore } from '~/store/useUserStore'
 import { useRouter } from 'vue-router'
 
 export default defineNuxtPlugin((nuxtApp) => {
+
 	const useUserStore = useStore()
 	const { publicConfig } = useSafeRuntimeConfig()
 	const useMockFlag = Boolean(publicConfig.useMock)
@@ -14,12 +15,13 @@ export default defineNuxtPlugin((nuxtApp) => {
 		responseType: 'json',
 		timeout: 30000,
 		onRequest({ request, options }) {
-			if(!options.headers){
-				options.headers = {}
-			}
+			// 为每个请求追加时间戳参数，避免缓存
 			Object.assign(options.headers, {
 				authorization: `Bearer ${useUserStore.getAccessToken}`,
 			})
+			options.query = options.query || {}
+			options.query.t = Date.now()
+			options.headers.set('authorization', `Bearer ${useUserStore.getAccessToken}`)
 			if(import.meta.server){
 				// 如果是服务端渲染的话，需要自动从请求头中捞对应的authorization
 				Object.assign(options.headers, {
@@ -28,6 +30,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 			}
 		},
 		async onResponse({ request, response, options }) {
+			console.info(request, options)
 			const res = response._data as AnyResponseModel
 			if(LOGOUT_OUT_CODE === res.status){
 				// 登录超时--> 自动重定向到登录页面

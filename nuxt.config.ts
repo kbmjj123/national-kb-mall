@@ -8,6 +8,9 @@ const pkg = JSON.parse(readFileSync(resolve(__dirname, 'package.json'), 'utf-8')
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 	debug: true,
+	devServer: {
+		port: 8888
+	},
 	modules: [
 		'@nuxtjs/i18n',
 		'@nuxt/image',
@@ -37,7 +40,8 @@ export default defineNuxtConfig({
 		// "@nuxtjs/seo"
 	],
 	css: [
-		'~/assets/css/scrollbars.css'
+		'~/assets/css/tailwind.css',
+		'~/assets/css/scrollbars.css',
 	],
 	components: {
 		global: true,
@@ -74,5 +78,25 @@ export default defineNuxtConfig({
 	// 配置使用的图标库
 	ui: {
 		icons: ['heroicons', 'flag', 'ic', 'ri', 'svg-spinners']
-	}
+	},
+	vite: {
+		server: {
+			watch: {
+				ignored: [
+					'**/node_modules/**',
+					'**/.nuxt/**',
+					'**/dist/**'
+				]
+			}
+		},
+		optimizeDeps: {
+			include: ['vuedraggable', '@vueuse/core', 'zod', 'crypto-js']
+		}
+	},
+	nitro: {
+		devProxy: {
+			host: '127.0.0.1'
+		}
+	},
+	compatibilityDate: '2024-11-22'
 })

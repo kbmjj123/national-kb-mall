@@ -23,9 +23,7 @@ const FONT_SIZE_MAP = {
 interface Props {
 	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
-const { size } = withDefaults(defineProps<Props>(), {
-	size: 'xs'
-})
+const { size = 'xs' } = defineProps<Props>()
 const appIconSize = computed(() => {
 	return `${SIZE_MAP[size]}` || 'w-8'
 })
