@@ -56,7 +56,8 @@ export default defineNuxtConfig({
 			author: pkg.author,
 			baseUrl: envConfig['NUXT_PUBLIC_API_BASE_URL'],
 			common: envConfig['NUXT_PUBLIC_COMMON'],
-			useMock: envConfig['NUXT_PUBLIC_USE_MOCK']
+			useMock: envConfig['NUXT_PUBLIC_USE_MOCK'],
+			imgUrl: envConfig['NUXT_PUBLIC_IMG_URL']
 		}
 	},
 	// 多语言支持

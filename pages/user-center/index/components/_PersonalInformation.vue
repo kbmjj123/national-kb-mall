@@ -86,6 +86,8 @@
     firstName: '',
     lastName: '',
     email: '',
+		nickName: '',
+		
   })
 
   const { isLoading, execute } = useLoading(modifyUserInfo)

@@ -14,6 +14,7 @@ declare module 'nuxt/schema' {
 		readonly baseUrl: string;
 		readonly common: string;
 		readonly useMock: boolean;
+		readonly imgUrl: string;
 	}
 	// 在类型中声明自定义的appConfig属性
 	interface AppConfigInput {

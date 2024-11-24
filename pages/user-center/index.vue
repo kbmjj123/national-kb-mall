@@ -40,7 +40,7 @@
 					@click="onLogout"
           class="flex items-center gap-2 rounded-md p-3 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-400">
           <UIcon
-            name="i-heroicons-arrow-right-start-on-rectangle-16-solid"></UIcon>
+            :name="logoutLoading ? 'i-svg-spinners-pulse-rings-multiple' : 'i-heroicons-arrow-right-start-on-rectangle-16-solid'"></UIcon>
           <span>{{ $t('userCenter.frame.logout') }}</span>
         </NuxtLink>
       </li>
@@ -70,8 +70,11 @@
 	/**
 	 * 用户退出登录动作
 	*/
+	const logoutLoading = ref(false)
 	const onLogout = async () => {
+		logoutLoading.value = true
 		await userStore.logoutAction(router)
+		logoutLoading.value = false
 	}
 </script>
 
