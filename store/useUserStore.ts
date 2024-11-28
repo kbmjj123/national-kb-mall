@@ -39,6 +39,9 @@ const useUserStore = defineStore(USER_STORE_ID, {
 		}
 	},
 	getters: {
+		isLogin(): boolean{
+			return !!this.userInfo?.accessToken
+		},
 		getAccessToken(): string {
 			return this.userInfo?.accessToken as string
 		},

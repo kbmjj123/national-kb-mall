@@ -1,10 +1,10 @@
 import type { WrapArrayResponseModel, ArrayResponseModel, ObjectResponseModel, BasicPageParams, BasicParams, StringOrBooleanResponseModel } from './types'
 export type ProductInfoType = {
 	id: string,
-	name: string,
+	productName: string,
 	slug: string,
 	slugTarget?: string,
-	category: string,
+	cates: {id: string, title: string}[],
 	masterPicture: string,
 	price: string,
 	descPic: Array<string>,
@@ -40,23 +40,27 @@ export const getProductListSSR = (params?: BasicPageParams) => {
 	})
 }
 // 获取商品详情信息
-const getProductDetail = (slug: string): Promise<ObjectResponseModel<ProductInfoType>> => {
-	return useKbFetch.get(`/product/${slug}`)
+const getProductDetail = (id: string): Promise<ObjectResponseModel<ProductInfoType>> => {
+	return useKbFetch.get(`/product/${id}`)
 }
-export const getProductDetailSSR = (slug: string) => {
-	return useSafeAsyncData(() => getProductDetail(slug), {
-		url: `/product/${slug}`,
+export const getProductDetailSSR = (id: string) => {
+	return useSafeAsyncData(() => getProductDetail(id), {
+		url: `/product/${id}`,
 		method: 'get'
 	})
 }
+// 获取当前登录用户是否已收藏该商品
+export const checkIfInCollection = (params: BasicParams): Promise<ObjectResponseModel<Boolean>> => {
+	return useKbFetch.get(`/collection/inCollection`, { params })
+}
 
 // 获取评论列表信息
-export const getEvaluateList = (slug: string, params: BasicPageParams): Promise<ArrayResponseModel<EvaluateTtype>> => {
-	return useKbFetch.get(`/product/${slug}/evaluate/info`, { params })
+export const getEvaluateList = (id: string, params: BasicPageParams): Promise<ArrayResponseModel<EvaluateTtype>> => {
+	return useKbFetch.get(`/product/${id}/evaluate/info`, { params })
 }
 // 发布评论动作
-export const publishEvaluate = (slug: string, params: BasicParams): Promise<StringOrBooleanResponseModel> => {
-	return useKbFetch.post(`/product/${slug}/evaluate`, { data: {params} })
+export const publishEvaluate = (id: string, params: BasicParams): Promise<StringOrBooleanResponseModel> => {
+	return useKbFetch.post(`/product/${id}/evaluate`, { data: {params} })
 }
 
 // 获取分类数据

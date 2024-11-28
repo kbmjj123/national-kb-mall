@@ -25,7 +25,7 @@
   import { type EvaluateTtype, publishEvaluate } from '~/api/product'
 
   const props = defineProps<{
-    slug: string
+    id: string
   }>()
 
   const reviewsForm = reactive({
@@ -37,10 +37,10 @@
   })
 
   const { isLoading, execute } = useLoading(() =>
-    publishEvaluate(props.slug, reviewsForm)
+    publishEvaluate(props.id, reviewsForm)
   )
 
   const onSubmitReview = () => {
-    execute && execute(props.slug, reviewsForm)
+    execute && execute(props.id, reviewsForm)
   }
 </script>

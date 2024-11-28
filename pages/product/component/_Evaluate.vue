@@ -68,12 +68,12 @@
     isLoading,
     execute,
     data: evaluateList,
-  } = useLoading(() => getEvaluateList(props.productInfo?.slug, params))
+  } = useLoading(() => getEvaluateList(props.productInfo?.id, params))
   onMounted(() => {
-    execute && execute(props.productInfo?.slug, params)
+    execute && execute(props.productInfo?.id, params)
   })
 	watch(params,(newVal) => {
-		execute && execute(props.productInfo?.slug, newVal)
+		execute && execute(props.productInfo?.id, newVal)
 	}, { deep: true })
 	
 </script>

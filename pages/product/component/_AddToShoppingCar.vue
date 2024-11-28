@@ -28,18 +28,22 @@
 <script setup lang="ts">
 	import { useElementVisibility } from '@vueuse/core'
   import { addToShoppingCar } from '~/api/shoppingCar'
+	const userStore = useStore()
 	const addToCarNode = ref(null)
 	const isAddToCarNodeVisible = useElementVisibility(addToCarNode)
   const quantity = ref(1)
   const props = defineProps<{
-    slug: string
+    id: string
   }>()
 
   const { isLoading, execute } = useLoading(addToShoppingCar)
   const onAddToCar = () => {
+		if(userStore.isLogin){
+			
+		}
     execute &&
       execute({
-        slug: props.slug,
+        id: props.id,
         quantity: quantity.value,
       })
   }

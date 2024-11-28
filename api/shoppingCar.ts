@@ -9,30 +9,30 @@ export type CarProductType = Omit<ProductInfoType, 'category' | 'descPic' | 'det
 
 // 获取购物车列表数据
 export const getShoppingCarList = (): Promise<WrapArraysResponseModel<CarProductType, CarProductType>> => {
-	return useKbFetch.get('/product/shoppingCar/list', {})
+	return useKbFetch.get('/shoppingCar/list', {})
 }
 
 // 清除失效商品动作
 export const clearExpiredProductInCarList = (): Promise<StringOrBooleanResponseModel> => {
-	return useKbFetch.post('/product/shoppingCar/clearExpiredList', {})
+	return useKbFetch.post('/shoppingCar/clearExpiredList', {})
 }
 
 // 将商品加入到购物车
 export const addToShoppingCar = (params: BasicParams): Promise<StringOrBooleanResponseModel> => {
-	return useKbFetch.post('/product/shoppingCar/addToCar', { data: params })
+	return useKbFetch.post('/shoppingCar/add', { data: params })
 }
 
 // 从购物车中移除商品
 export const removeFromShoppingCar = (slug: string): Promise<StringOrBooleanResponseModel> => {
-	return useKbFetch.delete('/product/shoppingCar/removeFromCar', { data: { slug } })
+	return useKbFetch.delete('/shoppingCar/removeFromCar', { data: { slug } })
 }
 
 // 将商品从购物车移至愿望清单
 export const moveToWishList = (slug: string): Promise<StringOrBooleanResponseModel> => {
-	return useKbFetch.post('/product/shoppingCar/moveToWishList', { data: { slug } })
+	return useKbFetch.post('/shoppingCar/moveToWishList', { data: { slug } })
 }
 
 // 清空购物车商品动作
 export const cleanProductInCar = (): Promise<StringOrBooleanResponseModel> => {
-	return useKbFetch.post('/product/shoppingCar/clean')
+	return useKbFetch.post('/shoppingCar/clean')
 }

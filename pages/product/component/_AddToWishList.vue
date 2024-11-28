@@ -13,7 +13,7 @@
         :color="isInWishList?.data ? 'primary' : 'gray'"
         :loading="isLoading"
         variant="link"
-        @click="() => addToWishListAction(slug)"></UButton>
+        @click="() => addToWishListAction(id)"></UButton>
       <UPopover v-else mode="click" overlay :popper="{ arrow: true }" @update:open="onUpdateOpen">
         <UButton
           :icon="isInWishList?.data ? 'i-ri-heart-3-fill' : 'i-ri-heart-3-line'"
@@ -56,7 +56,7 @@
 		type OnlyWishListGroupType
   } from '~/api/wishlist'
   const props = defineProps<{
-    slug: string
+    id: string
   }>()
 	// 将商品加入至愿望清单
   const { isLoading, execute: addToWishListAction } = useLoading(addToWishList)
@@ -74,7 +74,7 @@
     execute: getWishListGroupListAction,
   } = useLoading(getWishListGroupList)
   onMounted(() => {
-    checkIfInWishListAction && checkIfInWishListAction(props.slug)
+    checkIfInWishListAction && checkIfInWishListAction(props.id)
   })
 	// 愿望清单被hover的回调
 	const onUpdateOpen = (open: boolean) => {
